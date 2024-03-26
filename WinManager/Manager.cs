@@ -336,18 +336,20 @@ namespace WinManager
             RegistryKey startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 
             //Path to the WinManager launch executable
-            var startPath = Path.Combine(Utils.GetInstallFolder()   , ExecutableFilename);
+            var startPath = Path.Combine(Utils.GetInstallFolder(), ExecutableFilename);
 
             // Modify the registry
-            try { 
-            if (value)
+            try
             {
-                startupRegistryKey.SetValue(_startupRegistryKeyName, startPath);
+                if (value)
+                {
+                    startupRegistryKey.SetValue(_startupRegistryKeyName, startPath);
+                }
+                else if (startupRegistryKey.GetValue(_startupRegistryKeyName, "none") != "none")
+                {
+                }
             }
-            else if (startupRegistryKey.GetValue(_startupRegistryKeyName, "none") != "none")
-            {
-            }
-            } catch (Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Failed to update launch on startup registry");
             }

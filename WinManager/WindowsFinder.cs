@@ -84,7 +84,7 @@ namespace WinManager
             // The window must not be cloaked by the shell
             //NativeMethods.DwmGetWindowAttribute(handle, DWMWA_CLOAKED, out uint cloaked, sizeof(uint));
             //if (cloaked == DWM_CLOAKED_SHELL)
-                //return false;
+            //return false;
 
             // The window must not have the extended style WS_EX_TOOLWINDOW
             uint style = NativeMethods.GetWindowLong(handle, GWL_EXSTYLE);

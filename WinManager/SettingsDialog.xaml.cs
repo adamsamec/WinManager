@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace WinManager
 {
@@ -39,7 +37,7 @@ namespace WinManager
         private void launchOnStartupCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             _manager.ChangeLaunchOnStartupSetting(false);
-                }
+        }
 
     }
 }
