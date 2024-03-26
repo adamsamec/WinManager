@@ -9,6 +9,13 @@ namespace WinManager
     /// </summary>
     public static class Utils
     {
+        public static string GetInstallFolder()
+        {
+            var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
+            return installFolder;
+        }
+
         private static object GetPropValue(object obj, string propName)
         {
             return obj.GetType().GetProperty(propName).GetValue(obj, null);

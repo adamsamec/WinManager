@@ -26,8 +26,7 @@ namespace WinManager
         public Config()
         {
             Directory.CreateDirectory(_folder);
-            var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
+            var installFolder = Utils.GetInstallFolder();
             var defaultPath = Path.Combine(installFolder, _defaultFilename);
             _path = Path.Combine(_folder, _filename);
 

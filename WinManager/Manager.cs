@@ -53,7 +53,8 @@ namespace WinManager
             _hook.Triggered += Show;
 
             // Update WinManager launch on startup seting from config
-            ChangeLaunchOnStartupSetting(Settings.launchOnStartup == Config.TRUE);
+            var isLaunchOnStartupEnabled = Settings.launchOnStartup == Config.TRUE;
+            ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
             _srOutput = new AutoOutput();
@@ -335,7 +336,7 @@ namespace WinManager
             RegistryKey startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 
             //Path to the WinManager launch executable
-            var startPath = Path.Combine(Directory.GetCurrentDirectory(), ExecutableFilename);
+            var startPath = Path.Combine(Utils.GetInstallFolder()   , ExecutableFilename);
 
             // Modify the registry
             try { 
@@ -345,7 +346,6 @@ namespace WinManager
             }
             else if (startupRegistryKey.GetValue(_startupRegistryKeyName, "none") != "none")
             {
-                startupRegistryKey.DeleteValue(_startupRegistryKeyName);
             }
             } catch (Exception ex)
             {
