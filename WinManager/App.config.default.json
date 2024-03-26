@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "launchOnStartup": "yes",
+    "filterByTyping": "yes",
+    "enabledShortcuts": {
+      "showApps": {
+        "Win_F12": "yes",
+        "Win_Shift_A": "no"
+      },
+      "showWindows": {
+        "Win_F11": "yes",
+        "Win_Shift_W": "no"
+      }
+    }
+  }
+}
