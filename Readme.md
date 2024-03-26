@@ -1,4 +1,4 @@
-# WinManager
+# WinManager 0.1.0
 ## Introduction
 WinManager is a utility which runs in background and brings easier application and windows management to Microsoft Windows. WinManager enables efficient applications and windows switching and closing functionality that is optimized for the keyboard and screen reader users, inspired by macOS and the VoiceOver screen reader way of switching between applications and windows. You will find the benefit of WinManager especially if you are running many applications and their open windows at the same time.
 
