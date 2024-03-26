@@ -61,6 +61,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for updates.
+        /// </summary>
+        public static string checkForUpdatesButton {
+            get {
+                return ResourceManager.GetString("checkForUpdatesButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string closeButton {
@@ -93,6 +102,33 @@ namespace WinManager {
         public static string noAppsFound {
             get {
                 return ResourceManager.GetString("noAppsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not now.
+        /// </summary>
+        public static string notNowButton {
+            get {
+                return ResourceManager.GetString("notNowButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your version of WinManager {0} is up to date..
+        /// </summary>
+        public static string noUpdateAvailableMessage {
+            get {
+                return ResourceManager.GetString("noUpdateAvailableMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No update available.
+        /// </summary>
+        public static string noUpdateAvailableTitle {
+            get {
+                return ResourceManager.GetString("noUpdateAvailableTitle", resourceCulture);
             }
         }
         
@@ -151,11 +187,38 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WinManager version {0} is available. Do you want to download the update and run its installation now?.
+        /// </summary>
+        public static string updateAvailableMessage {
+            get {
+                return ResourceManager.GetString("updateAvailableMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        public static string updateAvailableTitle {
+            get {
+                return ResourceManager.GetString("updateAvailableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to windows.
         /// </summary>
         public static string windowsCount {
             get {
                 return ResourceManager.GetString("windowsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string yesButton {
+            get {
+                return ResourceManager.GetString("yesButton", resourceCulture);
             }
         }
     }

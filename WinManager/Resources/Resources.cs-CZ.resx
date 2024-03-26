@@ -153,4 +153,32 @@
           xml:space="preserve">
         <value>Zavřít</value>
     </data>
+                <data name="checkForUpdatesButton"
+          xml:space="preserve">
+        <value>Zkontrolovat aktualizace</value>
+    </data>
+            <data name="updateAvailableTitle"
+          xml:space="preserve">
+        <value>Dostupná aktualizace</value>
+    </data>
+            <data name="updateAvailableMessage"
+          xml:space="preserve">
+        <value>Je dostupný WinManager verze {0}. Přejete si stáhnout aktualizaci a spustit její instalaci nyní?</value>
+    </data>
+                <data name="yesButton"
+          xml:space="preserve">
+        <value>Ano</value>
+    </data>
+                <data name="notNowButton"
+          xml:space="preserve">
+        <value>Nyní ne</value>
+    </data>
+                <data name="noUpdateAvailableTitle"
+          xml:space="preserve">
+        <value>Žádná dostupná instalace</value>
+    </data>
+            <data name="noUpdateAvailableMessage"
+          xml:space="preserve">
+        <value>Vaše verze WinManager {0} je aktuální.</value>
+    </data>
 </root>

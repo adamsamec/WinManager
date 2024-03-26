@@ -24,11 +24,6 @@ namespace WinManager
             launchOnStartupCheckBox.Focus();
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-        }
-
         private void launchOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             _manager.ChangeLaunchOnStartupSetting(true);
@@ -37,6 +32,16 @@ namespace WinManager
         private void launchOnStartupCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             _manager.ChangeLaunchOnStartupSetting(false);
+        }
+
+        private void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
 
     }
