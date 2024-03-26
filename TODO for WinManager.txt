@@ -1,0 +1,9 @@
+## TODO
+* Ask user for startup registry on first launch.
+* Update feature.
+* Remove unused imports everywhere.
+* Add File explorer app item.
+* Exclude some items like System host...
+* Add foreground app windows switching.
+* Add enabled keyboard shortcuts settings.
+* App and windows closing.

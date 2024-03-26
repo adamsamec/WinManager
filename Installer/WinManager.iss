@@ -3,17 +3,17 @@
 [CustomMessages]
 MyAppName=WinManager
 en.MyDescription=Utility for easier and more accessible application and windows switching and closing in Microsoft Windows
-en.LaunchAfterInstall=Start {cm:MyAppName} after finishing installation
+en.LaunchAfterInstall=Start WinManager after finishing installation
 cs.MyDescription=Nástroj pro snadné a přístupnější přepínání a zavírání aplikací a oken v Microsoft Windows
-cs.LaunchAfterInstall=Spustit {cm:MyAppName} po dokončení instalace
+cs.LaunchAfterInstall=Spustit WinManager po dokončení instalace
 ExecutableFilename={cm:MyAppName}.exe
 
 [Setup]
-OutputBaseFilename=WinManager-1.0.0-win32-setup
-AppVersion=1.0.0
+OutputBaseFilename=WinManager-0.1.0-win32-setup
+AppVersion=0.1.0
 AppName={cm:MyAppName}
 AppId=WinManager
-PrivilegesRequired=lowest
+;PrivilegesRequired=lowest
 DisableProgramGroupPage=yes
 WizardStyle=modern
 DefaultDirName={autopf}\{cm:MyAppName}
