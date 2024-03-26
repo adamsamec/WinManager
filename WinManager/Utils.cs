@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Accessibility;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 
@@ -9,11 +10,16 @@ namespace WinManager
     /// </summary>
     public static class Utils
     {
+        private static string _installFolder;
+
         public static string GetInstallFolder()
         {
+            if (_installFolder== null)
+            {
             var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
-            return installFolder;
+            _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
+            }
+            return _installFolder;
         }
 
         private static object GetPropValue(object obj, string propName)
