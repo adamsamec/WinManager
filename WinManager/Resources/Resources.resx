@@ -217,4 +217,12 @@
           xml:space="preserve">
         <value>Your version of WinManager {0} is up to date.</value>
     </data>
+                <data name="updateFailedTitle"
+          xml:space="preserve">
+        <value>Update failed</value>
+    </data>
+            <data name="updateFailedMessage"
+          xml:space="preserve">
+        <value>Update was not successful. Check if you are connected to the Internet.</value>
+    </data>
 </root>

@@ -181,4 +181,12 @@
           xml:space="preserve">
         <value>Vaše verze WinManager {0} je aktuální.</value>
     </data>
+                    <data name="updateFailedTitle"
+          xml:space="preserve">
+        <value>Aktualizace selhalad</value>
+    </data>
+            <data name="updateFailedMessage"
+          xml:space="preserve">
+        <value>Aktualizace nebyla úspěšná. Zkontrolujte, jesli jste připojeni k Internetu.</value>
+    </data>
 </root>

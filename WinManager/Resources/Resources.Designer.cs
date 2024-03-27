@@ -205,6 +205,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update was not successful. Check if you are connected to the Internet..
+        /// </summary>
+        public static string updateFailedMessage {
+            get {
+                return ResourceManager.GetString("updateFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update failed.
+        /// </summary>
+        public static string updateFailedTitle {
+            get {
+                return ResourceManager.GetString("updateFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to windows.
         /// </summary>
         public static string windowsCount {
