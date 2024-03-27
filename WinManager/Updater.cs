@@ -6,12 +6,12 @@ namespace WinManager
     /// <summary>
     /// Update check, download and launch class
     /// </summary>
-    public class AppUpdater
+    public class Updater
     {
         private const string _apiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
         public const string AppVersion = "0.1.0";
 
-        public AppUpdater()
+        public Updater()
         {
         }
 

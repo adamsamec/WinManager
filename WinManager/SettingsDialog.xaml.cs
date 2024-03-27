@@ -19,7 +19,7 @@ namespace WinManager
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
             // Retrieve stored settings
-            launchOnStartupCheckBox.IsChecked = _manager.Settings.launchOnStartup == Config.TRUE;
+            launchOnStartupCheckBox.IsChecked = _manager.AppSettings.launchOnStartup == Config.TRUE;
 
             launchOnStartupCheckBox.Focus();
         }

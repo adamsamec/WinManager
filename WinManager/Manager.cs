@@ -19,7 +19,7 @@ namespace WinManager
         private KeyboardHook _hook;
         private AutoOutput _srOutput = new AutoOutput();
         private Config _config = new Config();
-        private AppUpdater _updater = new AppUpdater();
+        private Updater _appUpdater = new Updater();
 
         private List<RunningApplication> _appsList = new List<RunningApplication>();
         private List<RunningApplication> _filteredAppsList = new List<RunningApplication>();
@@ -29,7 +29,7 @@ namespace WinManager
         private int _selectedAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
-        public Settings Settings
+        public Settings AppSettings
         {
             get { return _config.Settings; }
         }
@@ -37,9 +37,9 @@ namespace WinManager
         {
             get { return _view; }
         }
-        public AppUpdater Updater
+        public Updater AppUpdater
         {
-            get { return _updater; }
+            get { return _appUpdater; }
         }
 
         public enum ListView
@@ -57,7 +57,7 @@ namespace WinManager
             _hook.Triggered += Show;
 
             // Update WinManager launch on startup seting from config
-            var isLaunchOnStartupEnabled = Settings.launchOnStartup == Config.TRUE;
+            var isLaunchOnStartupEnabled = AppSettings.launchOnStartup == Config.TRUE;
             ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
@@ -357,7 +357,7 @@ namespace WinManager
                 Debug.WriteLine("Failed to update launch on startup registry");
             }
             // Update settings
-            Settings.launchOnStartup = value ? Config.TRUE : Config.FALSE; ;
+            AppSettings.launchOnStartup = value ? Config.TRUE : Config.FALSE; ;
             SaveSettings();
         }
 
