@@ -187,6 +187,14 @@
     </data>
             <data name="updateFailedMessage"
           xml:space="preserve">
-        <value>Aktualizace nebyla úspěšná. Zkontrolujte, jesli jste připojeni k Internetu.</value>
+        <value>Aktualizace nebyla úspěšná. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+    </data>
+                        <data name="updateCheckFailedTitle"
+          xml:space="preserve">
+        <value>Kontrola aktualizace selhala</value>
+    </data>
+            <data name="updateCheckFailedMessage"
+          xml:space="preserve">
+        <value>Kontrola aktualizace nebyla úspěšná. Zkontrolujte, jestli jste připojeni k Internetu.</value>
     </data>
 </root>

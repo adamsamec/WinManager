@@ -11,14 +11,15 @@ namespace WinManager
     /// </summary>
     public class Manager
     {
-        public const string ExecutableFilename = "WinManager.exe";
         private const string _startupRegistryKeyName = "WinManager";
+        public const string ExecutableFilename = "WinManager.exe";
 
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private MainWindow _mainWindow;
         private KeyboardHook _hook;
-        private AutoOutput _srOutput;
-        private Config _config;
+        private AutoOutput _srOutput = new AutoOutput();
+        private Config _config = new Config();
+        private AppUpdater _updater = new AppUpdater();
 
         private List<RunningApplication> _appsList = new List<RunningApplication>();
         private List<RunningApplication> _filteredAppsList = new List<RunningApplication>();
@@ -36,6 +37,10 @@ namespace WinManager
         {
             get { return _view; }
         }
+        public AppUpdater Updater
+        {
+            get { return _updater; }
+        }
 
         public enum ListView
         {
@@ -48,8 +53,7 @@ namespace WinManager
         public Manager(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
-            _config = new Config();
-            _hook = new KeyboardHook(_mainWindow, 0x77, ModifierKeyCodes.Windows);
+            _hook = new KeyboardHook(_mainWindow, 0x77, ModifierKeyCodes.Windows); // Windows + F8
             _hook.Triggered += Show;
 
             // Update WinManager launch on startup seting from config
@@ -57,7 +61,6 @@ namespace WinManager
             ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
-            _srOutput = new AutoOutput();
             _srOutput.Speak(Resources.startAnnouncement);
         }
 

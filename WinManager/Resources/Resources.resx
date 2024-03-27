@@ -223,6 +223,15 @@
     </data>
             <data name="updateFailedMessage"
           xml:space="preserve">
-        <value>Update was not successful. Check if you are connected to the Internet.</value>
+        <value>Update was not successful. Verify that you are connected to the Internet.</value>
+    </data>
+
+                    <data name="updateCheckFailedTitle"
+          xml:space="preserve">
+        <value>Check for update failed</value>
+    </data>
+            <data name="updateCheckFailedMessage"
+          xml:space="preserve">
+        <value>Check for update was not successful. Verify that you are connected to the Internet.</value>
     </data>
 </root>
