@@ -7,13 +7,9 @@ namespace WinManager
     /// </summary>
     public partial class UpdateCheckFailedDialog : Window
     {
-        private Manager _manager;
-
-        public UpdateCheckFailedDialog(Manager manager)
+        public UpdateCheckFailedDialog()
         {
             InitializeComponent();
-
-            _manager = manager;
         }
 
         private void UpdateCheckFailedDialog_Loaded(object sender, RoutedEventArgs e)

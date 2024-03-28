@@ -1,0 +1,24 @@
+﻿<Window x:Class="WinManager.NoUpdateAvailableDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WinManager"
+        xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
+        mc:Ignorable="d"
+        Title="{x:Static lang:Resources.noUpdateAvailableTitle}"
+        SizeToContent="WidthAndHeight"
+WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        Loaded="NoUpdateAvailableDialog_Loaded">
+    <Grid>
+    <TextBlock Name="noUpdateAvailableMessage" />
+    <Button Name="closeButton"
+                Content="{x:Static lang:Resources.closeButton}"
+Click="closeButton_Click"
+IsDefault="True"
+IsCancel="True"
+                HorizontalAlignment="Right" />
+    </Grid>
+</Window>

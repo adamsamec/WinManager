@@ -40,9 +40,15 @@ namespace WinManager
             try
             {
                 var updateData = _manager.AppUpdater.CheckForUpdate();
+                if (updateData == null)
+                {
+                    var noUpdateAvailableDialog = new NoUpdateAvailableDialog();
+                    noUpdateAvailableDialog.Owner = this;
+                    noUpdateAvailableDialog.ShowDialog();
+                }
             } catch (Exception ex)
             {
-                var updateCheckFailedDialog = new UpdateCheckFailedDialog(_manager);
+                var updateCheckFailedDialog = new UpdateCheckFailedDialog();
                 updateCheckFailedDialog.Owner = this;
                 updateCheckFailedDialog.ShowDialog();
             }

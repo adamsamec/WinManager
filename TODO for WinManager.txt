@@ -1,5 +1,6 @@
 ## TODO
 * Update feature.
+* Add about and help windows.
 * Add File explorer app item.
 * Exclude some items like System host...
 * Add foreground app windows switching.
