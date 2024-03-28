@@ -21,6 +21,7 @@ namespace WinManager
             // Retrieve stored settings
             launchOnStartupCheckBox.IsChecked = _manager.AppSettings.launchOnStartup == Config.TRUE;
 
+            // Set initial focus
             launchOnStartupCheckBox.Focus();
         }
 
@@ -36,7 +37,15 @@ namespace WinManager
 
         private void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var updateData = _manager.AppUpdater.CheckForUpdate();
+            } catch (Exception ex)
+            {
+                var updateCheckFailedDialog = new UpdateCheckFailedDialog(_manager);
+                updateCheckFailedDialog.Owner = this;
+                updateCheckFailedDialog.ShowDialog();
+            }
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

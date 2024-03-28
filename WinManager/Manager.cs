@@ -61,7 +61,12 @@ namespace WinManager
             ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
-            _srOutput.Speak(Resources.startAnnouncement);
+            Speak(Resources.startAnnouncement);
+        }
+
+        public void Speak(string message)
+        {
+            _srOutput.Speak(message);
         }
 
         public void HandleMainWindowLoad()

@@ -90,6 +90,7 @@ namespace WinManager
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
             var settingsDialog = new SettingsDialog(_manager);
+            settingsDialog.Owner = this;
             settingsDialog.ShowDialog();
         }
 
