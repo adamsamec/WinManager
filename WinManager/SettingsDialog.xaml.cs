@@ -46,7 +46,18 @@ namespace WinManager
                     noUpdateAvailableDialog.Owner = this;
                     noUpdateAvailableDialog.ShowDialog();
                 }
-            } catch (Exception ex)
+                else
+                {
+                    var updateAvailableDialog = new UpdateAvailableDialog(_manager, updateData);
+                    updateAvailableDialog.Owner = this;
+                    var doUpdate = updateAvailableDialog.ShowDialog();
+                    if (doUpdate == true)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 var updateCheckFailedDialog = new UpdateCheckFailedDialog();
                 updateCheckFailedDialog.Owner = this;

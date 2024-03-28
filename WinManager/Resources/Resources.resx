@@ -199,7 +199,7 @@
     </data>
             <data name="updateAvailableMessage"
           xml:space="preserve">
-        <value>WinManager version {0} is available. Do you want to download the update and run its installation now?</value>
+        <value>New WinManager version {0} is available. You currently have version {1}. Do you want to download the update and run its installation now?</value>
     </data>
                 <data name="yesButton"
           xml:space="preserve">

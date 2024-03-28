@@ -163,7 +163,7 @@
     </data>
             <data name="updateAvailableMessage"
           xml:space="preserve">
-        <value>Je dostupný WinManager verze {0}. Přejete si stáhnout aktualizaci a spustit její instalaci nyní?</value>
+        <value>Je dostupný WinManager verze {0}. V současnosti máte verzi {1}. Přejete si stáhnout aktualizaci a spustit její instalaci nyní?</value>
     </data>
                 <data name="yesButton"
           xml:space="preserve">

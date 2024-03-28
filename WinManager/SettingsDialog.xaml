@@ -25,6 +25,7 @@ Click="checkForUpdatesButton_Click"
                 Content="{x:Static lang:Resources.closeButton}"
 Click="closeButton_Click"
 IsDefault="True"
+IsCancel="True"
                 HorizontalAlignment="Right" />
     </Grid>
 </Window>
