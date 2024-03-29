@@ -201,4 +201,28 @@
           xml:space="preserve">
         <value>Stahování aktualizace</value>
     </data>
+                            <data name="updateDownloadFailedTitle"
+          xml:space="preserve">
+        <value>Stahování aktualizace selhalo</value>
+    </data>
+            <data name="updateDownloadFailedMessage"
+          xml:space="preserve">
+        <value>Stahování Aktualizace nebylo úspěšné. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+    </data>
+                        <data name="updateDownloadInProgressTitle"
+          xml:space="preserve">
+        <value>Probíhá stahování aktualizace</value>
+    </data>
+            <data name="updateDownloadInProgressMessage"
+          xml:space="preserve">
+        <value>Aktualizace se stále stahuje. Chcete stahování zrušit?</value>
+    </data>
+                    <data name="cancelUpdateDownloadButton"
+          xml:space="preserve">
+        <value>Zrušit stahování</value>
+    </data>
+                        <data name="continueUpdateDownloadButton"
+          xml:space="preserve">
+        <value>Pokračovat ve stahování</value>
+    </data>
 </root>

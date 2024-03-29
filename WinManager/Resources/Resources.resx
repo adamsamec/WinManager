@@ -238,4 +238,28 @@
           xml:space="preserve">
         <value>Downloading update</value>
     </data>
+                        <data name="updateDownloadFailedTitle"
+          xml:space="preserve">
+        <value>Update download failed</value>
+    </data>
+            <data name="updateDownloadFailedMessage"
+          xml:space="preserve">
+        <value>Update download was not successful. Verify that you are connected to the Internet.</value>
+    </data>
+                        <data name="updateDownloadInProgressTitle"
+          xml:space="preserve">
+        <value>Update download in progress</value>
+    </data>
+            <data name="updateDownloadInProgressMessage"
+          xml:space="preserve">
+        <value>The update is being downloaded. Do you want to cancel the download?</value>
+    </data>
+                    <data name="cancelUpdateDownloadButton"
+          xml:space="preserve">
+        <value>Cancel download</value>
+    </data>
+                        <data name="continueUpdateDownloadButton"
+          xml:space="preserve">
+        <value>Continue download</value>
+    </data>
 </root>

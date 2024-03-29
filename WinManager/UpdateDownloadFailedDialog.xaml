@@ -1,4 +1,4 @@
-﻿<Window x:Class="WinManager.UpdateCheckFailedDialog"
+﻿<Window x:Class="WinManager.UpdateDownloadFailedDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:WinManager"
         xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
         mc:Ignorable="d"
-        Title="{x:Static lang:Resources.updateCheckFailedTitle}"
+        Title="{x:Static lang:Resources.updateDownloadFailedTitle}"
         SizeToContent="WidthAndHeight"
 WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
         WindowStyle="None"
-        Loaded="UpdateCheckFailedDialog_Loaded">
+        Loaded="UpdateDownloadFailedDialog_Loaded">
     <Grid>
-    <TextBlock Text="{x:Static lang:Resources.updateCheckFailedMessage}" />
+    <TextBlock Text="{x:Static lang:Resources.updateDownloadFailedMessage}" />
     <Button Name="closeButton"
                 Content="{x:Static lang:Resources.closeButton}"
 Click="closeButton_Click"

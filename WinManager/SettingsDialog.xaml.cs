@@ -37,9 +37,11 @@ namespace WinManager
 
         private void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
+            var doUpdate = false;
+            UpdateData updateData = null;
             try
             {
-                var updateData = _manager.AppUpdater.CheckForUpdate();
+                updateData = _manager.AppUpdater.CheckForUpdate();
                 if (updateData == null)
                 {
                     var noUpdateAvailableDialog = new NoUpdateAvailableDialog();
@@ -50,21 +52,29 @@ namespace WinManager
                 {
                     var updateAvailableDialog = new UpdateAvailableDialog(_manager, updateData);
                     updateAvailableDialog.Owner = this;
-                    var doUpdate = updateAvailableDialog.ShowDialog();
-                    if (doUpdate == true)
-                    {
-                        _manager.AppUpdater.downloadUpdate(updateData, (progress) =>
-                        {
-
-                        });
-                    }
+                    doUpdate = updateAvailableDialog.ShowDialog() == true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 var updateCheckFailedDialog = new UpdateCheckFailedDialog();
                 updateCheckFailedDialog.Owner = this;
                 updateCheckFailedDialog.ShowDialog();
+            }
+            if (doUpdate && updateData != null)
+            {
+                _manager.AppUpdater.DownloadUpdateAsync(updateData, (progress) =>
+                {
+                    updateDownloadProgressBar.Value = progress;
+                }, () =>
+                {
+
+                }, () =>
+                {
+                    var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
+                    updateDownloadFailedDialog.Owner = this;
+                    updateDownloadFailedDialog.ShowDialog();
+                });
             }
         }
 

@@ -32,18 +32,32 @@ namespace WinManager
         }
 
         public delegate void DownloadProgressCallback(int progress);
+        public delegate void DownloadCompleteCallback();
+        public delegate void DownloadErrorCallback();
 
-        public void downloadUpdate(UpdateData updateData, DownloadProgressCallback downloadProgressCallback)
+        public async void DownloadUpdateAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
         {
-            var url = new System.Uri(updateData.setupUrl);
-            Directory.CreateDirectory(Consts.SetupDownloadPath);
+            var setupUrl = new System.Uri(updateData.setupUrl);
+            var setupFilename = Path.GetFileName(setupUrl.LocalPath);
+            var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
+            Directory.CreateDirectory(Consts.SetupDownloadFolder);
             var webClient = new WebClient();
             webClient.DownloadProgressChanged += (sender, e) =>
             {
                 downloadProgressCallback(e.ProgressPercentage);
             };
-            //webClient.DownloadFileAsync(url, Consts.SetupDownloadPath);
+            try
+            {
+                await webClient.DownloadFileTaskAsync(setupUrl, setupDownloadPath);
+                downloadCompleteCallback();
+            }
+            catch (Exception ex)
+            {
+                if (ex is WebException || ex is InvalidOperationException)
+                {
+                    downloadErrorCallback();
+                }
+            }
         }
     }
 }
-

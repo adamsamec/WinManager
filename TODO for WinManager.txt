@@ -1,6 +1,7 @@
 ## TODO
 * Prevent Alt + F4 from closing settings and child dialogs.
-* Add update in progress and update failed dialogs.
+* Delete setup folder before downloading.
+* Add update in progress dialog.
 * Remove filter by typing prop from config.
 * Update feature.
 * Add about and help windows.

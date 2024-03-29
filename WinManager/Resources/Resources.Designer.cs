@@ -61,6 +61,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel download.
+        /// </summary>
+        public static string cancelUpdateDownloadButton {
+            get {
+                return ResourceManager.GetString("cancelUpdateDownloadButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for updates.
         /// </summary>
         public static string checkForUpdatesButton {
@@ -75,6 +84,15 @@ namespace WinManager {
         public static string closeButton {
             get {
                 return ResourceManager.GetString("closeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue download.
+        /// </summary>
+        public static string continueUpdateDownloadButton {
+            get {
+                return ResourceManager.GetString("continueUpdateDownloadButton", resourceCulture);
             }
         }
         
@@ -219,6 +237,42 @@ namespace WinManager {
         public static string updateCheckFailedTitle {
             get {
                 return ResourceManager.GetString("updateCheckFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update download was not successful. Verify that you are connected to the Internet..
+        /// </summary>
+        public static string updateDownloadFailedMessage {
+            get {
+                return ResourceManager.GetString("updateDownloadFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update download failed.
+        /// </summary>
+        public static string updateDownloadFailedTitle {
+            get {
+                return ResourceManager.GetString("updateDownloadFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The update is being downloaded. Do you want to cancel the download?.
+        /// </summary>
+        public static string updateDownloadInProgressMessage {
+            get {
+                return ResourceManager.GetString("updateDownloadInProgressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update download in progress.
+        /// </summary>
+        public static string updateDownloadInProgressTitle {
+            get {
+                return ResourceManager.GetString("updateDownloadInProgressTitle", resourceCulture);
             }
         }
         
