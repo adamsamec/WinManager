@@ -22,9 +22,9 @@ namespace WinManager
 
         public Config()
         {
-            Directory.CreateDirectory(Consts.ConfigFolder);
+            Directory.CreateDirectory(Consts.localUserFolder);
             var defaultPath = Path.Combine(Consts.InstallFolder, Consts.ConfigDefaultFilename);
-            _path = Path.Combine(Consts.ConfigFolder, Consts.ConfigFilename);
+            _path = Path.Combine(Consts.localUserFolder, Consts.ConfigFilename);
 
             // Create the config if it not yet exists
             if (!File.Exists(_path))

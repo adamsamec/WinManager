@@ -11,10 +11,10 @@ namespace WinManager
         public const bool ForceCzechLanguage = false;
 
         // Paths and filenames
+        public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public const string ExecutableFilename = "WinManager.exe";
         public const string ConfigDefaultFilename = "App.config.default.json";
         public const string ConfigFilename = "App.config.json";
-        public static string ConfigFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public static string InstallFolder
         {
             get
@@ -28,7 +28,7 @@ namespace WinManager
             }
         }
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
-        public static string SetupDownloadPath = Path.Combine(ConfigFolder, "setup");
+        public static string SetupDownloadPath = Path.Combine(localUserFolder, "setup");
 
         // Other
         public const string StartupRegistryKeyName = "WinManager";
