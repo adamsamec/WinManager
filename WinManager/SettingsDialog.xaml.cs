@@ -53,7 +53,10 @@ namespace WinManager
                     var doUpdate = updateAvailableDialog.ShowDialog();
                     if (doUpdate == true)
                     {
+                        _manager.AppUpdater.downloadUpdate(updateData, (progress) =>
+                        {
 
+                        });
                     }
                 }
             }

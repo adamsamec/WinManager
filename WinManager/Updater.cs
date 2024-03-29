@@ -31,12 +31,17 @@ namespace WinManager
             return update;
         }
 
-        public void downloadUpdate(UpdateData updateData)
+        public delegate void DownloadProgressCallback(int progress);
+
+        public void downloadUpdate(UpdateData updateData, DownloadProgressCallback downloadProgressCallback)
         {
             var url = new System.Uri(updateData.setupUrl);
             Directory.CreateDirectory(Consts.SetupDownloadPath);
             var webClient = new WebClient();
-            //webClient.DownloadProgressChanged += wc_DownloadProgressChanged;
+            webClient.DownloadProgressChanged += (sender, e) =>
+            {
+                downloadProgressCallback(e.ProgressPercentage);
+            };
             //webClient.DownloadFileAsync(url, Consts.SetupDownloadPath);
         }
     }

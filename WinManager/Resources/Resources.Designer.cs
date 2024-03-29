@@ -144,18 +144,18 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Open windows.
         /// </summary>
-        public static string openWindows {
+        public static string openWindowsLabel {
             get {
-                return ResourceManager.GetString("openWindows", resourceCulture);
+                return ResourceManager.GetString("openWindowsLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Running apps.
         /// </summary>
-        public static string runningApps {
+        public static string runningAppsLabel {
             get {
-                return ResourceManager.GetString("runningApps", resourceCulture);
+                return ResourceManager.GetString("runningAppsLabel", resourceCulture);
             }
         }
         
@@ -187,7 +187,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WinManager version {0} is available. Do you want to download the update and run its installation now?.
+        ///   Looks up a localized string similar to New WinManager version {0} is available. You currently have version {1}. Do you want to download the update and run its installation now?.
         /// </summary>
         public static string updateAvailableMessage {
             get {
@@ -219,6 +219,15 @@ namespace WinManager {
         public static string updateCheckFailedTitle {
             get {
                 return ResourceManager.GetString("updateCheckFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading update.
+        /// </summary>
+        public static string updateDownloadProgressLabel {
+            get {
+                return ResourceManager.GetString("updateDownloadProgressLabel", resourceCulture);
             }
         }
         

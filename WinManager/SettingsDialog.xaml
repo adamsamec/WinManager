@@ -21,6 +21,12 @@ WindowStartupLocation="CenterScreen"
                 Content="{x:Static lang:Resources.checkForUpdatesButton}"
 Click="checkForUpdatesButton_Click"
                 HorizontalAlignment="Left" />
+    <Label Name="updateDownloadProgressLabel" Content="{x:Static lang:Resources.updateDownloadProgressLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left"/>
+    <ProgressBar Name="updateDownloadProgressBar"
+AutomationProperties.LabeledBy="{Binding ElementName=updateDownloadProgressLabel}"
+Value="0"
+Focusable="True"
+    HorizontalAlignment="Left" />
     <Button Name="closeButton"
                 Content="{x:Static lang:Resources.closeButton}"
 Click="closeButton_Click"

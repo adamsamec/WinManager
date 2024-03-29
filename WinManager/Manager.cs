@@ -111,7 +111,7 @@ namespace WinManager
             {
                 appsItemsList.Add(GetAppItemText(app));
             }
-            _mainWindow.SetListBoxLabel(Resources.runningApps);
+            _mainWindow.SetListBoxLabel(Resources.runningAppsLabel);
             _mainWindow.SetListBoxItems(appsItemsList);
 
             return true;
@@ -147,7 +147,7 @@ namespace WinManager
             {
                 windowsTitlesList.Add(window.Title);
             }
-            _mainWindow.SetListBoxLabel(Resources.openWindows);
+            _mainWindow.SetListBoxLabel(Resources.openWindowsLabel);
             _mainWindow.SetListBoxItems(windowsTitlesList);
 
             return true;

@@ -120,10 +120,10 @@
   <data name="exitAnnouncement" xml:space="preserve">
     <value>Ukončuji WinManager</value>
   </data>
-  <data name="openWindows" xml:space="preserve">
+  <data name="openWindowsLabel" xml:space="preserve">
     <value>Otevřená okna</value>
   </data>
-  <data name="runningApps" xml:space="preserve">
+  <data name="runningAppsLabel" xml:space="preserve">
     <value>Spuštěné aplikace</value>
   </data>
   <data name="startAnnouncement" xml:space="preserve">
@@ -196,5 +196,9 @@
             <data name="updateCheckFailedMessage"
           xml:space="preserve">
         <value>Kontrola aktualizace nebyla úspěšná. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+    </data>
+                    <data name="updateDownloadProgressLabel"
+          xml:space="preserve">
+        <value>Stahování aktualizace</value>
     </data>
 </root>
