@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Text.Json;
 
 namespace WinManager
@@ -8,8 +9,12 @@ namespace WinManager
     /// </summary>
     public class Updater
     {
-        private const string _apiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
-        public const string AppVersion = "0.1.0";
+        private bool _isDownloading = false;
+
+        public bool IsDownloading
+        {
+            get { return _isDownloading; }
+        }
 
         public Updater()
         {
@@ -17,15 +22,22 @@ namespace WinManager
 
         public UpdateData? CheckForUpdate()
         {
-            var updateString = new WebClient().DownloadString(_apiUrl);
+            var updateString = new WebClient().DownloadString(Consts.ApiUrl);
             var update = JsonSerializer.Deserialize<UpdateData>(updateString);
-            if (update.version == AppVersion)
+            if (update.version == Consts.AppVersion)
             {
                 return null;
             }
-            {
-                return update;
-            }
+            return update;
+        }
+
+        public void downloadUpdate(UpdateData updateData)
+        {
+            var url = new System.Uri(updateData.setupUrl);
+            Directory.CreateDirectory(Consts.SetupDownloadPath);
+            var webClient = new WebClient();
+            //webClient.DownloadProgressChanged += wc_DownloadProgressChanged;
+            //webClient.DownloadFileAsync(url, Consts.SetupDownloadPath);
         }
     }
 }

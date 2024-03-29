@@ -20,7 +20,7 @@ namespace WinManager
 
         private void UpdateAvailableDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            updateAvailableMessage.Text = String.Format(WinManager.Resources.updateAvailableMessage, _updateData.version, Updater.AppVersion);
+            updateAvailableMessage.Text = String.Format(WinManager.Resources.updateAvailableMessage, _updateData.version, Consts.AppVersion);
             yesButton.Focus();
         }
 

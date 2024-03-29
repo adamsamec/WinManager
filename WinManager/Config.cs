@@ -9,26 +9,22 @@ namespace WinManager
     /// </summary>
     public class Config
     {
-        private const string _defaultFilename = "App.config.default.json";
-        private const string _filename = "App.config.json";
-        private string _folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         private string _path;
         private ConfigJson _config;
 
         public const string TRUE = "yes";
         public const string FALSE = "no";
 
-        public Settings Settings
+        public Settings AppSettings
         {
             get { return _config.settings; }
         }
 
         public Config()
         {
-            Directory.CreateDirectory(_folder);
-            var installFolder = Utils.GetInstallFolder();
-            var defaultPath = Path.Combine(installFolder, _defaultFilename);
-            _path = Path.Combine(_folder, _filename);
+            Directory.CreateDirectory(Consts.ConfigFolder);
+            var defaultPath = Path.Combine(Consts.InstallFolder, Consts.ConfigDefaultFilename);
+            _path = Path.Combine(Consts.ConfigFolder, Consts.ConfigFilename);
 
             // Create the config if it not yet exists
             if (!File.Exists(_path))

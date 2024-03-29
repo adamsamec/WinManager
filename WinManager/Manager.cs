@@ -11,9 +11,6 @@ namespace WinManager
     /// </summary>
     public class Manager
     {
-        private const string _startupRegistryKeyName = "WinManager";
-        public const string ExecutableFilename = "WinManager.exe";
-
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private MainWindow _mainWindow;
         private KeyboardHook _hook;
@@ -31,7 +28,7 @@ namespace WinManager
 
         public Settings AppSettings
         {
-            get { return _config.Settings; }
+            get { return _config.AppSettings; }
         }
         public ListView View
         {
@@ -272,7 +269,7 @@ namespace WinManager
 
         public void ApplyTypedCharacterToFilter(string character)
         {
-            if (_config.Settings.filterByTyping != Config.TRUE)
+            if (_config.AppSettings.filterByTyping != Config.TRUE)
             {
                 return;
             }
@@ -344,17 +341,18 @@ namespace WinManager
             RegistryKey startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 
             //Path to the WinManager launch executable
-            var startPath = Path.Combine(Utils.GetInstallFolder(), ExecutableFilename);
+            var executablePath = Path.Combine(Consts.InstallFolder, Consts.ExecutableFilename);
 
             // Modify the registry
             try
             {
                 if (value)
                 {
-                    startupRegistryKey.SetValue(_startupRegistryKeyName, startPath);
+                    startupRegistryKey.SetValue(Consts.StartupRegistryKeyName, executablePath);
                 }
-                else if (startupRegistryKey.GetValue(_startupRegistryKeyName, "none") != "none")
+                else if (startupRegistryKey.GetValue(Consts.StartupRegistryKeyName, "none") != "none")
                 {
+                    startupRegistryKey.DeleteValue(Consts.StartupRegistryKeyName);
                 }
             }
             catch (Exception ex)

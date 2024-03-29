@@ -7,8 +7,6 @@ namespace WinManager
     /// </summary>
     public partial class App : Application
     {
-        private const bool _useCzechByDefault = false;
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -25,7 +23,7 @@ namespace WinManager
                     WinManager.Resources.Culture = new System.Globalization.CultureInfo("cs-CZ");
                     break;
                 default:
-                    var lang = _useCzechByDefault ? "cs-CZ" : "en-US";
+                    var lang = Consts.ForceCzechLanguage ? "cs-CZ" : "en-US";
                     WinManager.Resources.Culture = new System.Globalization.CultureInfo(lang);
                     break;
             }

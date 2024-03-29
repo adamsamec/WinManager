@@ -1,4 +1,6 @@
 ## TODO
+* Prevent Alt + F4 from closing settings and child dialogs.
+* Remove filter by typing prop from config.
 * Update feature.
 * Add about and help windows.
 * Add File explorer app item.

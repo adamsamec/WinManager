@@ -14,7 +14,7 @@ namespace WinManager
 
         private void NoUpdateAvailableDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            noUpdateAvailableMessage.Text = String.Format(WinManager.Resources.noUpdateAvailableMessage, Updater.AppVersion);
+            noUpdateAvailableMessage.Text = String.Format(WinManager.Resources.noUpdateAvailableMessage, Consts.AppVersion);
             closeButton.Focus();
         }
 
