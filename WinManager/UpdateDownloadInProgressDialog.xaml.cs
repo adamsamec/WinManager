@@ -13,7 +13,7 @@ namespace WinManager
         }
 
         private void UpdateDownloadInProgressDialog_Loaded(object sender, RoutedEventArgs e)
-        {   
+        {       
             continueUpdateDownloadButton.Focus();
         }
 

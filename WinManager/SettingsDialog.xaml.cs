@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace WinManager
 {
@@ -14,6 +15,8 @@ namespace WinManager
             InitializeComponent();
 
             _manager = manager;
+
+            KeyDown += SettingsDialog_KeyDown;
         }
 
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
@@ -23,6 +26,37 @@ namespace WinManager
 
             // Set initial focus
             launchOnStartupCheckBox.Focus();
+        }
+
+        private void SettingsDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape || (e.Key == Key.System && e.SystemKey == Key.F4))
+            {
+                if (CancelUpdateDownloadAndClose())
+                {
+                    DialogResult = true;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private bool CancelUpdateDownloadAndClose()
+        {
+            if (!_manager.AppUpdater.IsDownloading)
+            {
+                return true;
+            }
+            var dialog = new UpdateDownloadInProgressDialog();
+            dialog.Owner = this;
+            var doCancelAndClose = dialog.ShowDialog() == true;
+            if (doCancelAndClose)
+            {
+                _manager.AppUpdater.CancelDownload();
+            }
+            return doCancelAndClose;
         }
 
         private void launchOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -61,7 +95,7 @@ namespace WinManager
                 updateCheckFailedDialog.Owner = this;
                 updateCheckFailedDialog.ShowDialog();
             }
-            if (doUpdate && updateData != null)
+            if (doUpdate)
             {
                 Updater.DownloadProgressCallback downloadProgressCallback = (progress) =>
                 {
@@ -73,16 +107,26 @@ namespace WinManager
                 Updater.DownloadErrorCallback downloadErrorCallback = () =>
                 {
                     var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
+                        if (this.IsVisible) { 
                     updateDownloadFailedDialog.Owner = this;
+                    }
                     updateDownloadFailedDialog.ShowDialog();
                 };
-                _manager.AppUpdater.DownloadUpdateAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
+                _manager.AppUpdater.DownloadAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
             }
+        }
+
+        private void ShowUpdateDownloadProgress()
+        {
+
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (CancelUpdateDownloadAndClose())
+            {
+                DialogResult = true;
+            }
         }
 
     }
