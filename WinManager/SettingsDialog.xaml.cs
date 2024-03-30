@@ -63,18 +63,20 @@ namespace WinManager
             }
             if (doUpdate && updateData != null)
             {
-                _manager.AppUpdater.DownloadUpdateAsync(updateData, (progress) =>
+                Updater.DownloadProgressCallback downloadProgressCallback = (progress) =>
                 {
                     updateDownloadProgressBar.Value = progress;
-                }, () =>
+                };
+                Updater.DownloadCompleteCallback downloadCompleteCallback = () =>
                 {
-
-                }, () =>
+                };
+                Updater.DownloadErrorCallback downloadErrorCallback = () =>
                 {
                     var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
                     updateDownloadFailedDialog.Owner = this;
                     updateDownloadFailedDialog.ShowDialog();
-                });
+                };
+                _manager.AppUpdater.DownloadUpdateAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
             }
         }
 
