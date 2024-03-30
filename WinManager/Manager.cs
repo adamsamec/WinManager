@@ -173,7 +173,7 @@ namespace WinManager
                         continue;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     appName = process.MainWindowTitle;
                 }

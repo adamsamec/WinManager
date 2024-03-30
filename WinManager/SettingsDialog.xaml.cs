@@ -55,7 +55,7 @@ namespace WinManager
                     doUpdate = updateAvailableDialog.ShowDialog() == true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 var updateCheckFailedDialog = new UpdateCheckFailedDialog();
                 updateCheckFailedDialog.Owner = this;

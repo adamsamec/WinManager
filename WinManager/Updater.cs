@@ -53,10 +53,7 @@ namespace WinManager
             }
             catch (Exception ex)
             {
-                if (ex is WebException || ex is InvalidOperationException)
-                {
                     downloadErrorCallback();
-                }
             }
         }
     }
