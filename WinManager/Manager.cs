@@ -21,8 +21,8 @@ namespace WinManager
         private List<RunningApplication> _appsList = new List<RunningApplication>();
         private List<RunningApplication> _filteredAppsList = new List<RunningApplication>();
         private List<OpenWindow> _filteredWindowsList = new List<OpenWindow>();
-        private string _appsOrWindowsFilterText;
-        private string _SelectedAppWindowsFilterText;
+        private string _appsOrWindowsFilterText = "";
+        private string _SelectedAppWindowsFilterText = "";
         private int _selectedAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
@@ -94,7 +94,7 @@ namespace WinManager
             // Display main window
             _mainWindow.Show(); // This extra Show() fixes the initial display
             _mainWindow.Display();
-            if (AppUpdater.State == Updater.UpdateState.Downloading)
+            if (AppUpdater.State == Updater.UpdateState.Downloading || AppUpdater.State == Updater.UpdateState.Deleting)
             {
                 _mainWindow.OpenSettings();
             }
@@ -167,7 +167,7 @@ namespace WinManager
                 {
                     continue;
                 }
-                string appName;
+                string? appName;
                 try
                 {
                     var fileVersionInfo = FileVersionInfo.GetVersionInfo(process.GetMainModuleFilePath());
@@ -177,7 +177,7 @@ namespace WinManager
                         continue;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     appName = process.MainWindowTitle;
                 }
@@ -342,7 +342,7 @@ namespace WinManager
         public void ChangeLaunchOnStartupSetting(bool value)
         {
             // The path to the key where Windows looks for startup applications
-            RegistryKey startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+            var startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 
             //Path to the WinManager launch executable
             var executablePath = Path.Combine(Consts.InstallFolder, Consts.ExecutableFilename);
@@ -352,14 +352,14 @@ namespace WinManager
             {
                 if (value)
                 {
-                    startupRegistryKey.SetValue(Consts.StartupRegistryKeyName, executablePath);
+                    startupRegistryKey?.SetValue(Consts.StartupRegistryKeyName, executablePath);
                 }
-                else if (startupRegistryKey.GetValue(Consts.StartupRegistryKeyName, "none") != "none")
+                else if (startupRegistryKey != null && (string) startupRegistryKey.GetValue(Consts.StartupRegistryKeyName, "none") != "none")
                 {
                     startupRegistryKey.DeleteValue(Consts.StartupRegistryKeyName);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Debug.WriteLine("Failed to update launch on startup registry");
             }

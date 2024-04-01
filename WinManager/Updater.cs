@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Linq.Expressions;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Text.Json;
 
@@ -10,8 +10,8 @@ namespace WinManager
     /// </summary>
     public class Updater
     {
-        private UpdateState _state= UpdateState.Ready;
-        private WebClient _webClient;
+        private UpdateState _state = UpdateState.Ready;
+        private WebClient? _webClient;
 
         public UpdateState State
         {
@@ -33,7 +33,7 @@ namespace WinManager
         {
             var updateString = new WebClient().DownloadString(Consts.ApiUrl);
             var update = JsonSerializer.Deserialize<UpdateData>(updateString);
-            if (update.version == Consts.AppVersion)
+            if (update != null && update.version == Consts.AppVersion)
             {
                 return null;
             }
@@ -44,11 +44,11 @@ namespace WinManager
         public delegate void DownloadCompleteCallback();
         public delegate void DownloadErrorCallback();
 
-        public async Task DownloadAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
+        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
-                return;
+                return false;
             }
             var setupUrl = new System.Uri("https://files.adamsamec.cz/apps/test.zip");
             //var setupUrl = new System.Uri(updateData.setupUrl);
@@ -60,10 +60,9 @@ namespace WinManager
             if (_state == UpdateState.FilesExist)
             {
                 _state = UpdateState.Deleting;
-            DeleteSetupFiles();
+                DeleteSetupFiles();
             }
-                _state = UpdateState.Downloading;
-            //WaitUntilDownloadFileDeleted(setupDownloadPath);
+            _state = UpdateState.Downloading;
 
             _webClient = new WebClient();
             _webClient.DownloadProgressChanged += (sender, e) =>
@@ -74,10 +73,12 @@ namespace WinManager
             {
                 if (e.Cancelled)
                 {
+                    Debug.WriteLine("Downloadd cancelled");
                     //DeleteSetupFiles();
                 }
                 else
                 {
+                    Debug.WriteLine("Downloadd successful");
                     downloadCompleteCallback();
                 }
                 _state = UpdateState.FilesExist;
@@ -91,27 +92,22 @@ namespace WinManager
             }
             catch (Exception ex)
             {
-                //if (_isDownloading)
-                //{
-                _state = UpdateState.FilesExist;
+                Debug.WriteLine("Downloading exception " + ex.ToString());
+                if (_state == UpdateState.Downloading)
+                {
                     downloadErrorCallback();
-                    _webClient.Dispose();
-                //}
+                }
+                _state = UpdateState.FilesExist;
+                _webClient.Dispose();
             }
-        }
-
-        public void WaitUntilDownloadFileDeleted(string filePath)
-        {
-            while (File.Exists(filePath))
-            {
-                Task.Delay(500).Wait();
-            }
+            Debug.WriteLine("End of download function");
+            return true;
         }
 
         public void DeleteSetupFiles()
         {
-            var keepTrying = true;
-            while (keepTrying)
+            Debug.WriteLine("Starting deleting files");
+            while (true)
             {
                 Task.Delay(500).Wait();
                 try
@@ -120,21 +116,27 @@ namespace WinManager
                     var files = dirInfo.GetFiles();
                     if (files.Count() == 0)
                     {
+                        Debug.WriteLine("All files have been deleted");
                         return;
                     }
                     foreach (var file in files)
                     {
                         file.Delete();
                     }
-                    keepTrying = false;
-                } catch (Exception ex) { }
+                    //keepTrying = false;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Deleting files exception " + ex.ToString());
+                }
+            }
         }
-    }
 
         public void CancelDownload()
         {
             if (_webClient != null)
             {
+                Debug.WriteLine("Canceling download");
                 _webClient.CancelAsync();
             }
         }

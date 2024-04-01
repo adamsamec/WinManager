@@ -72,7 +72,7 @@ namespace WinManager
         private void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
             var doUpdate = false;
-            UpdateData updateData = null;
+            UpdateData? updateData = null;
             try
             {
                 updateData = _manager.AppUpdater.CheckForUpdate();
@@ -89,13 +89,13 @@ namespace WinManager
                     doUpdate = updateAvailableDialog.ShowDialog() == true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 var updateCheckFailedDialog = new UpdateCheckFailedDialog();
                 updateCheckFailedDialog.Owner = this;
                 updateCheckFailedDialog.ShowDialog();
             }
-            if (doUpdate)
+            if (doUpdate && updateData != null)
             {
                 Updater.DownloadProgressCallback downloadProgressCallback = (progress) =>
                 {
@@ -107,12 +107,13 @@ namespace WinManager
                 Updater.DownloadErrorCallback downloadErrorCallback = () =>
                 {
                     var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
-                        if (this.IsVisible) { 
-                    updateDownloadFailedDialog.Owner = this;
+                    if (this.IsVisible)
+                    {
+                        updateDownloadFailedDialog.Owner = this;
                     }
                     updateDownloadFailedDialog.ShowDialog();
                 };
-                _manager.AppUpdater.DownloadAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
+                var downloadResult = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
             }
         }
 
