@@ -94,7 +94,7 @@ namespace WinManager
             // Display main window
             _mainWindow.Show(); // This extra Show() fixes the initial display
             _mainWindow.Display();
-            if (AppUpdater.IsDownloading)
+            if (AppUpdater.State == Updater.UpdateState.Downloading)
             {
                 _mainWindow.OpenSettings();
             }

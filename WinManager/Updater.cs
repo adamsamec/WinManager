@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq.Expressions;
 using System.Net;
 using System.Text.Json;
 
@@ -9,12 +10,19 @@ namespace WinManager
     /// </summary>
     public class Updater
     {
-        private bool _isDownloading = false;
+        private UpdateState _state= UpdateState.Ready;
         private WebClient _webClient;
 
-        public bool IsDownloading
+        public UpdateState State
         {
-            get { return _isDownloading; }
+            get { return _state; }
+        }
+        public enum UpdateState
+        {
+            Ready,
+            Downloading,
+            FilesExist,
+            Deleting
         }
 
         public Updater()
@@ -36,16 +44,26 @@ namespace WinManager
         public delegate void DownloadCompleteCallback();
         public delegate void DownloadErrorCallback();
 
-        public async void DownloadAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
+        public async Task DownloadAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
         {
+            if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
+            {
+                return;
+            }
             var setupUrl = new System.Uri("https://files.adamsamec.cz/apps/test.zip");
             //var setupUrl = new System.Uri(updateData.setupUrl);
             var setupFilename = Path.GetFileName(setupUrl.LocalPath);
             var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
 
-            // Make sure empty download folder is created
+            // Make sure empty folder is prepared for download
             Directory.CreateDirectory(Consts.SetupDownloadFolder);
+            if (_state == UpdateState.FilesExist)
+            {
+                _state = UpdateState.Deleting;
             DeleteSetupFiles();
+            }
+                _state = UpdateState.Downloading;
+            //WaitUntilDownloadFileDeleted(setupDownloadPath);
 
             _webClient = new WebClient();
             _webClient.DownloadProgressChanged += (sender, e) =>
@@ -54,41 +72,64 @@ namespace WinManager
             };
             _webClient.DownloadFileCompleted += (sender, e) =>
             {
-                _isDownloading = false;
                 if (e.Cancelled)
                 {
-                    DeleteSetupFiles();
+                    //DeleteSetupFiles();
                 }
                 else
                 {
                     downloadCompleteCallback();
                 }
+                _state = UpdateState.FilesExist;
+                _webClient.Dispose();
             };
 
             // Initiate download
-            _isDownloading = true;
             try
             {
                 await _webClient.DownloadFileTaskAsync(setupUrl, setupDownloadPath);
             }
             catch (Exception ex)
             {
-                if (_isDownloading) { 
-                downloadErrorCallback();
-                _isDownloading = false;
-                }
+                //if (_isDownloading)
+                //{
+                _state = UpdateState.FilesExist;
+                    downloadErrorCallback();
+                    _webClient.Dispose();
+                //}
             }
-            _webClient.Dispose();
+        }
+
+        public void WaitUntilDownloadFileDeleted(string filePath)
+        {
+            while (File.Exists(filePath))
+            {
+                Task.Delay(500).Wait();
+            }
         }
 
         public void DeleteSetupFiles()
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(Consts.SetupDownloadFolder);
-            foreach (var file in dirInfo.GetFiles())
+            var keepTrying = true;
+            while (keepTrying)
             {
-                file.Delete();
-            }
+                Task.Delay(500).Wait();
+                try
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(Consts.SetupDownloadFolder);
+                    var files = dirInfo.GetFiles();
+                    if (files.Count() == 0)
+                    {
+                        return;
+                    }
+                    foreach (var file in files)
+                    {
+                        file.Delete();
+                    }
+                    keepTrying = false;
+                } catch (Exception ex) { }
         }
+    }
 
         public void CancelDownload()
         {

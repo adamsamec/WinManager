@@ -45,7 +45,7 @@ namespace WinManager
 
         private bool CancelUpdateDownloadAndClose()
         {
-            if (!_manager.AppUpdater.IsDownloading)
+            if (_manager.AppUpdater.State != Updater.UpdateState.Downloading)
             {
                 return true;
             }
