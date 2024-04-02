@@ -181,14 +181,6 @@
           xml:space="preserve">
         <value>Vaše verze WinManager {0} je aktuální.</value>
     </data>
-                    <data name="updateFailedTitle"
-          xml:space="preserve">
-        <value>Aktualizace selhalad</value>
-    </data>
-            <data name="updateFailedMessage"
-          xml:space="preserve">
-        <value>Aktualizace nebyla úspěšná. Zkontrolujte, jestli jste připojeni k Internetu.</value>
-    </data>
                         <data name="updateCheckFailedTitle"
           xml:space="preserve">
         <value>Kontrola aktualizace selhala</value>
@@ -207,7 +199,7 @@
     </data>
             <data name="updateDownloadFailedMessage"
           xml:space="preserve">
-        <value>Stahování Aktualizace nebylo úspěšné. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+        <value>Stahování Aktualizace nebylo úspěšné. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
     </data>
                         <data name="updateDownloadInProgressTitle"
           xml:space="preserve">
@@ -224,5 +216,13 @@
                         <data name="continueUpdateDownloadButton"
           xml:space="preserve">
         <value>Pokračovat ve stahování</value>
+    </data>
+                                <data name="setupIsRunningTitle"
+          xml:space="preserve">
+        <value>Probíhá instalace</value>
+    </data>
+            <data name="setupIsRunningMessage"
+          xml:space="preserve">
+        <value>Instalace právě probíhá. Prosím dokončete nebo zruštte instalaci před stažením nové aktualizace</value>
     </data>
 </root>

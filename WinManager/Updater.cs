@@ -43,10 +43,10 @@ namespace WinManager
 
         public delegate void DownloadProgressHandler(int progress);
         public delegate void DownloadCompleteHandler();
-        public delegate void UpdateRunningHandler();
+        public delegate void SetupRunningHandler();
         public delegate void DownloadErrorHandler();
 
-        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, UpdateRunningHandler updateRunningHandler, DownloadErrorHandler downloadErrorHandler)
+        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, SetupRunningHandler setupRunningHandler, DownloadErrorHandler downloadErrorHandler)
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
@@ -66,8 +66,8 @@ namespace WinManager
                 if (Utils.IsFileInUse(setupDownloadPath))
                 {
                     Debug.WriteLine("Returning because update is running");
-                    updateRunningHandler();
-                    return false;
+                    setupRunningHandler();
+                    return false;   
                 }
             }
 

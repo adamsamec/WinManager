@@ -104,9 +104,11 @@ namespace WinManager
                 Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
                 {
                 };
-                Updater.UpdateRunningHandler updateRunningHandler = () =>
+                Updater.SetupRunningHandler setupRunningHandler = () =>
                 {
-
+                    var setupIsRunningDialog = new SetupIsRunningDialog();
+                    setupIsRunningDialog.Owner = this;
+                    setupIsRunningDialog.ShowDialog();
                 };
                 Updater.DownloadErrorHandler downloadErrorHandler = () =>
                 {
@@ -117,7 +119,7 @@ namespace WinManager
                     }
                     updateDownloadFailedDialog.ShowDialog();
                 };
-                var downloadTask = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, updateRunningHandler, downloadErrorHandler);
+                var downloadTask = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, setupRunningHandler, downloadErrorHandler);
             }
         }
 

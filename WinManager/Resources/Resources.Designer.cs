@@ -196,6 +196,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The setup is in progress. Please finish or cancel the setup before downloading the update..
+        /// </summary>
+        public static string setupIsRunningMessage {
+            get {
+                return ResourceManager.GetString("setupIsRunningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup is running.
+        /// </summary>
+        public static string setupIsRunningTitle {
+            get {
+                return ResourceManager.GetString("setupIsRunningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WinManager started.
         /// </summary>
         public static string startAnnouncement {
@@ -223,7 +241,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for update was not successful. Verify that you are connected to the Internet..
+        ///   Looks up a localized string similar to Check for update was not successful. Please verify that you are connected to the Internet..
         /// </summary>
         public static string updateCheckFailedMessage {
             get {
@@ -241,7 +259,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update download was not successful. Verify that you are connected to the Internet..
+        ///   Looks up a localized string similar to Update download was not successful. Please verify that you are connected to the Internet..
         /// </summary>
         public static string updateDownloadFailedMessage {
             get {
@@ -282,24 +300,6 @@ namespace WinManager {
         public static string updateDownloadProgressLabel {
             get {
                 return ResourceManager.GetString("updateDownloadProgressLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update was not successful. Verify that you are connected to the Internet..
-        /// </summary>
-        public static string updateFailedMessage {
-            get {
-                return ResourceManager.GetString("updateFailedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update failed.
-        /// </summary>
-        public static string updateFailedTitle {
-            get {
-                return ResourceManager.GetString("updateFailedTitle", resourceCulture);
             }
         }
         
