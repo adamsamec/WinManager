@@ -11,7 +11,9 @@ namespace WinManager
     public class Updater
     {
         private UpdateState _state = UpdateState.Initial;
-        private CancellationTokenSource? _cancellationToken;
+        private CancellationTokenSource? _cancellationTokenSource;
+        private const int FileDeletionTimeLimit = 30000; // 30 seconds   
+        private const int FileDeletionCheckInterval = 500; // 0.5 seconds
 
         public UpdateState State
         {
@@ -68,13 +70,13 @@ namespace WinManager
                 {
                     downloadProgressCallback((int)progressPercentage);
                 };
-                _cancellationToken = new CancellationTokenSource();
+                _cancellationTokenSource = new CancellationTokenSource();
 
                 // Start download
                 try
                 {
                     Debug.WriteLine("Starting download");
-                    await client.StartDownload(_cancellationToken);
+                    await client.StartDownload(_cancellationTokenSource);
                     Debug.WriteLine("Downloadd completed successfully");
                     _state = UpdateState.FilesExist;
                     downloadCompleteCallback();
@@ -100,10 +102,10 @@ namespace WinManager
 
         public void DeleteSetupFiles()
         {
-            Debug.WriteLine("Starting deleting files");
+            int elapsedTime = 0;
+            Debug.WriteLine("Starting files deletion");
             while (true)
             {
-                Task.Delay(500).Wait();
                 try
                 {
                     DirectoryInfo dirInfo = new DirectoryInfo(Consts.SetupDownloadFolder);
@@ -113,25 +115,31 @@ namespace WinManager
                         Debug.WriteLine("All files have been deleted");
                         return;
                     }
-                    foreach (var file in files)
+                    if (elapsedTime > FileDeletionTimeLimit)
                     {
+                        Debug.WriteLine("File deletion time limit reached");
+                        return;
+                    }
+                    foreach (var file in files)
+                        {
                         file.Delete();
                     }
-                    //keepTrying = false;
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("Deleting files exception " + ex.ToString());
+                    Debug.WriteLine("Exception during files deletion" + ex.ToString());
                 }
+                Task.Delay(FileDeletionCheckInterval).Wait();
+                elapsedTime += FileDeletionCheckInterval;
             }
         }
 
         public void CancelDownload()
         {
-            if (_cancellationToken != null)
+            if (_cancellationTokenSource != null)
             {
                 Debug.WriteLine("Canceling download by user");
-                _cancellationToken.CancelAsync();
+                _cancellationTokenSource.CancelAsync();
             }
         }
     }

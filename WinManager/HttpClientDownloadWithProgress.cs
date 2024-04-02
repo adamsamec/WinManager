@@ -20,25 +20,25 @@ namespace WinManager
             _destinationFilePath = destinationFilePath;
         }
 
-        public async Task StartDownload(CancellationTokenSource cancellationToken)
+        public async Task StartDownload(CancellationTokenSource cancellationTokenSource)
         {
             _httpClient = new HttpClient { Timeout = TimeSpan.FromDays(1) };
 
-            using (var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken.Token))
-                await DownloadFileFromHttpResponseMessage(response);
+            using (var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationTokenSource.Token))
+                await DownloadFileFromHttpResponseMessage(response, cancellationTokenSource);
         }
 
-        private async Task DownloadFileFromHttpResponseMessage(HttpResponseMessage response)
+        private async Task DownloadFileFromHttpResponseMessage(HttpResponseMessage response, CancellationTokenSource cancellationTokenSource)
         {
             response.EnsureSuccessStatusCode();
 
             var totalBytes = response.Content.Headers.ContentLength;
 
-            using (var contentStream = await response.Content.ReadAsStreamAsync())
-                await ProcessContentStream(totalBytes, contentStream);
+            using (var contentStream = await response.Content.ReadAsStreamAsync(cancellationTokenSource.Token))
+                await ProcessContentStream(totalBytes, contentStream, cancellationTokenSource);
         }
 
-        private async Task ProcessContentStream(long? totalDownloadSize, Stream contentStream)
+        private async Task ProcessContentStream(long? totalDownloadSize, Stream contentStream, CancellationTokenSource cancellationTokenSource)
         {
             var totalBytesRead = 0L;
             var readCount = 0L;
@@ -49,7 +49,7 @@ namespace WinManager
             {
                 do
                 {
-                    var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length);
+                    var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length, cancellationTokenSource.Token);
                     if (bytesRead == 0)
                     {
                         isMoreToRead = false;
