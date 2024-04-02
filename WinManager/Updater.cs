@@ -10,23 +10,20 @@ namespace WinManager
     /// </summary>
     public class Updater
     {
-        private UpdateState _state = UpdateState.Ready;
-        private WebClient? _webClient;
+        private UpdateState _state = UpdateState.Initial;
+        private CancellationTokenSource? _cancellationToken;
 
         public UpdateState State
         {
             get { return _state; }
         }
+
         public enum UpdateState
         {
-            Ready,
+            Initial,
             Downloading,
             FilesExist,
             Deleting
-        }
-
-        public Updater()
-        {
         }
 
         public UpdateData? CheckForUpdate()
@@ -50,12 +47,13 @@ namespace WinManager
             {
                 return false;
             }
-            var setupUrl = new System.Uri("https://files.adamsamec.cz/apps/test.zip");
-            //var setupUrl = new System.Uri(updateData.setupUrl);
-            var setupFilename = Path.GetFileName(setupUrl.LocalPath);
+            var setupUrlString = "https://files.adamsamec.cz/apps/test.zip";
+            //var setupUrlString = updateData.setupUrl;
+            var setupUri = new System.Uri(setupUrlString);
+            var setupFilename = Path.GetFileName(setupUri.LocalPath);
             var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
 
-            // Make sure empty folder is prepared for download
+            // Make sure empty setup folder is prepared for download
             Directory.CreateDirectory(Consts.SetupDownloadFolder);
             if (_state == UpdateState.FilesExist)
             {
@@ -64,41 +62,37 @@ namespace WinManager
             }
             _state = UpdateState.Downloading;
 
-            _webClient = new WebClient();
-            _webClient.DownloadProgressChanged += (sender, e) =>
+            using (var client = new HttpClientDownloadWithProgress(setupUrlString, setupDownloadPath))
             {
-                downloadProgressCallback(e.ProgressPercentage);
-            };
-            _webClient.DownloadFileCompleted += (sender, e) =>
-            {
-                if (e.Cancelled)
+                client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
-                    Debug.WriteLine("Downloadd cancelled");
-                    //DeleteSetupFiles();
-                }
-                else
+                    downloadProgressCallback((int)progressPercentage);
+                };
+                _cancellationToken = new CancellationTokenSource();
+
+                // Start download
+                try
                 {
-                    Debug.WriteLine("Downloadd successful");
+                    Debug.WriteLine("Starting download");
+                    await client.StartDownload(_cancellationToken);
+                    Debug.WriteLine("Downloadd completed successfully");
+                    _state = UpdateState.FilesExist;
                     downloadCompleteCallback();
                 }
-                _state = UpdateState.FilesExist;
-                _webClient.Dispose();
-            };
-
-            // Initiate download
-            try
-            {
-                await _webClient.DownloadFileTaskAsync(setupUrl, setupDownloadPath);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Downloading exception " + ex.ToString());
-                if (_state == UpdateState.Downloading)
+                catch (Exception ex)
                 {
-                    downloadErrorCallback();
+                    Debug.WriteLine("Exception during download: " + ex.ToString());
+                    _state = UpdateState.FilesExist;
+                    if (ex is TaskCanceledException)
+                    {
+                        Debug.WriteLine("Downloadd cancelled by user");
+                    }
+                    else
+                    {
+                        downloadErrorCallback();
+                    }
+                    throw;
                 }
-                _state = UpdateState.FilesExist;
-                _webClient.Dispose();
             }
             Debug.WriteLine("End of download function");
             return true;
@@ -134,10 +128,10 @@ namespace WinManager
 
         public void CancelDownload()
         {
-            if (_webClient != null)
+            if (_cancellationToken != null)
             {
-                Debug.WriteLine("Canceling download");
-                _webClient.CancelAsync();
+                Debug.WriteLine("Canceling download by user");
+                _cancellationToken.CancelAsync();
             }
         }
     }
