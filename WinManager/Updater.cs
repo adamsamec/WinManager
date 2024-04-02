@@ -49,8 +49,8 @@ namespace WinManager
             {
                 return false;
             }
-            var setupUrlString = "https://files.adamsamec.cz/apps/test.zip";
-            //var setupUrlString = updateData.setupUrl;
+            //var setupUrlString = "https://files.adamsamec.cz/apps/test.zip";
+            var setupUrlString = updateData.setupUrl;
             var setupUri = new System.Uri(setupUrlString);
             var setupFilename = Path.GetFileName(setupUri.LocalPath);
             var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
