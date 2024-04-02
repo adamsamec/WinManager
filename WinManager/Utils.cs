@@ -1,5 +1,6 @@
 ﻿using Accessibility;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 
@@ -20,6 +21,21 @@ namespace WinManager
             _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
             }
             return _installFolder;
+        }
+
+        public static bool IsFileInUse(string filePath)
+        {
+            try
+            {
+                using (Stream stream = new FileStream(filePath, FileMode.Open))
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return true;
+            }
         }
 
         private static object GetPropValue(object obj, string propName)

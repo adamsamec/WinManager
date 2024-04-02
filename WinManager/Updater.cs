@@ -12,7 +12,8 @@ namespace WinManager
     {
         private UpdateState _state = UpdateState.Initial;
         private CancellationTokenSource? _cancellationTokenSource;
-        private const int FileDeletionTimeLimit = 30000; // 30 seconds   
+
+        private const int FileDeletionTimeLimit = 1000; // 30 seconds   
         private const int FileDeletionCheckInterval = 500; // 0.5 seconds
 
         public UpdateState State
@@ -25,6 +26,7 @@ namespace WinManager
             Initial,
             Downloading,
             FilesExist,
+            Downloaded,
             Deleting
         }
 
@@ -41,12 +43,14 @@ namespace WinManager
 
         public delegate void DownloadProgressHandler(int progress);
         public delegate void DownloadCompleteHandler();
+        public delegate void UpdateRunningHandler();
         public delegate void DownloadErrorHandler();
 
-        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, DownloadErrorHandler downloadErrorHandler)
+        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, UpdateRunningHandler updateRunningHandler, DownloadErrorHandler downloadErrorHandler)
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
+                    Debug.WriteLine("Returning because update is being downloaded or deleted");
                 return false;
             }
             //var setupUrlString = "https://files.adamsamec.cz/apps/test.zip";
@@ -55,9 +59,21 @@ namespace WinManager
             var setupFilename = Path.GetFileName(setupUri.LocalPath);
             var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
 
+            // Check if setup is not running
+            if (_state == UpdateState.Downloaded)
+            {
+                    Debug.WriteLine("Update is already downloaded");
+                if (Utils.IsFileInUse(setupDownloadPath))
+                {
+                    Debug.WriteLine("Returning because update is running");
+                    updateRunningHandler();
+                    return false;
+                }
+            }
+
             // Make sure empty setup folder is prepared for download
             Directory.CreateDirectory(Consts.SetupDownloadFolder);
-            if (_state == UpdateState.FilesExist)
+            if (_state == UpdateState.FilesExist || _state == UpdateState.Downloaded)
             {
                 _state = UpdateState.Deleting;
                 DeleteSetupFiles();
@@ -78,8 +94,9 @@ namespace WinManager
                     Debug.WriteLine("Starting download");
                     await client.StartDownload(_cancellationTokenSource);
                     Debug.WriteLine("Downloadd completed successfully");
-                    _state = UpdateState.FilesExist;
+                    _state = UpdateState.Downloaded;
                     downloadCompleteHandler();
+                    Process.Start(setupDownloadPath);
                 }
                 catch (Exception ex)
                 {
