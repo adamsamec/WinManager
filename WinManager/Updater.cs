@@ -39,11 +39,11 @@ namespace WinManager
             return update;
         }
 
-        public delegate void DownloadProgressCallback(int progress);
-        public delegate void DownloadCompleteCallback();
-        public delegate void DownloadErrorCallback();
+        public delegate void DownloadProgressHandler(int progress);
+        public delegate void DownloadCompleteHandler();
+        public delegate void DownloadErrorHandler();
 
-        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressCallback downloadProgressCallback, DownloadCompleteCallback downloadCompleteCallback, DownloadErrorCallback downloadErrorCallback)
+        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, DownloadErrorHandler downloadErrorHandler)
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
@@ -68,7 +68,7 @@ namespace WinManager
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
-                    downloadProgressCallback((int)progressPercentage);
+                    downloadProgressHandler((int)progressPercentage);
                 };
                 _cancellationTokenSource = new CancellationTokenSource();
 
@@ -79,7 +79,7 @@ namespace WinManager
                     await client.StartDownload(_cancellationTokenSource);
                     Debug.WriteLine("Downloadd completed successfully");
                     _state = UpdateState.FilesExist;
-                    downloadCompleteCallback();
+                    downloadCompleteHandler();
                 }
                 catch (Exception ex)
                 {
@@ -91,7 +91,7 @@ namespace WinManager
                     }
                     else
                     {
-                        downloadErrorCallback();
+                        downloadErrorHandler();
                     }
                     throw;
                 }

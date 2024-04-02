@@ -97,14 +97,14 @@ namespace WinManager
             }
             if (doUpdate && updateData != null)
             {
-                Updater.DownloadProgressCallback downloadProgressCallback = (progress) =>
+                Updater.DownloadProgressHandler downloadProgressHandler = (progress) =>
                 {
                     updateDownloadProgressBar.Value = progress;
                 };
-                Updater.DownloadCompleteCallback downloadCompleteCallback = () =>
+                Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
                 {
                 };
-                Updater.DownloadErrorCallback downloadErrorCallback = () =>
+                Updater.DownloadErrorHandler downloadErrorHandler = () =>
                 {
                     var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
                     if (this.IsVisible)
@@ -113,7 +113,7 @@ namespace WinManager
                     }
                     updateDownloadFailedDialog.ShowDialog();
                 };
-                var downloadResult = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressCallback, downloadCompleteCallback, downloadErrorCallback);
+                var downloadResult = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, downloadErrorHandler);
             }
         }
 
