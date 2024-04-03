@@ -28,7 +28,7 @@ namespace WinManager
             }
         }
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
-        public static string SetupDownloadFolder = Path.Combine(localUserFolder, "setup");
+        public static string InstallerDownloadFolder = Path.Combine(localUserFolder, "installer");
 
         // Other
         public const string StartupRegistryKeyName = "WinManager";

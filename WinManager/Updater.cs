@@ -12,6 +12,7 @@ namespace WinManager
     {
         private UpdateState _state = UpdateState.Initial;
         private CancellationTokenSource? _cancellationTokenSource;
+        private string _installerDownloadPath;
 
         private const int FileDeletionTimeLimit = 1000; // 30 seconds   
         private const int FileDeletionCheckInterval = 500; // 0.5 seconds
@@ -43,44 +44,43 @@ namespace WinManager
 
         public delegate void DownloadProgressHandler(int progress);
         public delegate void DownloadCompleteHandler();
-        public delegate void SetupRunningHandler();
+        public delegate void InstallerRunningHandler();
         public delegate void DownloadErrorHandler();
 
-        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, SetupRunningHandler setupRunningHandler, DownloadErrorHandler downloadErrorHandler)
+        public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, InstallerRunningHandler installerRunningHandler, DownloadErrorHandler downloadErrorHandler)
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
                     Debug.WriteLine("Returning because update is being downloaded or deleted");
                 return false;
             }
-            //var setupUrlString = "https://files.adamsamec.cz/apps/test.zip";
-            var setupUrlString = updateData.setupUrl;
-            var setupUri = new System.Uri(setupUrlString);
-            var setupFilename = Path.GetFileName(setupUri.LocalPath);
-            var setupDownloadPath = Path.Combine(Consts.SetupDownloadFolder, setupFilename);
+            var installerUrlString = updateData.installerUrl;
+            var installerUri = new System.Uri(installerUrlString);
+            var installerFilename = Path.GetFileName(installerUri.LocalPath);
+            _installerDownloadPath = Path.Combine(Consts.InstallerDownloadFolder, installerFilename);
 
-            // Check if setup is not running
+            // Check if installer is not running
             if (_state == UpdateState.Downloaded)
             {
                     Debug.WriteLine("Update is already downloaded");
-                if (Utils.IsFileInUse(setupDownloadPath))
+                if (Utils.IsFileInUse(_installerDownloadPath))
                 {
                     Debug.WriteLine("Returning because update is running");
-                    setupRunningHandler();
+                    installerRunningHandler();
                     return false;   
                 }
             }
 
-            // Make sure empty setup folder is prepared for download
-            Directory.CreateDirectory(Consts.SetupDownloadFolder);
+            // Make sure empty installer folder is prepared for download
+            Directory.CreateDirectory(Consts.InstallerDownloadFolder);
             if (_state == UpdateState.FilesExist || _state == UpdateState.Downloaded)
             {
                 _state = UpdateState.Deleting;
-                DeleteSetupFiles();
+                DeleteInstallerFiles();
             }
             _state = UpdateState.Downloading;
 
-            using (var client = new HttpClientDownloadWithProgress(setupUrlString, setupDownloadPath))
+            using (var client = new HttpClientDownloadWithProgress(installerUrlString, _installerDownloadPath))
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
@@ -96,7 +96,6 @@ namespace WinManager
                     Debug.WriteLine("Downloadd completed successfully");
                     _state = UpdateState.Downloaded;
                     downloadCompleteHandler();
-                    Process.Start(setupDownloadPath);
                 }
                 catch (Exception ex)
                 {
@@ -117,7 +116,12 @@ namespace WinManager
             return true;
         }
 
-        public void DeleteSetupFiles()
+        public void LaunchInstaller()
+        {
+            Process.Start(_installerDownloadPath);
+        }
+
+        public void DeleteInstallerFiles()
         {
             int elapsedTime = 0;
             Debug.WriteLine("Starting files deletion");
@@ -125,7 +129,7 @@ namespace WinManager
             {
                 try
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo(Consts.SetupDownloadFolder);
+                    DirectoryInfo dirInfo = new DirectoryInfo(Consts.InstallerDownloadFolder);
                     var files = dirInfo.GetFiles();
                     if (files.Count() == 0)
                     {
