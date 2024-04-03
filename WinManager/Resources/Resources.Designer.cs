@@ -196,24 +196,6 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The setup is in progress. Please finish or cancel the setup before downloading the update..
-        /// </summary>
-        public static string setupIsRunningMessage {
-            get {
-                return ResourceManager.GetString("setupIsRunningMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Setup is running.
-        /// </summary>
-        public static string setupIsRunningTitle {
-            get {
-                return ResourceManager.GetString("setupIsRunningTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to WinManager started.
         /// </summary>
         public static string startAnnouncement {
@@ -300,6 +282,24 @@ namespace WinManager {
         public static string updateDownloadProgressLabel {
             get {
                 return ResourceManager.GetString("updateDownloadProgressLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The update installer is running. Please finish or cancel the installation before downloading the update again..
+        /// </summary>
+        public static string updateInstallRunningMessage {
+            get {
+                return ResourceManager.GetString("updateInstallRunningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update installer is running.
+        /// </summary>
+        public static string updateInstallRunningTitle {
+            get {
+                return ResourceManager.GetString("updateInstallRunningTitle", resourceCulture);
             }
         }
         

@@ -106,9 +106,9 @@ namespace WinManager
                 };
                 Updater.SetupRunningHandler setupRunningHandler = () =>
                 {
-                    var setupIsRunningDialog = new SetupIsRunningDialog();
-                    setupIsRunningDialog.Owner = this;
-                    setupIsRunningDialog.ShowDialog();
+                    var updateInstallRunningDialog = new UpdateInstallRunningDialog();
+                    updateInstallRunningDialog.Owner = this;
+                    updateInstallRunningDialog.ShowDialog();
                 };
                 Updater.DownloadErrorHandler downloadErrorHandler = () =>
                 {

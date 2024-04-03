@@ -3,16 +3,16 @@
 namespace WinManager
 {
     /// <summary>
-    /// Interaction logic for SetupIsRunningDialog.xaml
+    /// Interaction logic for UpdateInstallRunningDialog.xaml
     /// </summary>
-    public partial class SetupIsRunningDialog : Window
+    public partial class UpdateInstallRunningDialog : Window
     {
-        public SetupIsRunningDialog()
+        public UpdateInstallRunningDialog()
         {
             InitializeComponent();
         }
 
-        private void SetupIsRunningDialog_Loaded(object sender, RoutedEventArgs e)
+        private void UpdateInstallRunningDialog_Loaded(object sender, RoutedEventArgs e)
         {
             closeButton.Focus();
         }

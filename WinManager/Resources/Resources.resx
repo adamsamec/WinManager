@@ -253,13 +253,12 @@
           xml:space="preserve">
         <value>Continue download</value>
     </data>
-
-                            <data name="setupIsRunningTitle"
+                            <data name="updateInstallRunningTitle"
           xml:space="preserve">
-        <value>Setup is running</value>
+        <value>Update installer is running</value>
     </data>
-            <data name="setupIsRunningMessage"
+            <data name="updateInstallRunningMessage"
           xml:space="preserve">
-        <value>The setup is in progress. Please finish or cancel the setup before downloading the update.</value>
+        <value>The update installer is running. Please finish or cancel the installation before downloading the update again.</value>
     </data>
 </root>

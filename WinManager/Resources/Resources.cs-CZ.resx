@@ -217,12 +217,12 @@
           xml:space="preserve">
         <value>Pokračovat ve stahování</value>
     </data>
-                                <data name="setupIsRunningTitle"
+                                <data name="updateInstallRunningTitle"
           xml:space="preserve">
         <value>Probíhá instalace</value>
     </data>
-            <data name="setupIsRunningMessage"
+            <data name="updateInstallRunningMessage"
           xml:space="preserve">
-        <value>Instalace právě probíhá. Prosím dokončete nebo zruštte instalaci před stažením nové aktualizace</value>
+        <value>Instalace právě probíhá. Prosím dokončete nebo zruštte instalaci před opětovným stažením aktualizace</value>
     </data>
 </root>
