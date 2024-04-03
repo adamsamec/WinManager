@@ -69,13 +69,13 @@ namespace WinManager
             _manager.ChangeLaunchOnStartupSetting(false);
         }
 
-        private void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        private async void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
             var doUpdate = false;
             UpdateData? updateData = null;
             try
             {
-                updateData = _manager.AppUpdater.CheckForUpdate();
+                updateData = await _manager.AppUpdater.CheckForUpdate();
                 if (updateData == null)
                 {
                     var noUpdateAvailableDialog = new NoUpdateAvailableDialog();

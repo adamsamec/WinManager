@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Text.Json;
-
 namespace WinManager
 {
     /// <summary>
@@ -12,7 +11,7 @@ namespace WinManager
     {
         private UpdateState _state = UpdateState.Initial;
         private CancellationTokenSource? _cancellationTokenSource;
-        private string _installerDownloadPath;
+        private string _installerDownloadPath = "";
 
         private const int FileDeletionTimeLimit = 1000; // 30 seconds   
         private const int FileDeletionCheckInterval = 500; // 0.5 seconds
@@ -31,9 +30,9 @@ namespace WinManager
             Deleting
         }
 
-        public UpdateData? CheckForUpdate()
+        public async Task<UpdateData?> CheckForUpdate()
         {
-            var updateString = new WebClient().DownloadString(Consts.ApiUrl);
+            var updateString = await new HttpClient().GetStringAsync(Consts.ApiUrl);
             var update = JsonSerializer.Deserialize<UpdateData>(updateString);
             if (update != null && update.version == Consts.AppVersion)
             {
@@ -51,7 +50,7 @@ namespace WinManager
         {
             if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
             {
-                    Debug.WriteLine("Returning because update is being downloaded or deleted");
+                Debug.WriteLine("Returning because update is being downloaded or deleted");
                 return false;
             }
             var installerUrlString = updateData.installerUrl;
@@ -62,12 +61,12 @@ namespace WinManager
             // Check if installer is not running
             if (_state == UpdateState.Downloaded)
             {
-                    Debug.WriteLine("Update is already downloaded");
+                Debug.WriteLine("Update is already downloaded");
                 if (Utils.IsFileInUse(_installerDownloadPath))
                 {
                     Debug.WriteLine("Returning because update is running");
                     installerRunningHandler();
-                    return false;   
+                    return false;
                 }
             }
 
@@ -142,7 +141,7 @@ namespace WinManager
                         return;
                     }
                     foreach (var file in files)
-                        {
+                    {
                         file.Delete();
                     }
                 }
