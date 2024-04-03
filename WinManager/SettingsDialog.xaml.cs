@@ -103,6 +103,13 @@ namespace WinManager
                 };
                 Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
                 {
+                    var launchUpdateInstallerDialog = new LaunchUpdateInstallerDialog();
+                    launchUpdateInstallerDialog.Owner = this;
+                    var doLaunchInstaller = launchUpdateInstallerDialog.ShowDialog() == true;
+                    if (doLaunchInstaller)
+                    {
+                        _manager.AppUpdater.LaunchInstaller();
+                    }
                 };
                 Updater.InstallerRunningHandler installerRunningHandler = () =>
                 {
