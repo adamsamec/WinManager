@@ -13,7 +13,7 @@ namespace WinManager
         private CancellationTokenSource? _cancellationTokenSource;
         private string _installerDownloadPath = "";
 
-        private const int FileDeletionTimeLimit = 1000; // 30 seconds   
+        private const int FileDeletionTimeLimit = 30000; // 30 seconds   
         private const int FileDeletionCheckInterval = 500; // 0.5 seconds
 
         public UpdateState State
