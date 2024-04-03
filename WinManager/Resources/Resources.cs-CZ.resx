@@ -225,4 +225,21 @@
           xml:space="preserve">
         <value>Instalace právě probíhá. Prosím dokončete nebo zruštte instalaci před opětovným stažením aktualizace</value>
     </data>
+
+                                    <data name="launchUpdateInstallerTitle"
+          xml:space="preserve">
+        <value>Spuštění instalátoru aktualizace</value>
+    </data>
+            <data name="launchUpdateInstallerMessage"
+          xml:space="preserve">
+        <value>Instalátor aktualizace byl stažen. Přejete si jej spustit?</value>
+    </data>
+            <data name="launchUpdateInstallerButton"
+          xml:space="preserve">
+        <value>Spustit instalátor</value>
+    </data>
+            <data name="cancelButton"
+          xml:space="preserve">
+        <value>Zrušit</value>
+    </data>
 </root>

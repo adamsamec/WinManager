@@ -61,6 +61,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string cancelButton {
+            get {
+                return ResourceManager.GetString("cancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel download.
         /// </summary>
         public static string cancelUpdateDownloadButton {
@@ -111,6 +120,33 @@ namespace WinManager {
         public static string LaunchOnStartupCheckBox {
             get {
                 return ResourceManager.GetString("LaunchOnStartupCheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch installer.
+        /// </summary>
+        public static string launchUpdateInstallerButton {
+            get {
+                return ResourceManager.GetString("launchUpdateInstallerButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update installer has been downloaded. Do you want to launch it?.
+        /// </summary>
+        public static string launchUpdateInstallerMessage {
+            get {
+                return ResourceManager.GetString("launchUpdateInstallerMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch update installer.
+        /// </summary>
+        public static string launchUpdateInstallerTitle {
+            get {
+                return ResourceManager.GetString("launchUpdateInstallerTitle", resourceCulture);
             }
         }
         

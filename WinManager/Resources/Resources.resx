@@ -261,4 +261,21 @@
           xml:space="preserve">
         <value>The update installer is running. Please finish or cancel the installation before downloading the update again.</value>
     </data>
+
+                                <data name="launchUpdateInstallerTitle"
+          xml:space="preserve">
+        <value>Launch update installer</value>
+    </data>
+            <data name="launchUpdateInstallerMessage"
+          xml:space="preserve">
+        <value>Update installer has been downloaded. Do you want to launch it?</value>
+    </data>
+            <data name="launchUpdateInstallerButton"
+          xml:space="preserve">
+        <value>Launch installer</value>
+    </data>
+            <data name="cancelButton"
+          xml:space="preserve">
+        <value>Cancel</value>
+    </data>
 </root>
