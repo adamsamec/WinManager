@@ -59,9 +59,8 @@ namespace WinManager
             _installerDownloadPath = Path.Combine(Consts.InstallerDownloadFolder, installerFilename);
 
             // Check if installer is not running
-            if (_state == UpdateState.Downloaded)
+            if (_state == UpdateState.Downloaded || _state == UpdateState.Initial)
             {
-                Debug.WriteLine("Update is already downloaded");
                 if (Utils.IsFileInUse(_installerDownloadPath))
                 {
                     Debug.WriteLine("Returning because update is running");
