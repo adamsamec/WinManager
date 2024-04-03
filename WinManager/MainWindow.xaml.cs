@@ -89,10 +89,10 @@ namespace WinManager
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenSettings();
+            ShowSettingsDialog();
         }
 
-        public void OpenSettings()
+        public void ShowSettingsDialog()
         {
             var settingsDialog = new SettingsDialog(_manager);
             settingsDialog.Owner = this;

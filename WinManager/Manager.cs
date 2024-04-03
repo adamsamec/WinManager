@@ -96,7 +96,7 @@ namespace WinManager
             _mainWindow.Display();
             if (AppUpdater.State == Updater.UpdateState.Downloading || AppUpdater.State == Updater.UpdateState.Deleting)
             {
-                _mainWindow.OpenSettings();
+                _mainWindow.ShowSettingsDialog();
             }
         }
 

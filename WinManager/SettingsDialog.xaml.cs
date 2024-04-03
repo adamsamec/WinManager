@@ -26,6 +26,16 @@ namespace WinManager
 
             // Set initial focus
             launchOnStartupCheckBox.Focus();
+
+            // Set state of chekc for updates button and progress bar
+            if (_manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
+            {
+                checkForUpdatesButton.IsEnabled = false;
+            }
+            else
+            {
+                updateDownloadProgressBar.IsEnabled = false;
+            }
         }
 
         private void SettingsDialog_KeyDown(object sender, KeyEventArgs e)
@@ -110,9 +120,11 @@ namespace WinManager
                     {
                         _manager.AppUpdater.LaunchInstaller();
                     }
+                    MakeCheckForUpdateAvailable();
                 };
                 Updater.InstallerRunningHandler installerRunningHandler = () =>
                 {
+                    MakeCheckForUpdateAvailable();
                     var updateInstallRunningDialog = new UpdateInstallRunningDialog();
                     updateInstallRunningDialog.Owner = this;
                     updateInstallRunningDialog.ShowDialog();
@@ -120,19 +132,30 @@ namespace WinManager
                 Updater.DownloadErrorHandler downloadErrorHandler = () =>
                 {
                     var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
-                    if (this.IsVisible)
+                    if (IsVisible)
                     {
                         updateDownloadFailedDialog.Owner = this;
                     }
                     updateDownloadFailedDialog.ShowDialog();
+                    MakeCheckForUpdateAvailable();
                 };
+                MakeDownloadInProgress();
                 var downloadTask = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, installerRunningHandler, downloadErrorHandler);
             }
         }
 
-        private void ShowUpdateDownloadProgress()
+        private void MakeCheckForUpdateAvailable()
         {
+            checkForUpdatesButton.IsEnabled = true;
+            checkForUpdatesButton.Focus();
+            updateDownloadProgressBar.IsEnabled = false;
+        }
 
+        private void MakeDownloadInProgress()
+        {
+            updateDownloadProgressBar.IsEnabled = true;
+            updateDownloadProgressBar.Focus();
+            checkForUpdatesButton.IsEnabled = false;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
