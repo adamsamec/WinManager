@@ -9,7 +9,7 @@ namespace WinManager
     public partial class SettingsDialog : Window
     {
         private Manager _manager;
-
+        private UpdateDownloadInProgressDialog? _updateDownloadInProgressDialog;
         public SettingsDialog(Manager manager)
         {
             InitializeComponent();
@@ -59,9 +59,9 @@ namespace WinManager
             {
                 return true;
             }
-            var dialog = new UpdateDownloadInProgressDialog();
-            dialog.Owner = this;
-            var doCancelAndClose = dialog.ShowDialog() == true;
+            _updateDownloadInProgressDialog = new UpdateDownloadInProgressDialog();
+            _updateDownloadInProgressDialog.Owner = this;
+            var doCancelAndClose = _updateDownloadInProgressDialog.ShowDialog() == true;
             if (doCancelAndClose)
             {
                 _manager.AppUpdater.CancelDownload();
@@ -113,6 +113,10 @@ namespace WinManager
                 };
                 Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
                 {
+                    if (_updateDownloadInProgressDialog != null && _updateDownloadInProgressDialog.IsVisible)
+                    {
+                        _updateDownloadInProgressDialog.DialogResult = false;
+                    }
                     var launchUpdateInstallerDialog = new LaunchUpdateInstallerDialog();
                     launchUpdateInstallerDialog.Owner = this;
                     var doLaunchInstaller = launchUpdateInstallerDialog.ShowDialog() == true;
