@@ -273,11 +273,6 @@ namespace WinManager
 
         public void ApplyTypedCharacterToFilter(string character)
         {
-            if (_config.AppSettings.filterByTyping != Config.TRUE)
-            {
-                return;
-            }
-
             character = character.ToLower();
             var itemsTextsList = new List<string>();
             switch (View)

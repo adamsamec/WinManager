@@ -1,7 +1,6 @@
 {
   "settings": {
     "launchOnStartup": "yes",
-    "filterByTyping": "yes",
     "enabledShortcuts": {
       "showApps": {
         "Win_F12": "yes",

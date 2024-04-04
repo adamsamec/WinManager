@@ -42,7 +42,7 @@ namespace WinManager
             var defaultSettings = defaultConfig.settings;
 
             // Set missing JSON properties to defaults
-            Utils.SetYesOrNo(settings, defaultSettings, ["launchOnStartup", "filterByTyping"]);
+            Utils.SetYesOrNo(settings, defaultSettings, ["launchOnStartup"]);
             if (settings.enabledShortcuts == null)
             {
                 settings.enabledShortcuts = defaultSettings.enabledShortcuts;

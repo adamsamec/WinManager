@@ -8,7 +8,6 @@
     public class Settings
     {
         public string launchOnStartup { get; set; }
-        public string filterByTyping { get; set; }
         public Enabledshortcuts enabledShortcuts { get; set; }
     }
 
