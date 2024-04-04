@@ -1,12 +1,8 @@
 ## TODO
-* Prevent Alt + F4 from closing settings and child dialogs.
-* Replace WebClient with HTTPClient.
-* Add setup file open dialog.
 * Remove filter by typing prop from config.
-* Update feature.
-* Add about and help windows.
 * Add File explorer app item.
 * Exclude some items like System host...
 * Add foreground app windows switching.
 * Add enabled keyboard shortcuts settings.
 * App and windows closing.
+* Add about and help windows.

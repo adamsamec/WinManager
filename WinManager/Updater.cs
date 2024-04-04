@@ -53,6 +53,7 @@ namespace WinManager
                 Debug.WriteLine("Returning because update is being downloaded or deleted");
                 return false;
             }
+            //var installerUrlString = "https://files.adamsamec.cz/apps/test.zip"; // URL for testing
             var installerUrlString = updateData.installerUrl;
             var installerUri = new System.Uri(installerUrlString);
             var installerFilename = Path.GetFileName(installerUri.LocalPath);
@@ -61,7 +62,7 @@ namespace WinManager
             // Check if installer is not running
             if (_state == UpdateState.Downloaded || _state == UpdateState.Initial)
             {
-                if (Utils.IsFileInUse(_installerDownloadPath))
+                if (File.Exists(_installerDownloadPath) && Utils.IsFileInUse(_installerDownloadPath))
                 {
                     Debug.WriteLine("Returning because update is running");
                     installerRunningHandler();
