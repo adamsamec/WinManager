@@ -1,5 +1,5 @@
 ## TODO
-* Replace unnecessarry  foreach loops.
+* Focus first item after filtering.
 * Fix listing of Settings, Calculator and maybe some other modern apps.
 * Fix order of Total Commander windows.
 * Switch to some Total Commander windows fails.

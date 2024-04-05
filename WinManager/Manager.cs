@@ -215,6 +215,8 @@ namespace WinManager
         private void UpdateWindows()
         {
             var windows = WindowsFinder.GetWindows();
+
+            // Categorize windows into apps
             foreach (var window in windows)
             {
                 foreach (var app in _appsList)
@@ -274,28 +276,27 @@ namespace WinManager
             {
                 case ListView.Apps:
                     _appsOrWindowsFilterText += character;
-                    _filteredAppsList.Clear();
-                    foreach (var app in _appsList)
+                    _filteredAppsList = _appsList.Where(app =>
                     {
-                        if (app.Name.ToLower().Contains(_appsOrWindowsFilterText))
+                        var doesMatch = app.Name.ToLower().Contains(_appsOrWindowsFilterText);
+                        if (doesMatch)
                         {
-                            _filteredAppsList.Add(app);
                             itemsTextsList.Add(GetAppItemText(app));
                         }
-                    }
+                        return doesMatch;
+                    }).ToList();
                     break;
                 case ListView.SelectedAppWindows:
                     _SelectedAppWindowsFilterText += character;
-                    _filteredWindowsList.Clear();
-                    var windows = _filteredAppsList[_selectedAppIndex].Windows;
-                    foreach (var window in windows)
+                    _filteredWindowsList = _filteredAppsList[_selectedAppIndex].Windows.Where(window =>
                     {
-                        if (window.Title.ToLower().Contains(_SelectedAppWindowsFilterText))
+                        var doesMatch = window.Title.ToLower().Contains(_SelectedAppWindowsFilterText);
+                        if (doesMatch)
                         {
-                            _filteredWindowsList.Add(window);
                             itemsTextsList.Add(window.Title);
                         }
-                    }
+                        return doesMatch;
+                    }).ToList();
                     break;
             }
 
@@ -309,22 +310,19 @@ namespace WinManager
             {
                 case ListView.Apps:
                     _appsOrWindowsFilterText = "";
-                    _filteredAppsList.Clear();
-                    foreach (var app in _appsList)
+                    _filteredAppsList = _appsList.Select(app =>
                     {
-                        _filteredAppsList.Add(app);
                         itemsTextsList.Add(GetAppItemText(app));
-                    }
+                        return app;
+                    }).ToList();
                     break;
                 case ListView.SelectedAppWindows:
                     _SelectedAppWindowsFilterText = "";
-                    _filteredWindowsList.Clear();
-                    var windows = _filteredAppsList[_selectedAppIndex].Windows;
-                    foreach (var window in windows)
+                    _filteredWindowsList = _filteredAppsList[_selectedAppIndex].Windows.Select(window =>
                     {
-                        _filteredWindowsList.Add(window);
                         itemsTextsList.Add(window.Title);
-                    }
+                        return window;
+                    }).ToList();
                     break;
             }
             _mainWindow.SetListBoxItems(itemsTextsList);
