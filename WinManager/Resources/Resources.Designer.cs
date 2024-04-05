@@ -115,6 +115,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Explorer.
+        /// </summary>
+        public static string fileExplorer {
+            get {
+                return ResourceManager.GetString("fileExplorer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch WinManager on Windows startup.
         /// </summary>
         public static string LaunchOnStartupCheckBox {

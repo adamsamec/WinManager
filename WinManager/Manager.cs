@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Media;
 
 namespace WinManager
@@ -87,8 +88,9 @@ namespace WinManager
         {
             SystemSounds.Hand.Play();
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
+
+            //ResetFilter();
             UpdateApps();
-            UpdateWindows();
             ShowApps();
 
             // Display main window
@@ -163,6 +165,12 @@ namespace WinManager
             var processesAppsList = new List<RunningApplication>();
             foreach (var process in processes)
             {
+                RunningApplication app;
+                if (process.ProcessName == "explorer")
+                {
+                    app = new RunningApplication(Resources.fileExplorer, process);
+                    processesAppsList.Add(app);
+                }
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
                     continue;
@@ -182,7 +190,7 @@ namespace WinManager
                     appName = process.MainWindowTitle;
                 }
 
-                var app = new RunningApplication(appName, process);
+                app = new RunningApplication(appName, process);
                 processesAppsList.Add(app);
             }
             processesAppsList = processesAppsList.OrderBy(app => app.ZIndex).ToList();
@@ -210,6 +218,7 @@ namespace WinManager
                     _appsList.Add(processApp);
                 }
             }
+            UpdateWindows();
 
             // Update filtred apps list
             _filteredAppsList.Clear();
@@ -225,7 +234,7 @@ namespace WinManager
             var windows = WindowsFinder.GetWindows();
             foreach (var window in windows)
             {
-                foreach (var app in _filteredAppsList)
+                foreach (var app in _appsList)
                 {
                     if (window.Pid == app.AppProcess.Id)
                     {
@@ -233,6 +242,9 @@ namespace WinManager
                     }
                 }
             }
+
+            // Remove apps that have no windows
+            _appsList = _appsList.Where(app => app.Windows.Count > 0).ToList();
         }
 
         public void SwitchToItem(int itemIndex)
@@ -313,6 +325,7 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
+            _appsOrWindowsFilterText = "";
                     _filteredAppsList.Clear();
                     foreach (var app in _appsList)
                     {
@@ -321,6 +334,7 @@ namespace WinManager
                     }
                     break;
                 case ListView.SelectedAppWindows:
+            _SelectedAppWindowsFilterText = "";
                     _filteredWindowsList.Clear();
                     var windows = _filteredAppsList[_selectedAppIndex].Windows;
                     foreach (var window in windows)

@@ -242,4 +242,8 @@
           xml:space="preserve">
         <value>Zrušit</value>
     </data>
+                <data name="fileExplorer"
+          xml:space="preserve">
+        <value>Průzkumník</value>
+    </data>
 </root>

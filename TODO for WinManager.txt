@@ -1,5 +1,4 @@
 ## TODO
-* Remove filter by typing prop from config.
 * Add File explorer app item.
 * Exclude some items like System host...
 * Add foreground app windows switching.

@@ -28,6 +28,10 @@ namespace WinManager
         private static void AddWindow(IntPtr handle)
         {
             var title = GetWindowTitle(handle);
+            if (String.IsNullOrEmpty(title))
+            {
+                return;
+            }
             uint pid;
             NativeMethods.GetWindowThreadProcessId(handle, out pid);
             var window = new OpenWindow(title, handle, pid);
