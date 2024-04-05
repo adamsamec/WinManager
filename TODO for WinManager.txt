@@ -1,5 +1,8 @@
 ## TODO
-* Add File explorer app item.
+* Replace unnecessarry  foreach loops.
+* Fix listing of Settings, Calculator and maybe some other modern apps.
+* Fix order of Total Commander windows.
+* Switch to some Total Commander windows fails.
 * Exclude some items like System host...
 * Add foreground app windows switching.
 * Add enabled keyboard shortcuts settings.

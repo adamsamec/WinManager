@@ -111,11 +111,7 @@ namespace WinManager
             _view = ListView.Apps;
 
             // Determine and update ListBox items
-            var appsItemsList = new List<string>();
-            foreach (var app in _filteredAppsList)
-            {
-                appsItemsList.Add(GetAppItemText(app));
-            }
+            var appsItemsList = _filteredAppsList.Select(app => GetAppItemText(app)).ToList();
             _mainWindow.SetListBoxLabel(Resources.runningAppsLabel);
             _mainWindow.SetListBoxItems(appsItemsList);
 
@@ -136,22 +132,13 @@ namespace WinManager
             }
 
             // Determine selected app and its windows
-            _filteredWindowsList.Clear();
             _SelectedAppWindowsFilterText = "";
             _selectedAppIndex = appIndex;
-            var windows = _filteredAppsList[appIndex].Windows;
-            foreach (var window in windows)
-            {
-                _filteredWindowsList.Add(window);
-            }
+            _filteredWindowsList = new List<OpenWindow>(_filteredAppsList[appIndex].Windows);
             _view = ListView.SelectedAppWindows;
 
             // Determine and update ListBox items
-            var windowsTitlesList = new List<string>();
-            foreach (var window in _filteredWindowsList)
-            {
-                windowsTitlesList.Add(window.Title);
-            }
+            var windowsTitlesList = _filteredWindowsList.Select(window => window.Title).ToList();
             _mainWindow.SetListBoxLabel(Resources.openWindowsLabel);
             _mainWindow.SetListBoxItems(windowsTitlesList);
 
@@ -220,13 +207,9 @@ namespace WinManager
             }
             UpdateWindows();
 
-            // Update filtred apps list
-            _filteredAppsList.Clear();
+            // Reset filtred apps list
+            _filteredAppsList = new List<RunningApplication>(_appsList);
             _appsOrWindowsFilterText = "";
-            foreach (var app in _appsList)
-            {
-                _filteredAppsList.Add(app);
-            }
         }
 
         private void UpdateWindows()
