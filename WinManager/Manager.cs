@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Media;
 
 namespace WinManager
@@ -88,8 +87,8 @@ namespace WinManager
         {
             SystemSounds.Hand.Play();
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
+            _view = ListView.Hidden;
 
-            //ResetFilter();
             UpdateApps();
             ShowApps();
 
@@ -170,6 +169,7 @@ namespace WinManager
                 {
                     app = new RunningApplication(Resources.fileExplorer, process);
                     processesAppsList.Add(app);
+                    continue;
                 }
                 if (String.IsNullOrEmpty(process.MainWindowTitle))
                 {
@@ -325,7 +325,7 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
-            _appsOrWindowsFilterText = "";
+                    _appsOrWindowsFilterText = "";
                     _filteredAppsList.Clear();
                     foreach (var app in _appsList)
                     {
@@ -334,7 +334,7 @@ namespace WinManager
                     }
                     break;
                 case ListView.SelectedAppWindows:
-            _SelectedAppWindowsFilterText = "";
+                    _SelectedAppWindowsFilterText = "";
                     _filteredWindowsList.Clear();
                     var windows = _filteredAppsList[_selectedAppIndex].Windows;
                     foreach (var window in windows)
@@ -344,7 +344,6 @@ namespace WinManager
                     }
                     break;
             }
-
             _mainWindow.SetListBoxItems(itemsTextsList);
         }
 
@@ -363,7 +362,7 @@ namespace WinManager
                 {
                     startupRegistryKey?.SetValue(Consts.StartupRegistryKeyName, executablePath);
                 }
-                else if (startupRegistryKey != null && (string) startupRegistryKey.GetValue(Consts.StartupRegistryKeyName, "none") != "none")
+                else if (startupRegistryKey != null && (string)startupRegistryKey.GetValue(Consts.StartupRegistryKeyName, "none") != "none")
                 {
                     startupRegistryKey.DeleteValue(Consts.StartupRegistryKeyName);
                 }

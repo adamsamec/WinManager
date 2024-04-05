@@ -82,14 +82,13 @@ namespace WinManager
 
         public static string ToPrintableCharacter(this Key key)
         {
-            string character = "";
-
-            // Consider Backspace as non-printable character
-            if (key == Key.Back)
+            // Consider Backspace and Escape as non-printable characters returning empty string
+            if (key == Key.Back || key == Key.Escape)
             {
-                return character;
+                return "";
             }
 
+            string character = "";
             int virtualKey = KeyInterop.VirtualKeyFromKey(key);
             var keyboardState = new byte[256];
             NativeMethods.GetKeyboardState(keyboardState);
