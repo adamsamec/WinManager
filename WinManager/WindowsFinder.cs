@@ -32,9 +32,7 @@ namespace WinManager
             {
                 return;
             }
-            uint pid;
-            NativeMethods.GetWindowThreadProcessId(handle, out pid);
-            var window = new OpenWindow(title, handle, pid);
+            var window = new OpenWindow(title, handle);
             _windows.Add(window);
         }
 

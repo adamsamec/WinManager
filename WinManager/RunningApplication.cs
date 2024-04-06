@@ -17,10 +17,10 @@ namespace WinManager
             get { return _zIndex; }
         }
 
-        public RunningApplication(string name, Process appProcess)
+        public RunningApplication(string name, Process process)
         {
             Name = name;
-            AppProcess = appProcess;
+            AppProcess = process;
             Windows = new List<OpenWindow>();
 
             SetZOrder();

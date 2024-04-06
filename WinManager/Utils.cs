@@ -1,7 +1,9 @@
 ﻿using Accessibility;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace WinManager
@@ -67,17 +69,22 @@ namespace WinManager
             MAPVK_VSC_TO_VK_EX = 0x3,
         }
 
+        public static string GetProcessFilePath(IntPtr handle, int buffer = 1024)
+        {
+            var filePathBuilder = new StringBuilder(buffer);
+            uint bufferLength = (uint)filePathBuilder.Capacity + 1;
+            var path = NativeMethods.QueryFullProcessImageName(handle, 0, filePathBuilder, ref bufferLength) ?
+                filePathBuilder.ToString() :
+                null;
+            return path;
+        }
     }
 
     internal static class Extensions
     {
-        public static string GetMainModuleFilePath(this Process process, int buffer = 1024)
+        public static string GetFilePath(this Process process)
         {
-            var filePathBuilder = new StringBuilder(buffer);
-            uint bufferLength = (uint)filePathBuilder.Capacity + 1;
-            return NativeMethods.QueryFullProcessImageName(process.Handle, 0, filePathBuilder, ref bufferLength) ?
-                filePathBuilder.ToString() :
-                null;
+            return Utils.GetProcessFilePath(process.Handle);
         }
 
         public static string ToPrintableCharacter(this Key key)

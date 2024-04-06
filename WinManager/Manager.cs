@@ -165,7 +165,7 @@ namespace WinManager
                 string? appName;
                 try
                 {
-                    var fileVersionInfo = FileVersionInfo.GetVersionInfo(process.GetMainModuleFilePath());
+                    var fileVersionInfo = FileVersionInfo.GetVersionInfo(process.GetFilePath());
                     appName = fileVersionInfo.FileDescription;
                     if (String.IsNullOrEmpty(appName))
                     {
@@ -193,10 +193,7 @@ namespace WinManager
                     if (app.AppProcess.ProcessName == process.ProcessName)
                     {
                         appExists = true;
-                        var handle = process.Handle;
-                        uint pid;
-                        NativeMethods.GetWindowThreadProcessId(handle, out pid);
-                        var window = new OpenWindow(process.MainWindowTitle, handle, pid);
+                        var window = new OpenWindow(process.MainWindowTitle, process.Handle);
                         app.Windows.Add(window);
                     }
                 }
