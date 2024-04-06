@@ -13,7 +13,8 @@ namespace WinManager
     {
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private MainWindow _mainWindow;
-        private KeyboardHook _hook;
+        private List<KeyboardHook> _appsKeyboardHooks = new List<KeyboardHook>();
+        private List<KeyboardHook> _windowsKeyboardHooks = new List<KeyboardHook>();
         private AutoOutput _srOutput = new AutoOutput();
         private Config _config = new Config();
         private Updater _appUpdater = new Updater();
@@ -21,9 +22,9 @@ namespace WinManager
         private List<RunningApplication> _appsList = new List<RunningApplication>();
         private List<RunningApplication> _filteredAppsList = new List<RunningApplication>();
         private List<OpenWindow> _filteredWindowsList = new List<OpenWindow>();
-        private string _appsOrWindowsFilterText = "";
-        private string _SelectedAppWindowsFilterText = "";
-        private int _selectedAppIndex = 0;
+        private string _appsFilterText = "";
+        private string _windowsFilterText = "";
+        private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
         public Settings AppSettings
@@ -44,14 +45,42 @@ namespace WinManager
             Hidden,
             Apps,
             SelectedAppWindows,
-            FrontAppWindows
+            ForegroundAppWindows
         }
 
         public Manager(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
-            _hook = new KeyboardHook(_mainWindow, 0x77, ModifierKeyCodes.Windows); // Windows + F8
-            _hook.Triggered += Show;
+
+            // Specify enabled shortcuts
+            var appsTriggerShortcuts = new List<TriggerShortcut>
+            {
+                new TriggerShortcut(ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerType.Apps)
+            };
+            var windowsTriggerShortcuts = new List<TriggerShortcut>
+            {
+                new TriggerShortcut(ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerType.Windows)
+            };
+
+            // Create keyboard hooks for defined shortcuts
+            foreach (var shortcut in appsTriggerShortcuts)
+            {
+                var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
+                hook.Triggered += () =>
+                {
+                    Show(TriggerShortcut.TriggerType.Apps);
+                };
+                _appsKeyboardHooks.Add(hook);
+            }
+            foreach (var shortcut in windowsTriggerShortcuts)
+            {
+                var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
+                hook.Triggered += () =>
+                {
+                    Show(TriggerShortcut.TriggerType.Windows);
+                };
+                _windowsKeyboardHooks.Add(hook);
+            } 
 
             // Update WinManager launch on startup seting from config
             var isLaunchOnStartupEnabled = AppSettings.launchOnStartup == Config.TRUE;
@@ -83,14 +112,22 @@ namespace WinManager
             _mainWindow.Hide();
         }
 
-        private void Show()
+        private void Show(TriggerShortcut.TriggerType type)
         {
             SystemSounds.Hand.Play();
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
             _view = ListView.Hidden;
 
             RefreshApps();
-            ShowApps();
+            switch (type)
+            {
+                case TriggerShortcut.TriggerType.Apps:
+                    ShowApps();
+                    break;
+                case TriggerShortcut.TriggerType.Windows:
+                    ShowForeGroundAppWindows();
+                    break;
+            }
 
             // Display main window
             _mainWindow.Show(); // This extra Show() fixes the initial display
@@ -124,6 +161,42 @@ namespace WinManager
             return itemText;
         }
 
+        public bool ShowForeGroundAppWindows()
+        {
+            if (View != ListView.Hidden)
+            {
+                return false;
+            }
+
+            // Determine foreground app, its index and its windows
+            var appIndex = -1;
+            var foregroundApp = _appsList.Find(app =>
+            {
+                appIndex++;
+                return app.Windows[0].Handle == _prevWindowHandle;
+            });
+            if (foregroundApp == null)
+            {
+                _currentAppIndex = -1;
+                _filteredWindowsList.Clear();
+            }
+            else
+            {
+                _currentAppIndex = appIndex;
+                _filteredWindowsList = new List<OpenWindow>(foregroundApp.Windows);
+            }
+
+            _windowsFilterText = "";
+            _view = ListView.ForegroundAppWindows;
+
+            // Determine and update ListBox items
+            var windowsTitlesList = _filteredWindowsList.Select(window => window.Title).ToList();
+            _mainWindow.SetListBoxLabel(Resources.openWindowsLabel);
+            _mainWindow.SetListBoxItems(windowsTitlesList);
+
+            return true;
+        }
+
         public bool ShowSelectedAppWindows(int appIndex)
         {
             if (View != ListView.Apps || _filteredAppsList.Count == 0)
@@ -131,10 +204,11 @@ namespace WinManager
                 return false;
             }
 
-            // Determine selected app and its windows
-            _SelectedAppWindowsFilterText = "";
-            _selectedAppIndex = appIndex;
+            // Determine selected app, its index and its windows
+            _currentAppIndex = appIndex;
             _filteredWindowsList = new List<OpenWindow>(_filteredAppsList[appIndex].Windows);
+
+            _windowsFilterText = "";
             _view = ListView.SelectedAppWindows;
 
             // Determine and update ListBox items
@@ -196,8 +270,8 @@ namespace WinManager
                         appExists = true;
                         if (processApp.Windows.Count > 0)
                         {
-                        var window = new OpenWindow(process.MainWindowTitle, processApp.Windows[0].Handle);
-                        app.Windows.Add(window);
+                            var window = new OpenWindow(process.MainWindowTitle, processApp.Windows[0].Handle);
+                            app.Windows.Add(window);
                         }
                     }
                 }
@@ -209,7 +283,7 @@ namespace WinManager
 
             // Reset filtred apps list
             _filteredAppsList = new List<RunningApplication>(_appsList);
-            _appsOrWindowsFilterText = "";
+            _appsFilterText = "";
         }
 
         private void RefreshAndCategorizeWindows(ref List<RunningApplication> appsList)
@@ -239,7 +313,7 @@ namespace WinManager
             {
                 return;
             }
-            if ((View == ListView.FrontAppWindows || View == ListView.SelectedAppWindows) && _filteredWindowsList.Count == 0)
+            if ((View == ListView.ForegroundAppWindows || View == ListView.SelectedAppWindows) && _filteredWindowsList.Count == 0)
             {
                 return;
             }
@@ -252,6 +326,7 @@ namespace WinManager
                     var process = _filteredAppsList[itemIndex].AppProcess;
                     handle = process.MainWindowHandle;
                     break;
+                case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
                     handle = _filteredWindowsList[itemIndex].Handle;
                     break;
@@ -270,15 +345,20 @@ namespace WinManager
 
         public void ApplyTypedCharacterToFilter(string character)
         {
-            character = character.ToLower();
+            if (View == ListView.ForegroundAppWindows && _currentAppIndex == -1)
+            {
+                return;
+            }
+
+                character = character.ToLower();
             var itemsTextsList = new List<string>();
             switch (View)
             {
                 case ListView.Apps:
-                    _appsOrWindowsFilterText += character;
+                    _appsFilterText += character;
                     _filteredAppsList = _appsList.Where(app =>
                     {
-                        var doesMatch = app.Name.ToLower().Contains(_appsOrWindowsFilterText);
+                        var doesMatch = app.Name.ToLower().Contains(_appsFilterText);
                         if (doesMatch)
                         {
                             itemsTextsList.Add(GetAppItemText(app));
@@ -286,11 +366,12 @@ namespace WinManager
                         return doesMatch;
                     }).ToList();
                     break;
+                case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
-                    _SelectedAppWindowsFilterText += character;
-                    _filteredWindowsList = _filteredAppsList[_selectedAppIndex].Windows.Where(window =>
+                    _windowsFilterText += character;
+                    _filteredWindowsList = _filteredAppsList[_currentAppIndex].Windows.Where(window =>
                     {
-                        var doesMatch = window.Title.ToLower().Contains(_SelectedAppWindowsFilterText);
+                        var doesMatch = window.Title.ToLower().Contains(_windowsFilterText);
                         if (doesMatch)
                         {
                             itemsTextsList.Add(window.Title);
@@ -305,20 +386,26 @@ namespace WinManager
 
         public void ResetFilter()
         {
+            if (View == ListView.ForegroundAppWindows && _currentAppIndex == -1)
+            {
+                return;
+            }
+
             var itemsTextsList = new List<string>();
             switch (View)
             {
                 case ListView.Apps:
-                    _appsOrWindowsFilterText = "";
+                    _appsFilterText = "";
                     _filteredAppsList = _appsList.Select(app =>
                     {
                         itemsTextsList.Add(GetAppItemText(app));
                         return app;
                     }).ToList();
                     break;
+                case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
-                    _SelectedAppWindowsFilterText = "";
-                    _filteredWindowsList = _filteredAppsList[_selectedAppIndex].Windows.Select(window =>
+                    _windowsFilterText = "";
+                    _filteredWindowsList = _filteredAppsList[_currentAppIndex].Windows.Select(window =>
                     {
                         itemsTextsList.Add(window.Title);
                         return window;
@@ -364,7 +451,14 @@ namespace WinManager
 
         public void CleanUp()
         {
-            _hook.Dispose();
+            foreach (var hook in _appsKeyboardHooks)
+            {
+                hook.Dispose();
+            }
+            foreach (var hook in _windowsKeyboardHooks)
+            {
+                hook.Dispose();
+            }
         }
     }
 }

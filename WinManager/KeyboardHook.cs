@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -15,7 +16,7 @@ public enum ModifierKeyCodes : uint
 /// Virtual Key Codes
 /// </summary>
 
-class KeyboardHook : IDisposable
+public class KeyboardHook : IDisposable
 {
     [DllImport("user32.dll")]
     public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
@@ -43,17 +44,19 @@ class KeyboardHook : IDisposable
         this.Window = Window;
         host = new WindowInteropHelper(Window);
 
-        Identifier = Window.GetHashCode();
+        Identifier = HashCode.Combine(Window.GetHashCode(), Modifiers, Key);
 
         RegisterHotKey(host.Handle, Identifier, Modifiers, Key);
 
         ComponentDispatcher.ThreadPreprocessMessage += ProcessMessage;
     }
 
-    void ProcessMessage(ref MSG msg, ref bool handled)
+    private void ProcessMessage(ref MSG msg, ref bool handled)
     {
         if ((msg.message == 786) && (msg.wParam.ToInt32() == Identifier) && (Triggered != null))
+        {
             Triggered();
+                }
     }
 
     public event Action? Triggered;
