@@ -89,7 +89,7 @@ namespace WinManager
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
             _view = ListView.Hidden;
 
-            UpdateApps();
+            RefreshApps();
             ShowApps();
 
             // Display main window
@@ -145,7 +145,7 @@ namespace WinManager
             return true;
         }
 
-        private void UpdateApps()
+        private void RefreshApps()
         {
             var processes = Process.GetProcesses();
             var processesAppsList = new List<RunningApplication>();
@@ -181,9 +181,10 @@ namespace WinManager
                 processesAppsList.Add(app);
             }
             processesAppsList = processesAppsList.OrderBy(app => app.ZIndex).ToList();
+            RefreshAndCategorizeWindows(ref processesAppsList);
+            _appsList.Clear();
 
             // Turn apps with the same process name into windows
-            _appsList.Clear();
             foreach (var processApp in processesAppsList)
             {
                 var appExists = false;
@@ -193,8 +194,11 @@ namespace WinManager
                     if (app.AppProcess.ProcessName == process.ProcessName)
                     {
                         appExists = true;
-                        var window = new OpenWindow(process.MainWindowTitle, process.Handle);
+                        if (processApp.Windows.Count > 0)
+                        {
+                        var window = new OpenWindow(process.MainWindowTitle, processApp.Windows[0].Handle);
                         app.Windows.Add(window);
+                        }
                     }
                 }
                 if (!appExists)
@@ -202,21 +206,20 @@ namespace WinManager
                     _appsList.Add(processApp);
                 }
             }
-            UpdateWindows();
 
             // Reset filtred apps list
             _filteredAppsList = new List<RunningApplication>(_appsList);
             _appsOrWindowsFilterText = "";
         }
 
-        private void UpdateWindows()
+        private void RefreshAndCategorizeWindows(ref List<RunningApplication> appsList)
         {
             var windows = WindowsFinder.GetWindows();
 
             // Categorize windows into apps
             foreach (var window in windows)
             {
-                foreach (var app in _appsList)
+                foreach (var app in appsList)
                 {
                     if (window.Pid == app.AppProcess.Id)
                     {
@@ -226,7 +229,7 @@ namespace WinManager
             }
 
             // Remove apps that have no windows
-            _appsList = _appsList.Where(app => app.Windows.Count > 0).ToList();
+            appsList = appsList.Where(app => app.Windows.Count > 0).ToList();
         }
 
         public void SwitchToItem(int itemIndex)
