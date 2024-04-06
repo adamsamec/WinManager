@@ -82,6 +82,7 @@ namespace WinManager
                     if (e.Key != Key.Tab && character != "")
                     {
                         _manager.ApplyTypedCharacterToFilter(character);
+                        FocusItemAfterDelay(0);
                     }
                     break;
             }
