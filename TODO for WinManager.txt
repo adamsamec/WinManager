@@ -1,7 +1,6 @@
 ## TODO
 * Fix listing of Settings, Calculator and maybe some other modern apps.
 * Exclude some items like System host...
-* Add foreground app windows switching.
 * Add enabled keyboard shortcuts settings.
 * App and windows closing.
 * Add about and help windows.
