@@ -13,8 +13,8 @@ namespace WinManager
     {
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private MainWindow _mainWindow;
-        private List<KeyboardHook> _appsKeyboardHooks = new List<KeyboardHook>();
-        private List<KeyboardHook> _windowsKeyboardHooks = new List<KeyboardHook>();
+        private List<TriggerShortcut> _triggerShortcuts = new List<TriggerShortcut>();
+        private List<KeyboardHook> _keyboardHooks = new List<KeyboardHook>();
         private AutoOutput _srOutput = new AutoOutput();
         private Config _config = new Config();
         private Updater _appUpdater = new Updater();
@@ -52,42 +52,45 @@ namespace WinManager
         {
             _mainWindow = mainWindow;
 
-            // Specify enabled shortcuts
-            var appsTriggerShortcuts = new List<TriggerShortcut>
-            {
-                new TriggerShortcut(ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerType.Apps)
-            };
-            var windowsTriggerShortcuts = new List<TriggerShortcut>
-            {
-                new TriggerShortcut(ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerType.Windows)
-            };
-
-            // Create keyboard hooks for defined shortcuts
-            foreach (var shortcut in appsTriggerShortcuts)
-            {
-                var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
-                hook.Triggered += () =>
-                {
-                    Show(TriggerShortcut.TriggerType.Apps);
-                };
-                _appsKeyboardHooks.Add(hook);
-            }
-            foreach (var shortcut in windowsTriggerShortcuts)
-            {
-                var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
-                hook.Triggered += () =>
-                {
-                    Show(TriggerShortcut.TriggerType.Windows);
-                };
-                _windowsKeyboardHooks.Add(hook);
-            } 
+            InitTriggerShortcuts();
 
             // Update WinManager launch on startup seting from config
-            var isLaunchOnStartupEnabled = AppSettings.launchOnStartup == Config.TRUE;
+            var isLaunchOnStartupEnabled = AppSettings.launchOnStartup == Config.True;
             ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
             Speak(Resources.startAnnouncement);
+        }
+
+        private void InitTriggerShortcuts()
+        {
+            // Specify shortcut keys and their actions
+            _triggerShortcuts.Add(new TriggerShortcut("Win_F12", ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerAction.ShowApps));
+            _triggerShortcuts.Add(new TriggerShortcut("Win_F11", ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerAction.ShowWindows));
+
+            var actionMapping = new List<Object> {
+AppSettings.enabledShortcuts.showApps,
+AppSettings.enabledShortcuts.showWindows,
+            };
+            foreach (var shortcut in _triggerShortcuts)
+            {
+                // Determine enabled state for shortcuts from settings
+                var settingAction = actionMapping[(int)shortcut.Action];
+                Debug.WriteLine(Utils.GetPropValue(settingAction, shortcut.Id));
+                shortcut.IsEnabled = ((string) Utils.GetPropValue(settingAction, shortcut.Id)) == Config.True;
+                Debug.WriteLine(shortcut.Id + ": " + shortcut.IsEnabled.ToString());
+
+                // Create keyboard hook if shortcut is enabled
+                if (shortcut.IsEnabled)
+                {
+                    var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
+                    hook.Triggered += () =>
+                    {
+                        Show(shortcut.Action);
+                    };
+                    _keyboardHooks.Add(hook);
+                }
+            }
         }
 
         public void Speak(string message)
@@ -112,7 +115,7 @@ namespace WinManager
             _mainWindow.Hide();
         }
 
-        private void Show(TriggerShortcut.TriggerType type)
+        private void Show(TriggerShortcut.TriggerAction type)
         {
             SystemSounds.Hand.Play();
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
@@ -121,10 +124,10 @@ namespace WinManager
             RefreshApps();
             switch (type)
             {
-                case TriggerShortcut.TriggerType.Apps:
+                case TriggerShortcut.TriggerAction.ShowApps:
                     ShowApps();
                     break;
-                case TriggerShortcut.TriggerType.Windows:
+                case TriggerShortcut.TriggerAction.ShowWindows:
                     ShowForeGroundAppWindows();
                     break;
             }
@@ -350,7 +353,7 @@ namespace WinManager
                 return;
             }
 
-                character = character.ToLower();
+            character = character.ToLower();
             var itemsTextsList = new List<string>();
             switch (View)
             {
@@ -440,7 +443,7 @@ namespace WinManager
                 Debug.WriteLine("Failed to update launch on startup registry");
             }
             // Update settings
-            AppSettings.launchOnStartup = value ? Config.TRUE : Config.FALSE; ;
+            AppSettings.launchOnStartup = value ? Config.True : Config.False; ;
             SaveSettings();
         }
 
@@ -451,11 +454,7 @@ namespace WinManager
 
         public void CleanUp()
         {
-            foreach (var hook in _appsKeyboardHooks)
-            {
-                hook.Dispose();
-            }
-            foreach (var hook in _windowsKeyboardHooks)
+            foreach (var hook in _keyboardHooks)
             {
                 hook.Dispose();
             }

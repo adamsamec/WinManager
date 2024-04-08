@@ -106,6 +106,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enabled keyboard shortcuts for list of running apps.
+        /// </summary>
+        public static string enabledAppsShortcutsLabel {
+            get {
+                return ResourceManager.GetString("enabledAppsShortcutsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled keyboard shortcuts for list of foreground app open windows.
+        /// </summary>
+        public static string enabledWindowsShortcutsLabel {
+            get {
+                return ResourceManager.GetString("enabledWindowsShortcutsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exiting WinManager.
         /// </summary>
         public static string exitAnnouncement {

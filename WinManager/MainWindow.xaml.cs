@@ -102,7 +102,7 @@ namespace WinManager
 
         public void SetListBoxLabel(string text)
         {
-            llistboxLabel.Content = text;
+            itemsListBoxLabel.Content = text;
         }
 
         public void Display()

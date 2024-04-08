@@ -12,15 +12,19 @@ WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
         WindowStyle="None"
         Loaded="SettingsDialog_Loaded">
-    <Grid>
-        <CheckBox Name="launchOnStartupCheckBox"
+  <Grid>
+    <CheckBox Name="launchOnStartupCheckBox"
                   Content="{x:Static lang:Resources.LaunchOnStartupCheckBox}"
                   Checked="launchOnStartupCheckBox_Checked" Unchecked="launchOnStartupCheckBox_Unchecked"
                   HorizontalAlignment="Left" />
+
+    <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsLabel}"/>
+    <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsLabel}"/>
+
     <Button Name="checkForUpdatesButton"
                 Content="{x:Static lang:Resources.checkForUpdatesButton}"
 Click="checkForUpdatesButton_Click"
-                HorizontalAlignment="Left" />
+                HorizontalAlignment="Left" Margin="0,1,0,-1" />
     <Label Name="updateDownloadProgressLabel" Content="{x:Static lang:Resources.updateDownloadProgressLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left"/>
     <ProgressBar Name="updateDownloadProgressBar"
 AutomationProperties.LabeledBy="{Binding ElementName=updateDownloadProgressLabel}"
@@ -32,5 +36,5 @@ Focusable="True"
 Click="closeButton_Click"
 IsDefault="True"
                 HorizontalAlignment="Right" />
-    </Grid>
+  </Grid>
 </Window>

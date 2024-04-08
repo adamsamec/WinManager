@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WinManager
@@ -10,6 +12,7 @@ namespace WinManager
     {
         private Manager _manager;
         private UpdateDownloadInProgressDialog? _updateDownloadInProgressDialog;
+
         public SettingsDialog(Manager manager)
         {
             InitializeComponent();
@@ -22,7 +25,13 @@ namespace WinManager
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
             // Retrieve stored settings
-            launchOnStartupCheckBox.IsChecked = _manager.AppSettings.launchOnStartup == Config.TRUE;
+            launchOnStartupCheckBox.IsChecked = _manager.AppSettings.launchOnStartup == Config.True;
+
+            // Create apps and windows shortcuts chekcboxes
+            var checkBox = new CheckBox { Content = "Windows + F12" };
+            var appsStackPanel = new StackPanel();
+            appsStackPanel.Children.Add(checkBox);
+            appsShortcutsGroup.Content = appsStackPanel;
 
             // Set initial focus
             launchOnStartupCheckBox.Focus();

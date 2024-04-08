@@ -40,12 +40,12 @@ namespace WinManager
             }
         }
 
-        private static object GetPropValue(object obj, string propName)
+        public static object GetPropValue(object obj, string propName)
         {
             return obj.GetType().GetProperty(propName).GetValue(obj, null);
         }
 
-        private static void SetPropValue(object obj, string propName, object propValue)
+        public static void SetPropValue(object obj, string propName, object propValue)
         {
             obj.GetType().GetProperty(propName).SetValue(obj, propValue, null);
         }

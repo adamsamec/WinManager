@@ -282,4 +282,12 @@
           xml:space="preserve">
         <value>File Explorer</value>
     </data>
+                    <data name="enabledAppsShortcutsLabel"
+          xml:space="preserve">
+        <value>Enabled keyboard shortcuts for list of running apps</value>
+    </data>
+                        <data name="enabledWindowsShortcutsLabel"
+          xml:space="preserve">
+        <value>Enabled keyboard shortcuts for list of foreground app open windows</value>
+    </data>
 </root>

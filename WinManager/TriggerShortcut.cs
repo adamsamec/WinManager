@@ -5,21 +5,24 @@
     /// </summary>
     public class TriggerShortcut
     {
+        public string Id { get; set; }
+        public bool IsEnabled { get; set; }
         public ModifierKeyCodes Modifiers { get; set; }
         public int KeyCode { get; set; }
-        public TriggerType Type { get; set; }
+        public TriggerAction Action { get; set; }
 
-        public enum TriggerType
+        public enum TriggerAction
         {
-            Apps,
-            Windows
+            ShowApps,
+            ShowWindows
         }
 
-        public TriggerShortcut(ModifierKeyCodes modifiers, int keyCode, TriggerType type)
+        public TriggerShortcut(string id, ModifierKeyCodes modifiers, int keyCode, TriggerAction action)
         {
+            Id = id;
             Modifiers = modifiers;
             KeyCode = keyCode;
-            Type = type;
+            Action = action;
         }
     }
 }

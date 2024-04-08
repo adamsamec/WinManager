@@ -12,8 +12,8 @@ namespace WinManager
         private string _path;
         private ConfigJson _config;
 
-        public const string TRUE = "yes";
-        public const string FALSE = "no";
+        public const string True = "yes";
+        public const string False = "no";
 
         public Settings AppSettings
         {

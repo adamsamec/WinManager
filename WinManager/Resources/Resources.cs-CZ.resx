@@ -246,4 +246,12 @@
           xml:space="preserve">
         <value>Průzkumník</value>
     </data>
+                        <data name="enabledAppsShortcutsLabel"
+          xml:space="preserve">
+        <value>Povolené klávesové zkratky pro seznam spuštěných aplikací</value>
+    </data>
+                        <data name="enabledWindowsShortcutsLabel"
+          xml:space="preserve">
+        <value>Povolené klávesové zkratky pro seznam otevřených oken aplikace v popředí</value>
+    </data>
 </root>
