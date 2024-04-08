@@ -4,11 +4,11 @@
     "enabledShortcuts": {
       "showApps": {
         "Win_F12": "yes",
-        "Win_Shift_A": "no"
+        "Win_Shift_A": "yes"
       },
       "showWindows": {
         "Win_F11": "yes",
-        "Win_Shift_W": "no"
+        "Win_Shift_Q": "yes"
       }
     }
   }

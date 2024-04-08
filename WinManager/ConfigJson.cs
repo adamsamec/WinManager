@@ -26,6 +26,6 @@
     public class Showwindows
     {
         public string Win_F11 { get; set; }
-        public string Win_Shift_W { get; set; }
+        public string Win_Shift_Q { get; set; }
     }
 }

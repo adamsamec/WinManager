@@ -12,13 +12,22 @@ namespace WinManager
         private string _path;
         private ConfigJson _config;
 
-        public const string True = "yes";
-        public const string False = "no";
+        public List<TriggerShortcut> TriggerShortcuts = new List<TriggerShortcut>
+        {
+            // Show apps
+            new TriggerShortcut("Win_F12", ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerAction.ShowApps),
+            new TriggerShortcut("Win_Shift_A", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x41, TriggerShortcut.TriggerAction.ShowApps),
 
+            // Show windows
+            new TriggerShortcut("Win_F11", ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerAction.ShowWindows),
+            new TriggerShortcut("Win_Shift_Q", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x51, TriggerShortcut.TriggerAction.ShowWindows),
+        };
         public Settings AppSettings
         {
             get { return _config.settings; }
         }
+        public const string True = "yes";
+        public const string False = "no";
 
         public Config()
         {
@@ -59,7 +68,7 @@ namespace WinManager
                 }
             }
             Utils.SetYesOrNo(settings.enabledShortcuts.showApps, defaultSettings.enabledShortcuts.showApps, ["Win_F12", "Win_Shift_A"]);
-            Utils.SetYesOrNo(settings.enabledShortcuts.showWindows, defaultSettings.enabledShortcuts.showWindows, ["Win_F11", "Win_Shift_W"]);
+            Utils.SetYesOrNo(settings.enabledShortcuts.showWindows, defaultSettings.enabledShortcuts.showWindows, ["Win_F11", "Win_Shift_Q"]);
             Save();
         }
 

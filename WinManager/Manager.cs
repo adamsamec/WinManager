@@ -12,11 +12,10 @@ namespace WinManager
     public class Manager
     {
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
-        private MainWindow _mainWindow;
-        private List<TriggerShortcut> _triggerShortcuts = new List<TriggerShortcut>();
-        private List<KeyboardHook> _keyboardHooks = new List<KeyboardHook>();
-        private AutoOutput _srOutput = new AutoOutput();
         private Config _config = new Config();
+        private List<KeyboardHook> _keyboardHooks = new List<KeyboardHook>();
+        private MainWindow _mainWindow;
+        private AutoOutput _srOutput = new AutoOutput();
         private Updater _appUpdater = new Updater();
 
         private List<RunningApplication> _appsList = new List<RunningApplication>();
@@ -64,21 +63,15 @@ namespace WinManager
 
         private void InitTriggerShortcuts()
         {
-            // Specify shortcut keys and their actions
-            _triggerShortcuts.Add(new TriggerShortcut("Win_F12", ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerAction.ShowApps));
-            _triggerShortcuts.Add(new TriggerShortcut("Win_F11", ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerAction.ShowWindows));
-
             var actionMapping = new List<Object> {
 AppSettings.enabledShortcuts.showApps,
 AppSettings.enabledShortcuts.showWindows,
             };
-            foreach (var shortcut in _triggerShortcuts)
+            foreach (var shortcut in _config.TriggerShortcuts)
             {
                 // Determine enabled state for shortcuts from settings
                 var settingAction = actionMapping[(int)shortcut.Action];
-                Debug.WriteLine(Utils.GetPropValue(settingAction, shortcut.Id));
                 shortcut.IsEnabled = ((string) Utils.GetPropValue(settingAction, shortcut.Id)) == Config.True;
-                Debug.WriteLine(shortcut.Id + ": " + shortcut.IsEnabled.ToString());
 
                 // Create keyboard hook if shortcut is enabled
                 if (shortcut.IsEnabled)
