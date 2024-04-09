@@ -6,10 +6,12 @@
     public class TriggerShortcut
     {
         public string Id { get; set; }
+        public string Text { get; set; }
         public bool IsEnabled { get; set; }
         public ModifierKeyCodes Modifiers { get; set; }
         public int KeyCode { get; set; }
         public TriggerAction Action { get; set; }
+        public KeyboardHook Hook { get; set; }
 
         public enum TriggerAction
         {
@@ -17,9 +19,10 @@
             ShowWindows
         }
 
-        public TriggerShortcut(string id, ModifierKeyCodes modifiers, int keyCode, TriggerAction action)
+        public TriggerShortcut(string id, string text, ModifierKeyCodes modifiers, int keyCode, TriggerAction action)
         {
             Id = id;
+            Text = text;
             Modifiers = modifiers;
             KeyCode = keyCode;
             Action = action;

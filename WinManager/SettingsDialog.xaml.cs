@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -19,21 +18,56 @@ namespace WinManager
 
             _manager = manager;
 
+            CreateAppsAndWindowsShortcutsCheckBoxes();
+            InitCheckForUpdatesControls();
+
             KeyDown += SettingsDialog_KeyDown;
         }
 
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            // Retrieve stored settings
+            // Set launch on startup checkbox state from settings
             launchOnStartupCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.launchOnStartup);
 
-            // Create apps and windows shortcuts chekcboxes
-            var checkBox = new CheckBox { Content = "Windows + F12" };
-            var appsStackPanel = new StackPanel();
-            appsStackPanel.Children.Add(checkBox);
-            appsShortcutsGroup.Content = appsStackPanel;
+            // Set initial focus
+            launchOnStartupCheckBox.Focus();
+        }
 
-            // Set state of chekc for updates button and progress bar
+        private void CreateAppsAndWindowsShortcutsCheckBoxes()
+        {
+            var appsStackPanel = new StackPanel();
+            var windowsStackPanel = new StackPanel();
+            foreach (var shortcut in _manager.TriggerShortcuts)
+            {
+                var checkBox = new CheckBox
+                {
+                    Content = shortcut.Text,
+                    IsChecked = shortcut.IsEnabled
+                };
+                checkBox.Checked += (sender, e) =>
+                {
+                    checkBox.IsChecked = _manager.ChangeEnabledStateForTriggerShortcut(shortcut, true);
+                };
+                checkBox.Unchecked += (sender, e) =>
+                {
+                    checkBox.IsChecked = _manager.ChangeEnabledStateForTriggerShortcut(shortcut, false);
+                };
+                switch (shortcut.Action)
+                {
+                    case TriggerShortcut.TriggerAction.ShowApps:
+                        appsStackPanel.Children.Add(checkBox);
+                        break;
+                    case TriggerShortcut.TriggerAction.ShowWindows:
+                        windowsStackPanel.Children.Add(checkBox);
+                        break;
+                }
+            }
+            appsShortcutsGroup.Content = appsStackPanel;
+            windowsShortcutsGroup.Content = windowsStackPanel;
+        }
+
+        private void InitCheckForUpdatesControls()
+        {
             if (_manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
             {
                 checkForUpdatesButton.IsEnabled = false;
@@ -42,9 +76,6 @@ namespace WinManager
             {
                 updateDownloadProgressBar.IsEnabled = false;
             }
-
-            // Set initial focus
-            launchOnStartupCheckBox.Focus();
         }
 
         private void SettingsDialog_KeyDown(object sender, KeyEventArgs e)

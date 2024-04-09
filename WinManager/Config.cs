@@ -15,12 +15,12 @@ namespace WinManager
         public List<TriggerShortcut> TriggerShortcuts = new List<TriggerShortcut>
         {
             // Show apps
-            new TriggerShortcut("Win_F12", ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerAction.ShowApps),
-            new TriggerShortcut("Win_Shift_A", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x41, TriggerShortcut.TriggerAction.ShowApps),
+            new TriggerShortcut("Win_F12", "Windows + F12", ModifierKeyCodes.Windows, 0x77, TriggerShortcut.TriggerAction.ShowApps),
+            new TriggerShortcut("Win_Shift_A", "Windows + Shift + A", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x41, TriggerShortcut.TriggerAction.ShowApps),
 
             // Show windows
-            new TriggerShortcut("Win_F11", ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerAction.ShowWindows),
-            new TriggerShortcut("Win_Shift_Q", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x51, TriggerShortcut.TriggerAction.ShowWindows),
+            new TriggerShortcut("Win_F11", "Windows + F11", ModifierKeyCodes.Windows, 0x76, TriggerShortcut.TriggerAction.ShowWindows),
+            new TriggerShortcut("Win_Shift_Q", "Windows + Shift + Q", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x51, TriggerShortcut.TriggerAction.ShowWindows),
         };
         public Settings AppSettings
         {

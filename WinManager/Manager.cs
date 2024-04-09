@@ -13,7 +13,6 @@ namespace WinManager
     {
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
-        private List<KeyboardHook> _keyboardHooks = new List<KeyboardHook>();
         private MainWindow _mainWindow;
         private AutoOutput _srOutput = new AutoOutput();
         private Updater _appUpdater = new Updater();
@@ -29,6 +28,10 @@ namespace WinManager
         public Settings AppSettings
         {
             get { return _config.AppSettings; }
+        }
+        public List<TriggerShortcut> TriggerShortcuts
+        {
+            get { return _config.TriggerShortcuts; }
         }
         public ListView View
         {
@@ -67,18 +70,30 @@ namespace WinManager
             {
                 // Determine enabled state for shortcuts from settings
                 var settingAction = _config.GetActionSetting(shortcut.Action);
-                shortcut.IsEnabled = Config.StringToBool((string) Utils.GetPropValue(settingAction, shortcut.Id));
+                shortcut.IsEnabled = Config.StringToBool((string)Utils.GetPropValue(settingAction, shortcut.Id));
 
                 // Create keyboard hook if shortcut is enabled
                 if (shortcut.IsEnabled)
                 {
-                    var hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
-                    hook.Triggered += () =>
-                    {
-                        Show(shortcut.Action);
-                    };
-                    _keyboardHooks.Add(hook);
+                    UpdateHook(shortcut);
                 }
+            }
+        }
+
+        private void UpdateHook(TriggerShortcut shortcut)
+        {
+            if (shortcut.IsEnabled && shortcut.Hook == null)
+            {
+                shortcut.Hook = new KeyboardHook(_mainWindow, shortcut.KeyCode, shortcut.Modifiers);
+                shortcut.Hook.Triggered += () =>
+                {
+                    Show(shortcut.Action);
+                };
+            }
+            else if (shortcut.Hook != null)
+            {
+                shortcut.Hook.Dispose();
+                shortcut.Hook = null;
             }
         }
 
@@ -410,7 +425,8 @@ namespace WinManager
         public bool ChangeEnabledStateForTriggerShortcut(TriggerShortcut shortcut, bool newState)
         {
             // Ensure at least one another shortcugt with the same action is enabled before disabling this one
-            if (!newState) {
+            if (!newState)
+            {
                 var isAnotherEnabled = _config.TriggerShortcuts.Find(anotherShortcut =>
                 {
                     return anotherShortcut.Id != shortcut.Id && anotherShortcut.Action == shortcut.Action && anotherShortcut.IsEnabled;
@@ -421,10 +437,15 @@ namespace WinManager
                 }
             }
 
-            // Update settings to the new state
+            // Set new state to the local state and update hook accordingly
+            shortcut.IsEnabled = newState;
+            UpdateHook(shortcut);
+
+            // Update settings accordinglyAAQ
             var actionSetting = _config.GetActionSetting(shortcut.Action);
             var newStateString = Config.BoolToString(newState);
             Utils.SetPropValue(actionSetting, shortcut.Id, newStateString);
+            SaveSettings();
             return newState;
         }
 
@@ -464,9 +485,12 @@ namespace WinManager
 
         public void CleanUp()
         {
-            foreach (var hook in _keyboardHooks)
+            foreach (var shortcut in TriggerShortcuts)
             {
-                hook.Dispose();
+                if (shortcut.Hook != null)
+                {
+                    shortcut.Hook.Dispose();
+                }
             }
             Speak(Resources.exitAnnouncement);
 
