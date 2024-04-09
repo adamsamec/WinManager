@@ -451,6 +451,8 @@ AppSettings.enabledShortcuts.showWindows,
             {
                 hook.Dispose();
             }
+            Speak(Resources.exitAnnouncement);
+
         }
     }
 }
