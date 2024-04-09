@@ -54,7 +54,7 @@ namespace WinManager
             InitTriggerShortcuts();
 
             // Update WinManager launch on startup seting from config
-            var isLaunchOnStartupEnabled = AppSettings.launchOnStartup == Config.True;
+            var isLaunchOnStartupEnabled = Config.StringToBool(AppSettings.launchOnStartup);
             ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
 
             // Announce WinManager start
@@ -63,15 +63,11 @@ namespace WinManager
 
         private void InitTriggerShortcuts()
         {
-            var actionMapping = new List<Object> {
-AppSettings.enabledShortcuts.showApps,
-AppSettings.enabledShortcuts.showWindows,
-            };
             foreach (var shortcut in _config.TriggerShortcuts)
             {
                 // Determine enabled state for shortcuts from settings
-                var settingAction = actionMapping[(int)shortcut.Action];
-                shortcut.IsEnabled = ((string) Utils.GetPropValue(settingAction, shortcut.Id)) == Config.True;
+                var settingAction = _config.GetActionSetting(shortcut.Action);
+                shortcut.IsEnabled = Config.StringToBool((string) Utils.GetPropValue(settingAction, shortcut.Id));
 
                 // Create keyboard hook if shortcut is enabled
                 if (shortcut.IsEnabled)
@@ -411,6 +407,27 @@ AppSettings.enabledShortcuts.showWindows,
             _mainWindow.SetListBoxItems(itemsTextsList);
         }
 
+        public bool ChangeEnabledStateForTriggerShortcut(TriggerShortcut shortcut, bool newState)
+        {
+            // Ensure at least one another shortcugt with the same action is enabled before disabling this one
+            if (!newState) {
+                var isAnotherEnabled = _config.TriggerShortcuts.Find(anotherShortcut =>
+                {
+                    return anotherShortcut.Id != shortcut.Id && anotherShortcut.Action == shortcut.Action && anotherShortcut.IsEnabled;
+                }) != null;
+                if (!isAnotherEnabled)
+                {
+                    return true;
+                }
+            }
+
+            // Update settings to the new state
+            var actionSetting = _config.GetActionSetting(shortcut.Action);
+            var newStateString = Config.BoolToString(newState);
+            Utils.SetPropValue(actionSetting, shortcut.Id, newStateString);
+            return newState;
+        }
+
         public void ChangeLaunchOnStartupSetting(bool value)
         {
             // The path to the key where Windows looks for startup applications
@@ -436,7 +453,7 @@ AppSettings.enabledShortcuts.showWindows,
                 Debug.WriteLine("Failed to update launch on startup registry");
             }
             // Update settings
-            AppSettings.launchOnStartup = value ? Config.True : Config.False; ;
+            AppSettings.launchOnStartup = Config.BoolToString(value);
             SaveSettings();
         }
 

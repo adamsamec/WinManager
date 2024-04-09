@@ -26,8 +26,9 @@ namespace WinManager
         {
             get { return _config.settings; }
         }
-        public const string True = "yes";
-        public const string False = "no";
+
+        private const string TrueString = "yes";
+        private const string FalseString = "no";
 
         public Config()
         {
@@ -77,6 +78,25 @@ namespace WinManager
             var options = new JsonSerializerOptions { WriteIndented = true };
             var configString = JsonSerializer.Serialize(_config, options);
             File.WriteAllText(_path, configString, Encoding.UTF8);
+        }
+
+        public static bool StringToBool(string value)
+        {
+            return value == TrueString;
+        }
+
+        public static string BoolToString(bool value)
+        {
+            return value ? TrueString : FalseString;
+        }
+
+        public object GetActionSetting(TriggerShortcut.TriggerAction action)
+        {
+            var actionMapping = new List<Object> {
+AppSettings.enabledShortcuts.showApps,
+AppSettings.enabledShortcuts.showWindows,
+            };
+            return actionMapping[(int) action];
         }
     }
 }

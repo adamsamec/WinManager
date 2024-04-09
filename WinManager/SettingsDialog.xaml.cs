@@ -25,7 +25,7 @@ namespace WinManager
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
             // Retrieve stored settings
-            launchOnStartupCheckBox.IsChecked = _manager.AppSettings.launchOnStartup == Config.True;
+            launchOnStartupCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.launchOnStartup);
 
             // Create apps and windows shortcuts chekcboxes
             var checkBox = new CheckBox { Content = "Windows + F12" };
