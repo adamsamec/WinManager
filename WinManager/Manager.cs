@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
+using System.Windows.Interop;
 
 namespace WinManager
 {
@@ -121,8 +122,15 @@ namespace WinManager
 
         private void Show(TriggerShortcut.TriggerAction type)
         {
-            SystemSounds.Hand.Play();
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
+
+            // Don't show when WinManager is already shown
+            if (_mainWindow.IsVisible)
+            {
+                return;
+            }
+
+            SystemSounds.Hand.Play();
             _view = ListView.Hidden;
 
             RefreshApps();
