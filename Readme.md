@@ -20,7 +20,7 @@ After pressing Windows + F12, or Windows + Shift + A, the user can invoke a list
 * Alt + F4: Exits WinManager, so it no longer runs in background. WinManager notifies the user it is exiting.
 
 ### List of open windows only for the application in the foreground
-After pressing Windows + F11, or Windows + Shift + W, the user can invoke a list of open windows  only for the application in the foreground, ordered by the most recently used window first. The list can be operated using the following keys:
+After pressing Windows + F11, or Windows + Shift + Q, the user can invoke a list of open windows  only for the application in the foreground, ordered by the most recently used window first. The list can be operated using the following keys:
 
 * Down or Up arrow: Navigates to the next or previous item in the list.
 * Enter: When a window is selected, switches to that window. Then hides WinSwitcher.
@@ -47,7 +47,7 @@ For invoking the list of running applications, you can choose from the following
 For invoking the list of open windows for the application in the foreground, you can choose from the following shortcuts:
 
 * Windows + F11 (checked by default).
-* Windows + Shift + W (checked by default).
+* Windows + Shift + Q (checked by default).
 
 ### Known limitations
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
