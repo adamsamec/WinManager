@@ -33,9 +33,6 @@ namespace WinManager
             appsStackPanel.Children.Add(checkBox);
             appsShortcutsGroup.Content = appsStackPanel;
 
-            // Set initial focus
-            launchOnStartupCheckBox.Focus();
-
             // Set state of chekc for updates button and progress bar
             if (_manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
             {
@@ -45,6 +42,9 @@ namespace WinManager
             {
                 updateDownloadProgressBar.IsEnabled = false;
             }
+
+            // Set initial focus
+            launchOnStartupCheckBox.Focus();
         }
 
         private void SettingsDialog_KeyDown(object sender, KeyEventArgs e)
