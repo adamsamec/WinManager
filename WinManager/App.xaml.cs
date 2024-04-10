@@ -17,20 +17,28 @@ namespace WinManager
 
         private void SetLanguageDictionary()
         {
-            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            string lang;
+            if (Consts.ForceCzechLanguage)
             {
-                case "cs-CZ":
-                    WinManager.Resources.Culture = new System.Globalization.CultureInfo("cs-CZ");
-                    break;
-                default:
-                    var lang = Consts.ForceCzechLanguage ? "cs-CZ" : "en-US";
-                    WinManager.Resources.Culture = new System.Globalization.CultureInfo(lang);
-                    break;
+                lang = "cs-CZ";
             }
-
-
+            else
+            {
+                var currentCulture = Thread.CurrentThread.CurrentCulture.ToString();
+                switch (currentCulture)
+                {
+                    case "cs-CZ":
+                        lang = "cs-CZ";
+                        break;
+                    case "sk-SK":
+                        lang = "cs-CZ"; // Use Czech dictionary for Slovak environment
+                        break;
+                    default:
+                        lang = "en-US";
+                        break;
+                }
+            }
+            WinManager.Resources.Culture = new System.Globalization.CultureInfo(lang);
         }
-
     }
-
 }
