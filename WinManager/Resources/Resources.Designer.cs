@@ -97,6 +97,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing the window.
+        /// </summary>
+        public static string closingWindow {
+            get {
+                return ResourceManager.GetString("closingWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closing failed.
+        /// </summary>
+        public static string closingWindowFailed {
+            get {
+                return ResourceManager.GetString("closingWindowFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue download.
         /// </summary>
         public static string continueUpdateDownloadButton {
@@ -108,18 +126,18 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Enabled keyboard shortcuts for list of running apps.
         /// </summary>
-        public static string enabledAppsShortcutsLabel {
+        public static string enabledAppsShortcutsHeader {
             get {
-                return ResourceManager.GetString("enabledAppsShortcutsLabel", resourceCulture);
+                return ResourceManager.GetString("enabledAppsShortcutsHeader", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enabled keyboard shortcuts for list of foreground app open windows.
         /// </summary>
-        public static string enabledWindowsShortcutsLabel {
+        public static string enabledWindowsShortcutsHeader {
             get {
-                return ResourceManager.GetString("enabledWindowsShortcutsLabel", resourceCulture);
+                return ResourceManager.GetString("enabledWindowsShortcutsHeader", resourceCulture);
             }
         }
         
@@ -228,6 +246,15 @@ namespace WinManager {
         public static string openWindowsLabel {
             get {
                 return ResourceManager.GetString("openWindowsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quitting the app.
+        /// </summary>
+        public static string quittingApp {
+            get {
+                return ResourceManager.GetString("quittingApp", resourceCulture);
             }
         }
         

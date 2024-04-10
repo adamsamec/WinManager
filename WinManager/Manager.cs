@@ -26,6 +26,9 @@ namespace WinManager
         private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
+        private const int AppsRefreshMaxDelay = 1000;
+        private const int WindowsRefreshDelay = 1000;
+
         public Settings AppSettings
         {
             get { return _config.AppSettings; }
@@ -358,7 +361,57 @@ namespace WinManager
             NativeMethods.SetActiveWindow(handle);
         }
 
-        public void ApplyTypedCharacterToFilter(string character)
+        public void CloseItem(int itemIndex)
+        {
+            // Ignore closing if there are no items after applying filter
+            if (View == ListView.Apps && _filteredAppsList.Count == 0)
+            {
+                return;
+            }
+            if ((View == ListView.ForegroundAppWindows || View == ListView.SelectedAppWindows) && _filteredWindowsList.Count == 0)
+            {
+                return;
+            }
+
+            // Determine app or window to close
+            switch (View)
+            {
+                case ListView.Apps:
+                    Speak(Resources.quittingApp);
+                    var process = _filteredAppsList[itemIndex].AppProcess;
+                    process.Kill();
+
+                    // Wait for app termination with a time limit and then refresh list
+                    process.WaitForExit(AppsRefreshMaxDelay);
+                    RefreshAppsAndApplyFilter();
+
+                    break;
+                case ListView.ForegroundAppWindows:
+                case ListView.SelectedAppWindows:
+                    Speak(Resources.closingWindow);
+                    var handle = _filteredWindowsList[itemIndex].Handle;
+                    NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+
+                    // Give some time for closing, refresh list, then check if closing succeeded
+                    Task.Delay(WindowsRefreshDelay).Wait();
+                    RefreshAppsAndApplyFilter();
+
+                    break;
+            }
+        }
+
+            public void RefreshAppsAndApplyFilter()
+        {
+            RefreshApps();
+            ApplyFilter();
+        }
+
+            public void ApplyFilter()
+        {
+            ApplyTypedCharacterToFilter("");
+        }
+
+            public void ApplyTypedCharacterToFilter(string character)
         {
             if (View == ListView.ForegroundAppWindows && _currentAppIndex == -1)
             {

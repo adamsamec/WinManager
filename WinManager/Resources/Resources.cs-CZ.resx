@@ -254,4 +254,16 @@
           xml:space="preserve">
         <value>Povolené klávesové zkratky pro seznam otevřených oken aplikace v popředí</value>
     </data>
+    <data name="quittingApp"
+    xml:space="preserve">
+  <value>Ukončuji aplikaci</value>
+</data>
+<data name="closingWindow"
+xml:space="preserve">
+<value>Zavírám okno</value>
+</data>
+<data name="closingWindowFailed"
+xml:space="preserve">
+<value>Zavírání  selhalo</value>
+</data>
 </root>

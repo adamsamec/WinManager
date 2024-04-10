@@ -282,12 +282,24 @@
           xml:space="preserve">
         <value>File Explorer</value>
     </data>
-                    <data name="enabledAppsShortcutsLabel"
+                    <data name="enabledAppsShortcutsHeader"
           xml:space="preserve">
         <value>Enabled keyboard shortcuts for list of running apps</value>
     </data>
-                        <data name="enabledWindowsShortcutsLabel"
+                        <data name="enabledWindowsShortcutsHeader"
           xml:space="preserve">
         <value>Enabled keyboard shortcuts for list of foreground app open windows</value>
     </data>
+    <data name="quittingApp"
+    xml:space="preserve">
+  <value>Quitting the app</value>
+</data>
+<data name="closingWindow"
+xml:space="preserve">
+<value>Closing the window</value>
+</data>
+<data name="closingWindowFailed"
+xml:space="preserve">
+<value>Closing failed</value>
+</data>
 </root>

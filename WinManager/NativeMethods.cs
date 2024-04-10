@@ -88,5 +88,10 @@ namespace WinManager
 
         [DllImport("user32.dll")]
         public static extern uint GetWindowThreadProcessId(IntPtr handle, out uint processId);
+
+        public const UInt32 WM_CLOSE = 0x0010;
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr handle, UInt32 Msg, IntPtr wParam, IntPtr lParam);
     }
 }

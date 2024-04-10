@@ -18,8 +18,8 @@ WindowStartupLocation="CenterScreen"
                   Checked="launchOnStartupCheckBox_Checked" Unchecked="launchOnStartupCheckBox_Unchecked"
                   HorizontalAlignment="Left" />
 
-    <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsLabel}"/>
-    <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsLabel}"/>
+    <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>
+    <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsHeader}"/>
 
     <Button Name="checkForUpdatesButton"
                 Content="{x:Static lang:Resources.checkForUpdatesButton}"

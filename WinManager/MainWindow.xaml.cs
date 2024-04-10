@@ -61,6 +61,9 @@ namespace WinManager
                 case Key.Enter:
                     _manager.SwitchToItem(itemsListBox.SelectedIndex);
                     break;
+                case Key.Delete:
+                    _manager.CloseItem(itemsListBox.SelectedIndex);
+                    break;
                 case Key.Back:
                     _manager.ResetFilter();
                     break;
