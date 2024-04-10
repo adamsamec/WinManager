@@ -1,4 +1,5 @@
 ## TODO
+* Exit WinManager before running the update installer.
 * Focus proper item after closing.
 * Check for window close success and announce if failed.
 * Differentiate between app closing using process.CloseMainWindow() and kill.
