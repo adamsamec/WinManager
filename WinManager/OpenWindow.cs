@@ -1,4 +1,6 @@
-﻿namespace WinManager
+﻿using System.Diagnostics;
+
+namespace WinManager
 {
     /// <summary>
     /// Class for storing open window information
@@ -16,6 +18,21 @@
             uint pid;
             NativeMethods.GetWindowThreadProcessId(handle, out pid);
             Pid = pid;
+        }
+
+        public override bool Equals(object other)
+        {
+            var otherWindow = other as OpenWindow;
+            if (otherWindow == null)
+            {
+                return false;
+            }
+            return Handle == otherWindow.Handle;
+        }
+
+        public override int GetHashCode()
+        {
+            return Handle.GetHashCode();
         }
 
     }

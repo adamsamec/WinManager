@@ -37,6 +37,21 @@ namespace WinManager
             }
             _zIndex = z;
         }
+
+        public override bool Equals(object other)
+        {
+            var otherApp = other as RunningApplication;
+            if (otherApp == null)
+            {
+                return false;
+            }
+            return AppProcess.Id == otherApp.AppProcess.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return AppProcess.Id.GetHashCode();
+        }
     }
 }
 

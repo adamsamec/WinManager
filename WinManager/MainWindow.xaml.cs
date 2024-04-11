@@ -62,8 +62,9 @@ namespace WinManager
                     _manager.SwitchToItem(itemsListBox.SelectedIndex);
                     break;
                 case Key.Delete:
-                    _manager.CloseItem(itemsListBox.SelectedIndex);
-                    break;
+                    var newIndex = _manager.CloseItem(itemsListBox.SelectedIndex);
+                        FocusItemAfterDelay(newIndex);
+                    break; 
                 case Key.Back:
                     _manager.ResetFilter();
                     break;
@@ -113,6 +114,11 @@ namespace WinManager
             Show();
             Activate();
             FocusItemAfterDelay(0);
+        }
+        public void FocusItemImmediately(int itemIndex)
+        {
+            itemsListBox.SelectedIndex = itemIndex;
+            ((ListBoxItem)itemsListBox.SelectedItem).Focus();
         }
 
         private void FocusItemAfterDelay(int itemIndex)

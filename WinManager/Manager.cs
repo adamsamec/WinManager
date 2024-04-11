@@ -26,7 +26,7 @@ namespace WinManager
         private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
-        private const int AppsRefreshMaxDelay = 1000;
+        private const int AppsRefreshMaxDelay = 3000;
         private const int WindowsRefreshDelay = 1000;
 
         public Settings AppSettings
@@ -361,16 +361,18 @@ namespace WinManager
             NativeMethods.SetActiveWindow(handle);
         }
 
-        public void CloseItem(int itemIndex)
+        public int CloseItem(int itemIndex)
         {
+            int newIndex = 0;
+
             // Ignore closing if there are no items after applying filter
             if (View == ListView.Apps && _filteredAppsList.Count == 0)
             {
-                return;
+                return newIndex;
             }
             if ((View == ListView.ForegroundAppWindows || View == ListView.SelectedAppWindows) && _filteredWindowsList.Count == 0)
             {
-                return;
+                return newIndex;
             }
 
             // Determine app or window to close
@@ -383,8 +385,9 @@ namespace WinManager
 
                     // Wait for app termination with a time limit and then refresh list
                     process.WaitForExit(AppsRefreshMaxDelay);
-                    RefreshAppsAndApplyFilter();
-
+                    RefreshApps();
+                    ApplyFilter();
+                    newIndex = Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0);
                     break;
                 case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
@@ -394,24 +397,54 @@ namespace WinManager
 
                     // Give some time for closing, refresh list, then check if closing succeeded
                     Task.Delay(WindowsRefreshDelay).Wait();
-                    RefreshAppsAndApplyFilter();
-
+                    var closingApp = _filteredAppsList[_currentAppIndex];
+                    var closingWindow = _filteredWindowsList[itemIndex];
+                    RefreshApps();
+                    Debug.WriteLine(closingApp.Name);
+                    Debug.WriteLine("has: " + _appsList.Contains(closingApp).ToString());
+                    if (_appsList.Contains(closingApp))
+                    {
+                        var closingFailed = false;
+                        foreach (var window in _filteredAppsList[_currentAppIndex].Windows)
+                        {
+                            if (window.Equals(closingWindow))
+                            {
+                                closingFailed = true;
+                            }
+                        }
+                        if (closingFailed)
+                        {
+                            Speak(Resources.closingWindowFailed);
+                        }
+                        else
+                        {
+                        ApplyFilter();
+                            newIndex = Math.Max(Math.Min(itemIndex, _filteredWindowsList.Count - 1), 0);
+                        }
+                    }
+                    else
+                    {
+                        _view = ListView.Apps;
+                        ApplyFilter();
+                        newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
+                    }
                     break;
             }
+            return newIndex;
         }
 
-            public void RefreshAppsAndApplyFilter()
+        public void RefreshAppsAndApplyFilter()
         {
             RefreshApps();
             ApplyFilter();
         }
 
-            public void ApplyFilter()
+        public void ApplyFilter()
         {
             ApplyTypedCharacterToFilter("");
         }
 
-            public void ApplyTypedCharacterToFilter(string character)
+        public void ApplyTypedCharacterToFilter(string character)
         {
             if (View == ListView.ForegroundAppWindows && _currentAppIndex == -1)
             {
