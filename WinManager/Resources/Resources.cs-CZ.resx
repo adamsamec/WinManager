@@ -258,6 +258,14 @@
     xml:space="preserve">
   <value>Ukončuji aplikaci</value>
 </data>
+<data name="forceQuittingApp"
+xml:space="preserve">
+<value>Vynucuji ukončení aplikace</value>
+</data>
+<data name="quittingAppFailed"
+xml:space="preserve">
+<value>Ukončování selhalo</value>
+</data>
 <data name="closingWindow"
 xml:space="preserve">
 <value>Zavírám okno</value>

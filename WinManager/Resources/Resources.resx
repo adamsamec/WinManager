@@ -294,6 +294,14 @@
     xml:space="preserve">
   <value>Quitting the app</value>
 </data>
+<data name="forceQuittingApp"
+xml:space="preserve">
+<value>Force quitting the app</value>
+</data>
+<data name="quittingAppFailed"
+xml:space="preserve">
+<value>Quitting failed</value>
+</data>
 <data name="closingWindow"
 xml:space="preserve">
 <value>Closing the window</value>

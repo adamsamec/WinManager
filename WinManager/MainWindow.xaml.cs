@@ -62,7 +62,8 @@ namespace WinManager
                     _manager.SwitchToItem(itemsListBox.SelectedIndex);
                     break;
                 case Key.Delete:
-                    var newIndex = _manager.CloseItem(itemsListBox.SelectedIndex);
+                    var doForce = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
+                    var newIndex = _manager.CloseItem(itemsListBox.SelectedIndex, doForce);
                         FocusItemAfterDelay(newIndex);
                     break; 
                 case Key.Back:

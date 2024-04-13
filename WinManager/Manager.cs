@@ -382,7 +382,7 @@ namespace WinManager
             NativeMethods.SetActiveWindow(handle);
         }
 
-        public int CloseItem(int itemIndex)
+        public int CloseItem(int itemIndex, bool doForce)
         {
             int newIndex = 0;
 
@@ -400,12 +400,23 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
-                    Speak(Resources.quittingApp);
                     var process = _filteredAppsList[itemIndex].AppProcess;
+                    if (doForce)
+                    {
+                    Speak(Resources.forceQuittingApp);
                     process.Kill();
+                    } else
+                    {
+                        Speak(Resources.quittingApp);
+                        process.CloseMainWindow();
+                    }
 
-                    // Wait for app termination with a time limit and then refresh list
+                    // Wait for app to be quitted with a wait time limit and then refresh list
                     process.WaitForExit(AppsRefreshMaxDelay);
+                    if (!process.HasExited)
+                    {
+                        Speak(Resources.quittingAppFailed);
+                    }
                     RefreshApps();
                     ApplyFilter();
                     newIndex = Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0);

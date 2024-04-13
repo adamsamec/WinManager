@@ -160,6 +160,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force quitting the app.
+        /// </summary>
+        public static string forceQuittingApp {
+            get {
+                return ResourceManager.GetString("forceQuittingApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch WinManager on Windows startup.
         /// </summary>
         public static string LaunchOnStartupCheckBox {
@@ -255,6 +264,15 @@ namespace WinManager {
         public static string quittingApp {
             get {
                 return ResourceManager.GetString("quittingApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quitting failed.
+        /// </summary>
+        public static string quittingAppFailed {
+            get {
+                return ResourceManager.GetString("quittingAppFailed", resourceCulture);
             }
         }
         
