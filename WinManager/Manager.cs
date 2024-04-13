@@ -13,6 +13,7 @@ namespace WinManager
     public class Manager
     {
         private int _processId = Process.GetCurrentProcess().Id;
+        private IntPtr _handle = NativeMethods.GetForegroundWindow();
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
         private MainWindow _mainWindow;
@@ -126,7 +127,13 @@ namespace WinManager
 
         private void Show(TriggerShortcut.TriggerAction type)
         {
-            _prevWindowHandle = NativeMethods.GetForegroundWindow();
+            var newPrevHandle = NativeMethods.GetForegroundWindow();
+
+            // Set new previous window handle only if it differs from WinManager's handle
+            if (newPrevHandle != _handle)
+            {
+            _prevWindowHandle = newPrevHandle;
+            }
 
             // Don't show when WinManager is already shown
             if (IsShown())
