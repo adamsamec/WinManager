@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection.Metadata;
 
 namespace WinManager
 {
@@ -45,12 +46,12 @@ namespace WinManager
             {
                 return false;
             }
-            return AppProcess.Id == otherApp.AppProcess.Id;
+            return AppProcess.ProcessName == otherApp.AppProcess.ProcessName;
         }
 
         public override int GetHashCode()
         {
-            return AppProcess.Id.GetHashCode();
+            return AppProcess.ProcessName.GetHashCode();
         }
     }
 }

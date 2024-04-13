@@ -393,19 +393,23 @@ namespace WinManager
                 case ListView.SelectedAppWindows:
                     Speak(Resources.closingWindow);
                     var handle = _filteredWindowsList[itemIndex].Handle;
-                    NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+
+                    // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                    }).Start();
 
                     // Give some time for closing, refresh list, then check if closing succeeded
                     Task.Delay(WindowsRefreshDelay).Wait();
                     var closingApp = _filteredAppsList[_currentAppIndex];
                     var closingWindow = _filteredWindowsList[itemIndex];
                     RefreshApps();
-                    Debug.WriteLine(closingApp.Name);
-                    Debug.WriteLine("has: " + _appsList.Contains(closingApp).ToString());
                     if (_appsList.Contains(closingApp))
                     {
                         var closingFailed = false;
-                        foreach (var window in _filteredAppsList[_currentAppIndex].Windows)
+                        foreach (var window in closingApp.Windows)
                         {
                             if (window.Equals(closingWindow))
                             {
