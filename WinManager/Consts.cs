@@ -8,14 +8,14 @@ namespace WinManager
     public static class Consts
     {
         public const string AppVersion = "0.1.0";
-        public const bool ForceCzechLanguage = false;
+        public static readonly bool ForceCzechLanguage = false;
 
         // Paths and filenames
         public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public const string ExecutableFilename = "WinManager.exe";
         public const string ConfigDefaultFilename = "App.config.default.json";
         public const string ConfigFilename = "App.config.json";
-        public static string InstallFolder
+        public static string? InstallFolder
         {
             get
             {
@@ -34,6 +34,6 @@ namespace WinManager
         public const string StartupRegistryKeyName = "WinManager";
 
         // Private fields
-        private static string _installFolder;
+        private static string? _installFolder;
     }
 }

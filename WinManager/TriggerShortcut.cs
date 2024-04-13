@@ -11,7 +11,7 @@
         public ModifierKeyCodes Modifiers { get; set; }
         public int KeyCode { get; set; }
         public TriggerAction Action { get; set; }
-        public KeyboardHook Hook { get; set; }
+        public KeyboardHook? Hook { get; set; }
 
         public enum TriggerAction
         {

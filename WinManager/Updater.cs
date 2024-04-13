@@ -83,7 +83,9 @@ namespace WinManager
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
+                    if (progressPercentage != null) { 
                     downloadProgressHandler((int)progressPercentage);
+                    }
                 };
                 _cancellationTokenSource = new CancellationTokenSource();
 

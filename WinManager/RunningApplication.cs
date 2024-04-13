@@ -11,17 +11,19 @@ namespace WinManager
         private int _zIndex;
 
         public string Name { get; set; }
-        public Process AppProcess { get; set; }
-        public List<OpenWindow> Windows { get; set; }
+        public Process AppProcess { get; }
+        public bool HasWindowsWithOwnProcesses { get; set; }
+        public List<OpenWindow> Windows { get; }
         public int ZIndex
         {
             get { return _zIndex; }
         }
 
-        public RunningApplication(string name, Process process)
+        public RunningApplication(string name, Process process, bool hasWindowsWithOwnProcesses = false)
         {
             Name = name;
             AppProcess = process;
+            HasWindowsWithOwnProcesses = hasWindowsWithOwnProcesses;
             Windows = new List<OpenWindow>();
 
             SetZOrder();
@@ -39,7 +41,7 @@ namespace WinManager
             _zIndex = z;
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
         {
             var otherApp = other as RunningApplication;
             if (otherApp == null)

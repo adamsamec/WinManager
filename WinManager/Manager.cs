@@ -309,8 +309,9 @@ namespace WinManager
                         appExists = true;
                         if (processApp.Windows.Count > 0)
                         {
-                            var window = new OpenWindow(process.MainWindowTitle, processApp.Windows[0].Handle);
+                            var window = new OpenWindow(process.MainWindowTitle, processApp.Windows[0].Handle, process);
                             app.Windows.Add(window);
+                            app.HasWindowsWithOwnProcesses = true;
                         }
                     }
                 }
@@ -400,22 +401,38 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
-                    var process = _filteredAppsList[itemIndex].AppProcess;
+                    var quittingApp = _filteredAppsList[itemIndex];
+                    var quittingProcesses = quittingApp.HasWindowsWithOwnProcesses ? quittingApp.Windows.Where(window =>
+                    {
+                        return window.WindowProcess != null;
+                    }).Select(window =>
+                    {
+                        return window.WindowProcess;
+                    }).ToList() as List<Process> : new List<Process> { quittingApp.AppProcess };
                     if (doForce)
                     {
                     Speak(Resources.forceQuittingApp);
+                        foreach (var process in  quittingProcesses)
+                        {
                     process.Kill();
+                        }
                     } else
                     {
                         Speak(Resources.quittingApp);
-                        process.CloseMainWindow();
+                        foreach (var process in quittingProcesses)
+                        { 
+                            process.CloseMainWindow();
+                    }
                     }
 
                     // Wait for app to be quitted with a wait time limit and then refresh list
-                    process.WaitForExit(AppsRefreshMaxDelay);
+                        foreach (var process in  quittingProcesses)
+                    { 
+                process.WaitForExit(AppsRefreshMaxDelay);
                     if (!process.HasExited)
                     {
                         Speak(Resources.quittingAppFailed);
+                    }
                     }
                     RefreshApps();
                     ApplyFilter();
@@ -581,6 +598,10 @@ namespace WinManager
 
         public void ChangeLaunchOnStartupSetting(bool value)
         {
+            if (Consts.InstallFolder == null)
+            {
+                return;
+            }
             // The path to the key where Windows looks for startup applications
             var startupRegistryKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
 

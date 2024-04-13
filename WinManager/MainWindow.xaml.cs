@@ -128,7 +128,7 @@ namespace WinManager
             var timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += new EventHandler((sender, e) =>
             {
-                (sender as DispatcherTimer).Stop();
+                (sender as DispatcherTimer)?.Stop();
                 ((ListBoxItem)itemsListBox.SelectedItem).Focus();
             });
             timer.Interval = TimeSpan.FromMilliseconds(100);

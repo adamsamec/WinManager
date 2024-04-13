@@ -8,19 +8,29 @@ namespace WinManager
     public class OpenWindow
     {
         public string Title { get; set; }
-        public IntPtr Handle { get; set; }
-        public uint Pid { get; set; }
+        public IntPtr Handle { get; }
+        public Process? WindowProcess { get; }
+        public uint Pid { get; }
 
-        public OpenWindow(string title, IntPtr handle)
+        public OpenWindow(string title, IntPtr handle, Process? windowProcess = null)
         {
             Title = title;
             Handle = handle;
-            uint pid;
-            NativeMethods.GetWindowThreadProcessId(handle, out pid);
-            Pid = pid;
+            WindowProcess = windowProcess;
+
+            if (windowProcess == null)
+            {
+                uint pid;
+                NativeMethods.GetWindowThreadProcessId(handle, out pid);
+                Pid = pid;
+            }
+            else
+            {
+                Pid = (uint)windowProcess.Id;
+            }
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
         {
             var otherWindow = other as OpenWindow;
             if (otherWindow == null)
