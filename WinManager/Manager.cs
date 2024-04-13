@@ -12,6 +12,7 @@ namespace WinManager
     /// </summary>
     public class Manager
     {
+        private int _processId = Process.GetCurrentProcess().Id;
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
         private MainWindow _mainWindow;
@@ -128,7 +129,7 @@ namespace WinManager
             _prevWindowHandle = NativeMethods.GetForegroundWindow();
 
             // Don't show when WinManager is already shown
-            if (_mainWindow.IsVisible)
+            if (IsShown())
             {
                 return;
             }
@@ -154,6 +155,19 @@ namespace WinManager
             {
                 _mainWindow.ShowSettingsDialog();
             }
+        }
+
+        private bool IsShown()
+        {
+            // WinManager is not activated if main window is not visible or if no window is in foregroud 
+            if (!_mainWindow.IsVisible || _prevWindowHandle == IntPtr.Zero)
+            {
+
+                return false;
+            }
+            uint prevProcessId;
+            NativeMethods.GetWindowThreadProcessId(_prevWindowHandle, out prevProcessId);
+            return prevProcessId == _processId;
         }
 
         public bool ShowApps()
