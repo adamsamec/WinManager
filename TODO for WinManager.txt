@@ -1,6 +1,4 @@
 ## TODO
-* Replace casting to use the as keyword.
-* Maybe change detection if WinManager is visible to check the foreground window handle.
 * Differentiate between app closing using process.CloseMainWindow() and kill.
 * Add about and help windows.
 * Exclude some items like System host...

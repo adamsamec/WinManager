@@ -129,7 +129,7 @@ namespace WinManager
         {
             var newPrevHandle = NativeMethods.GetForegroundWindow();
 
-            // Set new previous window handle only if it differs from WinManager's handle
+            // Fix for situation when trying to show WinManager if already shown
             if (newPrevHandle != _handle)
             {
             _prevWindowHandle = newPrevHandle;
