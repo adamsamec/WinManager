@@ -3,7 +3,6 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
-using System.Windows.Interop;
 
 namespace WinManager
 {
@@ -28,7 +27,7 @@ namespace WinManager
         private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
-        private const int AppsRefreshMaxDelay = 3000;
+        private const int AppWaitForExitTimeLimit = 1000;
         private const int WindowsRefreshDelay = 1000;
 
         public Settings AppSettings
@@ -132,7 +131,7 @@ namespace WinManager
             // Fix for situation when trying to show WinManager if already shown
             if (newPrevHandle != _handle)
             {
-            _prevWindowHandle = newPrevHandle;
+                _prevWindowHandle = newPrevHandle;
             }
 
             // Don't show when WinManager is already shown
@@ -383,7 +382,7 @@ namespace WinManager
             NativeMethods.SetActiveWindow(handle);
         }
 
-        public int CloseItem(int itemIndex, bool doForce)
+        public async Task<int> CloseItem(int itemIndex, bool doForce)
         {
             int newIndex = 0;
 
@@ -401,89 +400,134 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
-                    var quittingApp = _filteredAppsList[itemIndex];
-                    var quittingProcesses = quittingApp.HasWindowsWithOwnProcesses ? quittingApp.Windows.Where(window =>
-                    {
-                        return window.WindowProcess != null;
-                    }).Select(window =>
-                    {
-                        return window.WindowProcess;
-                    }).ToList() as List<Process> : new List<Process> { quittingApp.AppProcess };
+                    var appToQuit = _filteredAppsList[itemIndex];
+                    var isAppQuitted = false;
                     if (doForce)
                     {
-                    Speak(Resources.forceQuittingApp);
-                        foreach (var process in  quittingProcesses)
+                        Speak(Resources.forceQuittingApp);
+                        var processesKillTasks = new List<Task>();
+
+                        // If app has windows with own process, kill each such window asynchronously, with a time limit for each kill task
+                        if (appToQuit.HasWindowsWithOwnProcesses)
                         {
-                    process.Kill();
+                            foreach (var window in appToQuit.Windows)
+                            {
+                                if (window.WindowProcess != null)
+                                {
+                                    var windowKillTask = KillAsync(window.WindowProcess);
+                                    processesKillTasks.Add(windowKillTask);
+                                }
+                            }
                         }
-                    } else
+                        var appKillTask = KillAsync(appToQuit.AppProcess);
+                        processesKillTasks.Add(appKillTask);
+
+                        // Wait until all processes kill tasks are done
+                            await Task.WhenAll(processesKillTasks);
+
+                        isAppQuitted = true;
+                    }
+                    else // We are not force quitting
                     {
                         Speak(Resources.quittingApp);
-                        foreach (var process in quittingProcesses)
-                        { 
-                            process.CloseMainWindow();
-                    }
+                        var windowsCloseTasks = new List<Task>();
+                        var windowsWithOwnProcesses = new List<OpenWindow>();
+
+                        if (appToQuit.HasWindowsWithOwnProcesses)
+                        {
+                            // Close all windows that have own processes asynchronously, with a time limit
+                            foreach (var window in appToQuit.Windows)
+                            {
+                                if (window.WindowProcess != null)
+                                {
+                                    var windowCloseTask = CloseAsync(window.WindowProcess);
+                                    windowsCloseTasks.Add(windowCloseTask);
+                                }
+                            }
+
+                            // Wait until all windows close tasks are done
+                            await Task.WhenAll(windowsCloseTasks);
+                        }
+
+                            // Close windows synchronously
+                            foreach (var window in appToQuit.Windows)
+                            {
+                                appToQuit.AppProcess.CloseMainWindow();
+                                appToQuit.AppProcess.WaitForExit(AppWaitForExitTimeLimit);
+                            }
                     }
 
-                    // Wait for app to be quitted with a wait time limit and then refresh list
-                        foreach (var process in  quittingProcesses)
-                    { 
-                process.WaitForExit(AppsRefreshMaxDelay);
-                    if (!process.HasExited)
+                    // Refresh apps list, then check if closing succeeded
+                    RefreshApps();
+                    if (_appsList.Contains(appToQuit))
                     {
                         Speak(Resources.quittingAppFailed);
                     }
-                    }
-                    RefreshApps();
-                    ApplyFilter();
-                    newIndex = Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0);
-                    break;
-                case ListView.ForegroundAppWindows:
-                case ListView.SelectedAppWindows:
-                    Speak(Resources.closingWindow);
-                    var handle = _filteredWindowsList[itemIndex].Handle;
-
-                    // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
-                    new Thread(() =>
+                    else
                     {
-                        Thread.CurrentThread.IsBackground = true;
-                        NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
-                    }).Start();
-
-                    // Give some time for closing, refresh list, then check if closing succeeded
-                    Task.Delay(WindowsRefreshDelay).Wait();
-                    var closingApp = _filteredAppsList[_currentAppIndex];
-                    var closingWindow = _filteredWindowsList[itemIndex];
-                    RefreshApps();
-                    if (_appsList.Contains(closingApp))
-                    {
-                        var closingFailed = false;
-                        foreach (var window in closingApp.Windows)
-                        {
-                            if (window.Equals(closingWindow))
-                            {
-                                closingFailed = true;
-                            }
-                        }
-                        if (closingFailed)
-                        {
-                            Speak(Resources.closingWindowFailed);
-                        }
-                        else
-                        {
                         ApplyFilter();
-                            newIndex = Math.Max(Math.Min(itemIndex, _filteredWindowsList.Count - 1), 0);
+                        isAppQuitted = true;
+                    }
+            newIndex = isAppQuitted ? Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0) : itemIndex;
+            break;
+                case ListView.ForegroundAppWindows:
+            case ListView.SelectedAppWindows:
+                Speak(Resources.closingWindow);
+                var handle = _filteredWindowsList[itemIndex].Handle;
+
+                // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                }).Start();
+
+                // Give some time for closing, refresh apps and windows list, then check if closing succeeded
+                Thread.Sleep(WindowsRefreshDelay);
+                var closingApp = _filteredAppsList[_currentAppIndex];
+                var closingWindow = _filteredWindowsList[itemIndex];
+                RefreshApps();
+                if (_appsList.Contains(closingApp))
+                {
+                    var closingFailed = false;
+                    foreach (var window in closingApp.Windows)
+                    {
+                        if (window.Equals(closingWindow))
+                        {
+                            closingFailed = true;
                         }
+                    }
+                    if (closingFailed)
+                    {
+                        Speak(Resources.closingWindowFailed);
                     }
                     else
                     {
-                        _view = ListView.Apps;
                         ApplyFilter();
-                        newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
+                        newIndex = Math.Max(Math.Min(itemIndex, _filteredWindowsList.Count - 1), 0);
                     }
-                    break;
+                }
+                else
+                {
+                    _view = ListView.Apps;
+                    ApplyFilter();
+                    newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
+                }
+                break;
             }
             return newIndex;
+        }
+
+        private async Task KillAsync(Process process)
+        {
+            process.Kill();
+            process.WaitForExit(AppWaitForExitTimeLimit);
+        }
+
+        private async Task CloseAsync(Process process)
+        {
+            process.CloseMainWindow();
+            process.WaitForExit(AppWaitForExitTimeLimit);
         }
 
         public void RefreshAppsAndApplyFilter()
