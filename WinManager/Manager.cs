@@ -27,8 +27,9 @@ namespace WinManager
         private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
-        private const int AppWaitForExitTimeLimit = 1000;
-        private const int WindowsRefreshDelay = 1000;
+        private const int WaitForAppKillTimeLimit = 1000;
+        private const int RefreshAfterAppQuitDelay = 2000;
+        private const int RefreshAfterWindowCloseDelay = 800;
 
         public Settings AppSettings
         {
@@ -430,31 +431,20 @@ namespace WinManager
                     else // We are not force quitting
                     {
                         Speak(Resources.quittingApp);
-                        var windowsCloseTasks = new List<Task>();
-                        var windowsWithOwnProcesses = new List<OpenWindow>();
 
-                        if (appToQuit.HasWindowsWithOwnProcesses)
-                        {
-                            // Close all windows that have own processes asynchronously, with a time limit
+                            // Close all app windows individually
                             foreach (var window in appToQuit.Windows)
                             {
-                                if (window.WindowProcess != null)
-                                {
-                                    var windowCloseTask = CloseAsync(window.WindowProcess);
-                                    windowsCloseTasks.Add(windowCloseTask);
-                                }
-                            }
-
-                            // Wait until all windows close tasks are done
-                            await Task.WhenAll(windowsCloseTasks);
+                            // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
+                            new Thread(() =>
+                            {
+                                Thread.CurrentThread.IsBackground = true;
+                                NativeMethods.SendMessage(window.Handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                            }).Start();
                         }
 
-                            // Close windows synchronously
-                            foreach (var window in appToQuit.Windows)
-                            {
-                                appToQuit.AppProcess.CloseMainWindow();
-                                appToQuit.AppProcess.WaitForExit(AppWaitForExitTimeLimit);
-                            }
+                            // Give some time to close all app windows
+                        Thread.Sleep(RefreshAfterAppQuitDelay);
                     }
 
                     // Refresh apps list, then check if closing succeeded
@@ -483,7 +473,7 @@ namespace WinManager
                 }).Start();
 
                 // Give some time for closing, refresh apps and windows list, then check if closing succeeded
-                Thread.Sleep(WindowsRefreshDelay);
+                Thread.Sleep(RefreshAfterWindowCloseDelay);
                 var closingApp = _filteredAppsList[_currentAppIndex];
                 var closingWindow = _filteredWindowsList[itemIndex];
                 RefreshApps();
@@ -521,13 +511,7 @@ namespace WinManager
         private async Task KillAsync(Process process)
         {
             process.Kill();
-            process.WaitForExit(AppWaitForExitTimeLimit);
-        }
-
-        private async Task CloseAsync(Process process)
-        {
-            process.CloseMainWindow();
-            process.WaitForExit(AppWaitForExitTimeLimit);
+            process.WaitForExit(WaitForAppKillTimeLimit);
         }
 
         public void RefreshAppsAndApplyFilter()
