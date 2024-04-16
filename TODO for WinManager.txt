@@ -1,6 +1,4 @@
 ## TODO
-* Rename some odd app names, like WindowsTerminal.exe.
 * Add auto check for update feature with possibility to disable it.
 * Add about and help windows.
-* Exclude some items like System host...
 * Fix listing of Settings, Calculator and maybe some other modern apps.

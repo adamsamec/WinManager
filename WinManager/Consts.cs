@@ -30,6 +30,13 @@ namespace WinManager
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
         public static string InstallerDownloadFolder = Path.Combine(localUserFolder, "installer");
 
+        // App names overrides
+        public static Dictionary<string, string> AppNamesOverrides = new Dictionary<string, string>
+        {
+            {"Notepad.exe", WinManager.Resources.notepadOverride},
+            {"WindowsTerminal.exe", "Windows Terminal"}
+        };
+
         // Other
         public const string StartupRegistryKeyName = "WinManager";
 

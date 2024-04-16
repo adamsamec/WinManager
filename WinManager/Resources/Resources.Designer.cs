@@ -214,6 +214,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notepad.
+        /// </summary>
+        public static string notepadOverride {
+            get {
+                return ResourceManager.GetString("notepadOverride", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not now.
         /// </summary>
         public static string notNowButton {

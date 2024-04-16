@@ -289,6 +289,11 @@ namespace WinManager
                 {
                     appName = process.MainWindowTitle;
                 }
+                // Override certain app names
+                if (Consts.AppNamesOverrides.ContainsKey(appName))
+                {
+                    appName = Consts.AppNamesOverrides[appName];
+                }
 
                 app = new RunningApplication(appName, process);
                 processesAppsList.Add(app);

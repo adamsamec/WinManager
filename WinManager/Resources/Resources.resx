@@ -145,6 +145,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="notepadOverride"
+    xml:space="preserve">
+  <value>Notepad</value>
+</data>
     <data name="exitAnnouncement"
           xml:space="preserve">
         <value>Exiting WinManager</value>
