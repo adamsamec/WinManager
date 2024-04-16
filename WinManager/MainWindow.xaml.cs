@@ -51,7 +51,7 @@ namespace WinManager
             }
         }
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        private void MainWindow_Closing(object? sender, CancelEventArgs e)
         {
             _manager.CleanUp();
         }

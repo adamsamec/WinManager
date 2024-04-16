@@ -15,7 +15,7 @@ namespace WinManager
         public const string ExecutableFilename = "WinManager.exe";
         public const string ConfigDefaultFilename = "App.config.default.json";
         public const string ConfigFilename = "App.config.json";
-        public static string? InstallFolder
+        public static string InstallFolder
         {
             get
             {
@@ -23,6 +23,10 @@ namespace WinManager
                 {
                     var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                     _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
+                }
+                if (_installFolder == null)
+                {
+                    throw new InstallPathUnknownException("Unable to determine WinManager install path");
                 }
                 return _installFolder;
             }

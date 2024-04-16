@@ -429,7 +429,7 @@ namespace WinManager
                         processesKillTasks.Add(appKillTask);
 
                         // Wait until all processes kill tasks are done
-                            await Task.WhenAll(processesKillTasks);
+                        await Task.WhenAll(processesKillTasks);
 
                         isAppQuitted = true;
                     }
@@ -437,9 +437,9 @@ namespace WinManager
                     {
                         Speak(Resources.quittingApp);
 
-                            // Close all app windows individually
-                            foreach (var window in appToQuit.Windows)
-                            {
+                        // Close all app windows individually
+                        foreach (var window in appToQuit.Windows)
+                        {
                             // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
                             new Thread(() =>
                             {
@@ -448,7 +448,7 @@ namespace WinManager
                             }).Start();
                         }
 
-                            // Give some time to close all app windows
+                        // Give some time to close all app windows
                         Thread.Sleep(RefreshAfterAppQuitDelay);
                     }
 
@@ -463,52 +463,52 @@ namespace WinManager
                         ApplyFilter();
                         isAppQuitted = true;
                     }
-            newIndex = isAppQuitted ? Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0) : itemIndex;
-            break;
+                    newIndex = isAppQuitted ? Math.Max(Math.Min(itemIndex, _filteredAppsList.Count - 1), 0) : itemIndex;
+                    break;
                 case ListView.ForegroundAppWindows:
-            case ListView.SelectedAppWindows:
-                Speak(Resources.closingWindow);
-                var handle = _filteredWindowsList[itemIndex].Handle;
+                case ListView.SelectedAppWindows:
+                    Speak(Resources.closingWindow);
+                    var handle = _filteredWindowsList[itemIndex].Handle;
 
-                // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
-                }).Start();
-
-                // Give some time for closing, refresh apps and windows list, then check if closing succeeded
-                Thread.Sleep(RefreshAfterWindowCloseDelay);
-                var closingApp = _filteredAppsList[_currentAppIndex];
-                var closingWindow = _filteredWindowsList[itemIndex];
-                RefreshApps();
-                if (_appsList.Contains(closingApp))
-                {
-                    var closingFailed = false;
-                    foreach (var window in closingApp.Windows)
+                    // Run window closing message in a new thread to prevent WinManager window blocking if closing fails
+                    new Thread(() =>
                     {
-                        if (window.Equals(closingWindow))
+                        Thread.CurrentThread.IsBackground = true;
+                        NativeMethods.SendMessage(handle, NativeMethods.WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                    }).Start();
+
+                    // Give some time for closing, refresh apps and windows list, then check if closing succeeded
+                    Thread.Sleep(RefreshAfterWindowCloseDelay);
+                    var closingApp = _filteredAppsList[_currentAppIndex];
+                    var closingWindow = _filteredWindowsList[itemIndex];
+                    RefreshApps();
+                    if (_appsList.Contains(closingApp))
+                    {
+                        var closingFailed = false;
+                        foreach (var window in closingApp.Windows)
                         {
-                            closingFailed = true;
+                            if (window.Equals(closingWindow))
+                            {
+                                closingFailed = true;
+                            }
                         }
-                    }
-                    if (closingFailed)
-                    {
-                        Speak(Resources.closingWindowFailed);
+                        if (closingFailed)
+                        {
+                            Speak(Resources.closingWindowFailed);
+                        }
+                        else
+                        {
+                            ApplyFilter();
+                            newIndex = Math.Max(Math.Min(itemIndex, _filteredWindowsList.Count - 1), 0);
+                        }
                     }
                     else
                     {
+                        _view = ListView.Apps;
                         ApplyFilter();
-                        newIndex = Math.Max(Math.Min(itemIndex, _filteredWindowsList.Count - 1), 0);
+                        newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
                     }
-                }
-                else
-                {
-                    _view = ListView.Apps;
-                    ApplyFilter();
-                    newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
-                }
-                break;
+                    break;
             }
             return newIndex;
         }

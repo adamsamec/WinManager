@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 
@@ -44,11 +45,20 @@ namespace WinManager
 
             // Load the config
             var configString = File.ReadAllText(_path, Encoding.UTF8);
-            _config = JsonSerializer.Deserialize<ConfigJson>(configString);
+            var config = JsonSerializer.Deserialize<ConfigJson>(configString);
+            if (config == null)
+            {
+                throw new SerializationException("Unable to deserialize config file");
+            }
+            _config = config as ConfigJson;
             var settings = _config.settings;
 
             var defaultConfigString = File.ReadAllText(defaultPath, Encoding.UTF8);
             var defaultConfig = JsonSerializer.Deserialize<ConfigJson>(defaultConfigString);
+            if (defaultConfig == null)
+            {
+                throw new SerializationException("Unable to deserialize default config file");
+            }
             var defaultSettings = defaultConfig.settings;
 
             // Set missing JSON properties to defaults
@@ -98,6 +108,18 @@ AppSettings.enabledShortcuts.showWindows,
             };
             return actionMapping[(int) action];
         }
+    }
+
+    [Serializable]
+    public class InstallPathUnknownException : Exception
+    {
+        public InstallPathUnknownException() { }
+
+        public InstallPathUnknownException(string message)
+            : base(message) { }
+
+        public InstallPathUnknownException(string message, Exception inner)
+            : base(message, inner) { }
     }
 }
 
