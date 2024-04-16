@@ -506,6 +506,7 @@ namespace WinManager
                     else
                     {
                         _view = ListView.Apps;
+                        _mainWindow.SetListBoxLabel(Resources.runningAppsLabel);
                         ApplyFilter();
                         newIndex = Math.Max(Math.Min(_currentAppIndex, _filteredAppsList.Count - 1), 0);
                     }
