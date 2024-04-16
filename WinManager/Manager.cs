@@ -27,9 +27,9 @@ namespace WinManager
         private int _currentAppIndex = 0;
         private ListView _view = ListView.Hidden;
 
-        private const int WaitForAppKillTimeLimit = 1000;
-        private const int RefreshAfterAppQuitDelay = 2000;
-        private const int RefreshAfterWindowCloseDelay = 800;
+        private const int WaitForAppKillTimeLimit = 1500;
+        private const int RefreshAfterAppQuitDelay = 3000;
+        private const int RefreshAfterWindowCloseDelay = 1500;
 
         public Settings AppSettings
         {
@@ -479,15 +479,15 @@ namespace WinManager
 
                     // Give some time for closing, refresh apps and windows list, then check if closing succeeded
                     Thread.Sleep(RefreshAfterWindowCloseDelay);
-                    var closingApp = _filteredAppsList[_currentAppIndex];
-                    var closingWindow = _filteredWindowsList[itemIndex];
+                    var appWithWindowToClose = _filteredAppsList[_currentAppIndex];
+                    var windowToClose = _filteredWindowsList[itemIndex];
                     RefreshApps();
-                    if (_appsList.Contains(closingApp))
+                    if (_appsList.Contains(appWithWindowToClose))
                     {
                         var closingFailed = false;
-                        foreach (var window in closingApp.Windows)
+                        foreach (var window in appWithWindowToClose.Windows)
                         {
-                            if (window.Equals(closingWindow))
+                            if (window.Equals(windowToClose))
                             {
                                 closingFailed = true;
                             }
