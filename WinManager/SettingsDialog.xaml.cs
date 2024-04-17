@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -147,45 +148,51 @@ namespace WinManager
             }
             if (doUpdate && updateData != null)
             {
-                Updater.DownloadProgressHandler downloadProgressHandler = (progress) =>
-                {
-                    updateDownloadProgressBar.Value = progress;
-                };
-                Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
-                {
-                    if (_updateDownloadInProgressDialog != null && _updateDownloadInProgressDialog.IsVisible)
-                    {
-                        _updateDownloadInProgressDialog.DialogResult = false;
-                    }
-                    var launchUpdateInstallerDialog = new LaunchUpdateInstallerDialog();
-                    launchUpdateInstallerDialog.Owner = this;
-                    var doLaunchInstaller = launchUpdateInstallerDialog.ShowDialog() == true;
-                    if (doLaunchInstaller)
-                    {
-                        _manager.AppUpdater.LaunchInstaller();
-                    }
-                    MakeCheckForUpdateAvailable();
-                };
-                Updater.InstallerRunningHandler installerRunningHandler = () =>
-                {
-                    MakeCheckForUpdateAvailable();
-                    var updateInstallRunningDialog = new UpdateInstallRunningDialog();
-                    updateInstallRunningDialog.Owner = this;
-                    updateInstallRunningDialog.ShowDialog();
-                };
-                Updater.DownloadErrorHandler downloadErrorHandler = () =>
-                {
-                    var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
-                    if (IsVisible)
-                    {
-                        updateDownloadFailedDialog.Owner = this;
-                    }
-                    updateDownloadFailedDialog.ShowDialog();
-                    MakeCheckForUpdateAvailable();
-                };
-                MakeDownloadInProgress();
-                var downloadTask = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, installerRunningHandler, downloadErrorHandler);
+                DownloadUpdate(updateData);
             }
+        }
+
+        public void DownloadUpdate(UpdateData updateData)
+        {
+            Updater.DownloadProgressHandler downloadProgressHandler = (progress) =>
+            {
+                updateDownloadProgressBar.Value = progress;
+            };
+            Updater.DownloadCompleteHandler downloadCompleteHandler = () =>
+            {
+                if (_updateDownloadInProgressDialog != null && _updateDownloadInProgressDialog.IsVisible)
+                {
+                    _updateDownloadInProgressDialog.DialogResult = false;
+                }
+                var launchUpdateInstallerDialog = new LaunchUpdateInstallerDialog();
+                launchUpdateInstallerDialog.Owner = this;
+                var doLaunchInstaller = launchUpdateInstallerDialog.ShowDialog() == true;
+                if (doLaunchInstaller)
+                {
+                    _manager.AppUpdater.LaunchInstaller();
+                }
+                MakeCheckForUpdateAvailable();
+            };
+            Updater.InstallerRunningHandler installerRunningHandler = () =>
+            {
+                MakeCheckForUpdateAvailable();
+                var updateInstallRunningDialog = new UpdateInstallRunningDialog();
+                updateInstallRunningDialog.Owner = this;
+                updateInstallRunningDialog.ShowDialog();
+            };
+            Updater.DownloadErrorHandler downloadErrorHandler = () =>
+            {
+                var updateDownloadFailedDialog = new UpdateDownloadFailedDialog();
+                if (IsVisible)
+                {
+                    updateDownloadFailedDialog.Owner = this;
+                }
+                updateDownloadFailedDialog.ShowDialog();
+                MakeCheckForUpdateAvailable();
+            };
+            Debug.WriteLine("starting");
+            MakeDownloadInProgress();
+            var downloadTask = _manager.AppUpdater.DownloadAsync(updateData, downloadProgressHandler, downloadCompleteHandler, installerRunningHandler, downloadErrorHandler);
         }
 
         private void MakeCheckForUpdateAvailable()

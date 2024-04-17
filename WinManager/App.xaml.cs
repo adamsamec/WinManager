@@ -13,6 +13,7 @@ namespace WinManager
 
             SetLanguageDictionary();
             var mainWindow = new MainWindow();
+            mainWindow.CheckForUpdateOnStart();
         }
 
         private void SetLanguageDictionary()

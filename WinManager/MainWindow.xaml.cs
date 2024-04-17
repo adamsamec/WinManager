@@ -25,6 +25,11 @@ namespace WinManager
             Closing += MainWindow_Closing;
         }
 
+        public void CheckForUpdateOnStart()
+        {
+            _manager.CheckForUpdateOnStart();
+        }
+
         private void SetWindowToolStyle(IntPtr handle)
         {
             uint extendedStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);

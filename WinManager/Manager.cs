@@ -31,6 +31,7 @@ namespace WinManager
         private const int RefreshAfterAppQuitDelay = 1500;
         private const int RefreshAfterWindowCloseDelay = 500;
 
+        public bool ShouldShowUpdatePromptOnStart { get; }
         public Settings AppSettings
         {
             get { return _config.AppSettings; }
@@ -106,6 +107,30 @@ namespace WinManager
         public void Speak(string message)
         {
             _srOutput.Speak(message);
+        }
+
+        public async void CheckForUpdateOnStart()
+        {
+            try
+            {
+                var updateData = await AppUpdater.CheckForUpdate();
+                if (updateData != null)
+                {
+                    var updateAvailableDialog = new UpdateAvailableDialog(this, updateData);
+                    var doUpdate = updateAvailableDialog.ShowDialog() == true;
+                    if (doUpdate)
+                    {
+                        var settingsDialog = new SettingsDialog(this);
+                        settingsDialog.ShowDialog();
+                        settingsDialog.DownloadUpdate(updateData);
+                    }
+                }
+            }
+            catch (ArgumentException)
+            {
+                // Ignore if check for update fails
+                Debug.WriteLine("Problem updating");
+            }
         }
 
         public void HandleMainWindowLoad()
@@ -482,7 +507,7 @@ namespace WinManager
                     var appWithWindowToClose = _filteredAppsList[_currentAppIndex];
                     var windowToClose = _filteredWindowsList[itemIndex];
                     RefreshApps();
-                        var refreshedAppWithWindowToClose = _filteredAppsList.Find(app => app.Equals(appWithWindowToClose));
+                    var refreshedAppWithWindowToClose = _filteredAppsList.Find(app => app.Equals(appWithWindowToClose));
                     if (refreshedAppWithWindowToClose != null && _appsList.Contains(refreshedAppWithWindowToClose))
                     {
                         var closingFailed = false;

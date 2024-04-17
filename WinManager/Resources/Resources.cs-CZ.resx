@@ -163,7 +163,7 @@
     </data>
             <data name="updateAvailableTitle"
           xml:space="preserve">
-        <value>Dostupná aktualizace</value>
+        <value>Dostupná aktualizace pro WinManager</value>
     </data>
             <data name="updateAvailableMessage"
           xml:space="preserve">
