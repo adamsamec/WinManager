@@ -1,4 +1,5 @@
 ## TODO
-* Add auto check for update feature with possibility to disable it.
+* Add setting to enable/disable auto check for update on start.
+* Rename "check for updates" to "check for update".
 * Add about and help windows.
 * Fix listing of Settings, Calculator and maybe some other modern apps.

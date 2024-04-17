@@ -120,9 +120,9 @@ namespace WinManager
                     var doUpdate = updateAvailableDialog.ShowDialog() == true;
                     if (doUpdate)
                     {
-                        var settingsDialog = new SettingsDialog(this);
-                        settingsDialog.ShowDialog();
+                        var settingsDialog = new SettingsDialog(this, true);
                         settingsDialog.DownloadUpdate(updateData);
+                        settingsDialog.ShowDialog();
                     }
                 }
             }

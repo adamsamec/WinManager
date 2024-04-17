@@ -13,14 +13,14 @@ namespace WinManager
         private Manager _manager;
         private UpdateDownloadInProgressDialog? _updateDownloadInProgressDialog;
 
-        public SettingsDialog(Manager manager)
+        public SettingsDialog(Manager manager, bool isInitiallyDownloadingUpdate = false)
         {
             InitializeComponent();
 
             _manager = manager;
 
             CreateAppsAndWindowsShortcutsCheckBoxes();
-            InitCheckForUpdatesControls();
+            InitCheckForUpdatesControls(isInitiallyDownloadingUpdate);
 
             KeyDown += SettingsDialog_KeyDown;
         }
@@ -31,7 +31,14 @@ namespace WinManager
             launchOnStartupCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.launchOnStartup);
 
             // Set initial focus
-            launchOnStartupCheckBox.Focus();
+            if (_manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
+            {
+                updateDownloadProgressBar.Focus();
+            }
+            else
+            {
+                launchOnStartupCheckBox.Focus();
+            }
         }
 
         private void CreateAppsAndWindowsShortcutsCheckBoxes()
@@ -67,9 +74,9 @@ namespace WinManager
             windowsShortcutsGroup.Content = windowsStackPanel;
         }
 
-        private void InitCheckForUpdatesControls()
+        private void InitCheckForUpdatesControls(bool isInitiallyDownloadingUpdate)
         {
-            if (_manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
+            if (isInitiallyDownloadingUpdate || _manager.AppUpdater.State == Updater.UpdateState.Downloading || _manager.AppUpdater.State == Updater.UpdateState.Deleting)
             {
                 checkForUpdatesButton.IsEnabled = false;
             }
