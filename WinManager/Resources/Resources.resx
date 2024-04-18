@@ -229,6 +229,14 @@
           xml:space="preserve">
         <value>Check for update was not successful. Please verify that you are connected to the Internet.</value>
     </data>
+    <data name="downloadingUpdateTitle"
+    xml:space="preserve">
+  <value>Downloading update</value>
+</data>
+      <data name="downloadingUpdateMessage"
+    xml:space="preserve">
+  <value>Please wait while WinManager update {0} is beeing downloaded.</value>
+</data>
                 <data name="updateDownloadProgressLabel"
           xml:space="preserve">
         <value>Downloading update</value>

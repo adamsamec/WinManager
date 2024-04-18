@@ -102,11 +102,6 @@ namespace WinManager
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowSettingsDialog();
-        }
-
-        public void ShowSettingsDialog()
-        {
             var settingsDialog = new SettingsDialog(_manager);
             settingsDialog.Owner = this;
             settingsDialog.ShowDialog();

@@ -48,6 +48,7 @@ namespace WinManager
         {
             get { return _appUpdater; }
         }
+        public UpdateData? AppUpdateData { get; set; }
 
         public enum ListView
         {
@@ -113,16 +114,17 @@ namespace WinManager
         {
             try
             {
-                var updateData = await AppUpdater.CheckForUpdate();
-                if (updateData != null)
+                AppUpdateData = await AppUpdater.CheckForUpdate();
+                if (AppUpdateData != null)
                 {
-                    var updateAvailableDialog = new UpdateAvailableDialog(this, updateData);
+                    var updateAvailableDialog = new UpdateAvailableDialog(this, AppUpdateData);
                     var doUpdate = updateAvailableDialog.ShowDialog() == true;
                     if (doUpdate)
                     {
-                        var settingsDialog = new SettingsDialog(this, true);
-                        settingsDialog.DownloadUpdate(updateData);
-                        settingsDialog.ShowDialog();
+                        var downloadingUpdateDialog = new DownloadingUpdateDialog(this, AppUpdateData);
+                        downloadingUpdateDialog.Owner = _mainWindow;
+                        downloadingUpdateDialog.DownloadUpdate();
+                        downloadingUpdateDialog.ShowDialog();
                     }
                 }
             }
@@ -185,7 +187,13 @@ namespace WinManager
             _mainWindow.Display();
             if (AppUpdater.State == Updater.UpdateState.Downloading || AppUpdater.State == Updater.UpdateState.Deleting)
             {
-                _mainWindow.ShowSettingsDialog();
+                var downloadingUpdateDialog = new DownloadingUpdateDialog(this, AppUpdateData);
+                downloadingUpdateDialog.Owner = _mainWindow;
+                downloadingUpdateDialog.ShowDialog();
+            }
+            else if (AppUpdater.State == Updater.UpdateState.Downloaded && AppUpdater.DownloadingDialog != null)
+            {
+                AppUpdater.DownloadingDialog.ShowLaunchUpdateInstallerDialog();
             }
         }
 
@@ -194,7 +202,6 @@ namespace WinManager
             // WinManager is not activated if main window is not visible or if no window is in foregroud 
             if (!_mainWindow.IsVisible || _prevWindowHandle == IntPtr.Zero)
             {
-
                 return false;
             }
             uint prevProcessId;

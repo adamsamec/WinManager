@@ -1,0 +1,29 @@
+﻿<Window x:Class="WinManager.DownloadingUpdateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WinManager"
+        xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
+        mc:Ignorable="d"
+        Title="{x:Static lang:Resources.downloadingUpdateTitle}"
+        SizeToContent="WidthAndHeight"
+WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        Loaded="DownloadingUpdateDialog_Loaded">
+  <Grid>
+    <TextBlock Name="downloadingUpdateMessage" />
+        <Label Name="updateDownloadProgressLabel" Content="{x:Static lang:Resources.updateDownloadProgressLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left"/>
+    <ProgressBar Name="updateDownloadProgressBar"
+AutomationProperties.LabeledBy="{Binding ElementName=updateDownloadProgressLabel}"
+Value="0"
+Focusable="True"
+    HorizontalAlignment="Left" />
+    <Button Name="closeButton"
+                Content="{x:Static lang:Resources.closeButton}"
+Click="closeButton_Click"
+IsDefault="True"
+HorizontalAlignment="Right" />
+  </Grid>
+</Window>

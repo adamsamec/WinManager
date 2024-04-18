@@ -124,6 +124,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait while WinManager update {0} is beeing downloaded..
+        /// </summary>
+        public static string downloadingUpdateMessage {
+            get {
+                return ResourceManager.GetString("downloadingUpdateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading update.
+        /// </summary>
+        public static string downloadingUpdateTitle {
+            get {
+                return ResourceManager.GetString("downloadingUpdateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enabled keyboard shortcuts for list of running apps.
         /// </summary>
         public static string enabledAppsShortcutsHeader {
@@ -331,7 +349,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update available.
+        ///   Looks up a localized string similar to WinManager update available.
         /// </summary>
         public static string updateAvailableTitle {
             get {

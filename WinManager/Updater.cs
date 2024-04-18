@@ -2,6 +2,9 @@
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
+using System.Windows.Controls;
+using System.Windows;
+using System.ComponentModel;
 namespace WinManager
 {
     /// <summary>
@@ -20,6 +23,7 @@ namespace WinManager
         {
             get { return _state; }
         }
+        public DownloadingUpdateDialog? DownloadingDialog { get; set; }
 
         public enum UpdateState
         {
@@ -119,7 +123,13 @@ namespace WinManager
 
         public void LaunchInstaller()
         {
+            try
+            {
             Process.Start(_installerDownloadPath);
+            } catch (Win32Exception ex)
+            {
+                Debug.WriteLine("Exception during update installer launch: " + ex.ToString());
+            }
         }
 
         public void DeleteInstallerFiles()
