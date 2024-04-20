@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace WinManager
 {
@@ -19,8 +20,28 @@ namespace WinManager
         private void HelpWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var html = _manager.GetHelpHTML();
+            html = @"
+<html>
+ <body>
+<div id='page' tabindex='-1'>
+<h1>WinManager " + Consts.AppVersion + @"</h1>
+" + html + @"
+</div>
+<script>
+function focusBegining() {
+var page = document.getElementById('page');
+page.focus();
+}
+</script>
+</body>
+</html>
+";
+            Debug.WriteLine(html);
+            webBrowser.LoadCompleted += (sendr, e) =>
+            {
+                webBrowser.InvokeScript("focusBegining");
+            };
             webBrowser.NavigateToString(html);
-
             webBrowser.Focus();
         }
     }
