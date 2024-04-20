@@ -7,23 +7,23 @@ WinManager is a utility which brings easier application and windows management t
 Let's say you want to switch to or close certain window in Microsoft Edge where you searched something using Google:
 
 1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
-2. Arrow down to the "Microsoft Edge" application, or ssimply type "edge" to filter the list.
+2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
 3. Press the Right arrow key to show all windows for Microsoft Edge.
-4. Arrow down to the desired Google search window, or narrow down the windows list by typing "Google".
+4. Arrow down to the desired Google search window, or narrow down the windows list just by typing "google".
 5. Press Enter when on the desired window to switch to it, or press Delete to close it.
 
 ### Example 2: Application quitting
 Let's say you want to quit Microsoft Edge with all its windows so that it asks for restoring all the windows next time you start it:
 
 1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
-2. Arrow down to the "Microsoft Edge" application, or ssimply type "edge" to filter the list.
+2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
 3. Press Shift + Dellete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
 
 ### Example 3: Same application window switching or closing
-Let's say you are in File Explorer, and want to switch or close its "Downloads" window that you used a long time ago:
+Let's say you are in File Explorer, and want to switch or close its another "Downloads" window that you used a long time ago:
 
 1. Invoke WinManager with the list of open windows only for the File Explorer application which is in foreground by pressing Windows + F11, or Windows + Shift + Q.
-2. Arrow down to the "Downloads" window, or ssimply type "down" to filter the list.
+2. Arrow down to the "Downloads" window, or simply just type "down" to filter the list.
 3. Press Enter when on the "Downloads" window to switch to it, or press Delete to close it.
 
 ## Features
@@ -93,7 +93,7 @@ WinManager is also available as a portable executable not requiring installation
 WinManager is a free and open-source software developed in C# as a WPF application using the .NET 8.0 framework. You can find all the necessary source files in the "WinManager" folder of this repo.
 
 ## License
-WinManager is available under the MIT licence
+WinManager is available under the MIT license.
 
 ### The MIT License (MIT)
 
