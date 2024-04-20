@@ -59,7 +59,10 @@ namespace WinManager
                 }
                 updateDownloadFailedDialog.ShowDialog();
             };
+            if (_updateData != null)
+            {
             var downloadTask = _manager.AppUpdater.DownloadAsync(_updateData, downloadProgressHandler, downloadCompleteHandler, installerRunningHandler, downloadErrorHandler);
+            }
         }
 
         public void ShowLaunchUpdateInstallerDialog()
