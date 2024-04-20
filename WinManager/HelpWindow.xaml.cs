@@ -23,7 +23,7 @@ namespace WinManager
             html = @"
 <html>
  <body>
-<div id='page' tabindex='-1'>
+<div id='page' tabindex='0'>
 <h1>WinManager " + Consts.AppVersion + @"</h1>
 " + html + @"
 </div>

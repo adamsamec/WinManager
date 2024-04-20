@@ -77,8 +77,8 @@ For invoking the list of open windows for the application in the foreground, you
 ### Known limitations
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
-## Contact
-If you have suggestions for WinManager improvement, problems with its functionality or other comments, you can drop me an email at adam.samec@gmail.com
+## Contact and feedback
+If you have suggestions for WinManager improvement, problems with its functionality or other comments, you can drop me an email to [adam.samec@gmail.com](mailto:adam.samec@gmail.com)
 
 ## License
 WinManager is available as a free and open-source software under the MIT license.

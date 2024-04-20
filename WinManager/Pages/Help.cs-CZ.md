@@ -78,8 +78,8 @@ K vyvolání seznamu otevřených oken jen pro aplikaci v popředí mohou slouž
 ## Známé problémy
 * Někdy při pokusu o přepnutí se do okna se fokus do tohoto okna správně nepřesune. V takových situacích může pomoci stisknout Alt + tabulátor a poté Alt + Shift + tabulátor.
 
-## Kontakt
-Máte-li k nástroji WinSwitcher nějaké nápady na zlepšení, potíže s jeho fungování nebo jiné připomínky, tak mi můžete napsat přímo na email adam.samec@gmail.com
+## Kontakt a zpětná vazba
+Máte-li k nástroji WinSwitcher nějaké nápady na zlepšení, potíže s jeho fungování nebo jiné připomínky, tak mi můžete napsat na email [adam.samec@gmail.com](mailto:adam.samec@gmail.com)
 
 ## Licence
 WinManager je vyvíjen jako bezplatný program s otevřeným kódem pod licencí MIT, jejíž znění v angličtině je uvedeno níže.
