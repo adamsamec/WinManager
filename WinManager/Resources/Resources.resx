@@ -167,7 +167,7 @@
     </data>
     <data name="settingsButton"
           xml:space="preserve">
-        <value>Settings</value>
+        <value>Settings and more</value>
     </data>
     <data name="noAppsFound"
           xml:space="preserve">
@@ -181,6 +181,14 @@
           xml:space="preserve">
         <value>windows</value>
     </data>
+    <data name="helpButton"
+    xml:space="preserve">
+  <value>Help</value>
+</data>
+    <data name="helpWindowTitle"
+    xml:space="preserve">
+  <value>Help for WinManager</value>
+</data>
     <data name="settingsDialogTitle"
           xml:space="preserve">
         <value>Settings for WinManager</value>

@@ -11,6 +11,7 @@ namespace WinManager
         public static readonly bool ForceCzechLanguage = false;
 
         // Paths and filenames
+        public static string HelpFileRelativePath = Path.Combine("Pages", "Help.{0}.md");
         public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public const string ExecutableFilename = "WinManager.exe";
         public const string ConfigDefaultFilename = "App.config.default.json";

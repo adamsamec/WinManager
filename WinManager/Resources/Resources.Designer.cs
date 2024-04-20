@@ -196,6 +196,24 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string helpButton {
+            get {
+                return ResourceManager.GetString("helpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help for WinManager.
+        /// </summary>
+        public static string helpWindowTitle {
+            get {
+                return ResourceManager.GetString("helpWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch WinManager on Windows startup.
         /// </summary>
         public static string launchOnStartupCheckBox {
@@ -322,7 +340,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Settings and more.
         /// </summary>
         public static string settingsButton {
             get {

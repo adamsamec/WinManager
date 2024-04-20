@@ -16,7 +16,11 @@ Loaded="MainWindow_Loaded"
     <Label Name="itemsListBoxLabel" Target="{Binding ElementName=itemsListBox}" Content="{x:Static lang:Resources.runningAppsLabel}" TextBlock.FontSize="20" HorizontalAlignment="Center" Margin="0,8,0,-8"/>
     <ListBox Name="itemsListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15"/>
 
-    <Button Name="settingsButton" Content="{x:Static lang:Resources.settingsButton}"
+    <Button Name="helpButton"
+Content="{x:Static lang:Resources.helpButton}"
+Click="helpButton_Click"/>
+    <Button Name="settingsButton"
+Content="{x:Static lang:Resources.settingsButton}"
 Click="settingsButton_Click"/>
   </Grid>
 </Window>

@@ -1,3 +1,3 @@
 ## TODO
-* Add about and help windows.
+* Update English and Czech help pages.
 * Fix listing of Settings, Calculator and maybe some other modern apps.

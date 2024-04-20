@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AccessibleOutput" Version="1.0.0" />
+    <PackageReference Include="Markdig" Version="0.37.0" />
     <PackageReference Include="System.Speech" Version="8.0.0" />
   </ItemGroup>
 
@@ -38,6 +39,12 @@
 	<ItemGroup>
 		<None Update="App.config.default.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Pages\Help.en-US.md">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Pages\Help.cs-CZ.md">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 

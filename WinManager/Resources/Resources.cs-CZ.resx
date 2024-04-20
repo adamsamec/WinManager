@@ -134,7 +134,7 @@
     <value>WinManager spuštěn</value>
   </data>
   <data name="settingsButton" xml:space="preserve">
-    <value>Nastavení</value>
+    <value>Nastavení a další</value>
   </data>
   <data name="noAppsFound" xml:space="preserve">
     <value>Žádné aplikace nenalezeny</value>
@@ -145,6 +145,14 @@
       <data name="windowsCount" xml:space="preserve">
     <value>okna</value>
   </data>
+  <data name="helpButton"
+  xml:space="preserve">
+<value>Nápověda</value>
+</data>
+      <data name="helpWindowTitle"
+    xml:space="preserve">
+  <value>Nápověda pro WinManager</value>
+</data>
       <data name="settingsDialogTitle"
           xml:space="preserve">
         <value>Nastavení pro WinManager</value>
