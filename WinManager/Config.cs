@@ -62,7 +62,7 @@ namespace WinManager
             var defaultSettings = defaultConfig.settings;
 
             // Set missing JSON properties to defaults
-            Utils.SetYesOrNo(settings, defaultSettings, ["launchOnStartup"]);
+            Utils.SetYesOrNo(settings, defaultSettings, ["launchOnStartup", "checkUpdateOnFirstShow"]);
             if (settings.enabledShortcuts == null)
             {
                 settings.enabledShortcuts = defaultSettings.enabledShortcuts;
@@ -106,7 +106,7 @@ namespace WinManager
 AppSettings.enabledShortcuts.showApps,
 AppSettings.enabledShortcuts.showWindows,
             };
-            return actionMapping[(int) action];
+            return actionMapping[(int)action];
         }
     }
 

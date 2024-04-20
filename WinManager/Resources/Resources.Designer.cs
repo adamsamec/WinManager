@@ -88,6 +88,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically check for updates when WinManager is shown for the firs tttime after its launch.
+        /// </summary>
+        public static string checkUpdateOnFirstShowCheckBox {
+            get {
+                return ResourceManager.GetString("checkUpdateOnFirstShowCheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string closeButton {
@@ -189,9 +198,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Launch WinManager on Windows startup.
         /// </summary>
-        public static string LaunchOnStartupCheckBox {
+        public static string launchOnStartupCheckBox {
             get {
-                return ResourceManager.GetString("LaunchOnStartupCheckBox", resourceCulture);
+                return ResourceManager.GetString("launchOnStartupCheckBox", resourceCulture);
             }
         }
         

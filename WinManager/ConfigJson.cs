@@ -8,6 +8,7 @@
     public class Settings
     {
         public string launchOnStartup { get; set; }
+        public string checkUpdateOnFirstShow { get; set; }
         public Enabledshortcuts enabledShortcuts { get; set; }
     }
 

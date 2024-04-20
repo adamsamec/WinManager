@@ -14,8 +14,14 @@ WindowStartupLocation="CenterScreen"
         Loaded="SettingsDialog_Loaded">
   <Grid>
     <CheckBox Name="launchOnStartupCheckBox"
-                  Content="{x:Static lang:Resources.LaunchOnStartupCheckBox}"
-                  Checked="launchOnStartupCheckBox_Checked" Unchecked="launchOnStartupCheckBox_Unchecked"
+                  Content="{x:Static lang:Resources.launchOnStartupCheckBox}"
+                  Checked="launchOnStartupCheckBox_Checked"
+Unchecked="launchOnStartupCheckBox_Unchecked"
+                  HorizontalAlignment="Left" />
+    <CheckBox Name="checkUpdateOnFirstShowCheckBox"
+                  Content="{x:Static lang:Resources.checkUpdateOnFirstShowCheckBox}"
+                  Checked="checkUpdateOnFirstShowCheckBox_Checked"
+Unchecked="checkUpdateOnFirstShowCheckBox_Unchecked"
                   HorizontalAlignment="Left" />
 
     <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>

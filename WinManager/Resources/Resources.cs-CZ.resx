@@ -149,10 +149,14 @@
           xml:space="preserve">
         <value>Nastavení pro WinManager</value>
     </data>
-        <data name="LaunchOnStartupCheckBox"
+        <data name="launchOnStartupCheckBox"
           xml:space="preserve">
         <value>Spustit WinManager po startu Windows</value>
     </data>
+    <data name="checkUpdateOnFirstShowCheckBox"
+    xml:space="preserve">
+  <value>Automaticky kontrolovat aktualizaci při prvním vyvolání WinManageru po jeho spuštění</value>
+</data>
         <data name="closeButton"
           xml:space="preserve">
         <value>Zavřít</value>

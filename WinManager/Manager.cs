@@ -112,11 +112,11 @@ namespace WinManager
 
         private async void CheckForUpdateOnFirstShow()
         {
-            if (_hasCheckedForUpdateOnFirstShow)
+            if (_hasCheckedForUpdateOnFirstShow || !Config.StringToBool(AppSettings.checkUpdateOnFirstShow))
             {
                 return;
             }
-                _hasCheckedForUpdateOnFirstShow = true;
+            _hasCheckedForUpdateOnFirstShow = true;
             try
             {
                 AppUpdateData = await AppUpdater.CheckForUpdate();
@@ -135,7 +135,7 @@ namespace WinManager
             catch (Exception ex)
             {
                 // Ignore if check for update fails
-                    Debug.WriteLine("Exception during first launch update check: " + ex.ToString());
+                Debug.WriteLine("Exception during first launch update check: " + ex.ToString());
             }
         }
 
@@ -705,10 +705,16 @@ namespace WinManager
             }
             catch (Exception ex)
             {
-                    Debug.WriteLine("Exception during updating launch on startup registry: " + ex.ToString());
+                Debug.WriteLine("Exception during updating launch on startup registry: " + ex.ToString());
             }
             // Update settings
             AppSettings.launchOnStartup = Config.BoolToString(value);
+            SaveSettings();
+        }
+
+        public void ChangeCheckUpdateOnFirstShowSetting(bool value)
+        {
+            AppSettings.checkUpdateOnFirstShow = Config.BoolToString(value);
             SaveSettings();
         }
 

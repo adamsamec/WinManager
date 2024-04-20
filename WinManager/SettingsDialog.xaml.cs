@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace WinManager
 {
@@ -24,11 +22,12 @@ namespace WinManager
 
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set launch on startup checkbox state from settings
+            // Set checkboxes state from settings
             launchOnStartupCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.launchOnStartup);
+            checkUpdateOnFirstShowCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.checkUpdateOnFirstShow);
 
             // Set initial focus
-                launchOnStartupCheckBox.Focus();
+            launchOnStartupCheckBox.Focus();
         }
 
         private void CreateAppsAndWindowsShortcutsCheckBoxes()
@@ -72,6 +71,16 @@ namespace WinManager
         private void launchOnStartupCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             _manager.ChangeLaunchOnStartupSetting(false);
+        }
+
+        private void checkUpdateOnFirstShowCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            _manager.ChangeCheckUpdateOnFirstShowSetting(true);
+        }
+
+        private void checkUpdateOnFirstShowCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _manager.ChangeCheckUpdateOnFirstShowSetting(false);
         }
 
         private async void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)

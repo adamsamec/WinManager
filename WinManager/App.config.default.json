@@ -1,6 +1,7 @@
 {
   "settings": {
     "launchOnStartup": "yes",
+    "checkUpdateOnFirstShow": "yes",
     "enabledShortcuts": {
       "showApps": {
         "Win_F12": "yes",

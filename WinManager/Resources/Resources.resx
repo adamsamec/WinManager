@@ -185,10 +185,14 @@
           xml:space="preserve">
         <value>Settings for WinManager</value>
     </data>
-        <data name="LaunchOnStartupCheckBox"
+        <data name="launchOnStartupCheckBox"
           xml:space="preserve">
         <value>Launch WinManager on Windows startup</value>
     </data>
+    <data name="checkUpdateOnFirstShowCheckBox"
+    xml:space="preserve">
+  <value>Automatically check for updates when WinManager is shown for the firs tttime after its launch</value>
+</data>
         <data name="closeButton"
           xml:space="preserve">
         <value>Close</value>
