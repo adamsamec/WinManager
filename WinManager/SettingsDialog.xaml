@@ -27,9 +27,9 @@ Unchecked="checkUpdateOnFirstShowCheckBox_Unchecked"
     <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>
     <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsHeader}"/>
 
-    <Button Name="checkForUpdatesButton"
-                Content="{x:Static lang:Resources.checkForUpdatesButton}"
-Click="checkForUpdatesButton_Click"
+    <Button Name="checkForUpdateButton"
+                Content="{x:Static lang:Resources.checkForUpdateButton}"
+Click="checkForUpdateButton_Click"
                 HorizontalAlignment="Left" />
     <Button Name="closeButton"
                 Content="{x:Static lang:Resources.closeButton}"

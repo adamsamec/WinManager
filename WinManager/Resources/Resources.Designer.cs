@@ -79,16 +79,16 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for updates.
+        ///   Looks up a localized string similar to Check for update.
         /// </summary>
-        public static string checkForUpdatesButton {
+        public static string checkForUpdateButton {
             get {
-                return ResourceManager.GetString("checkForUpdatesButton", resourceCulture);
+                return ResourceManager.GetString("checkForUpdateButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically check for updates when WinManager is shown for the firs tttime after its launch.
+        ///   Looks up a localized string similar to Automatically check for update when WinManager is shown for the firs tttime after its launch.
         /// </summary>
         public static string checkUpdateOnFirstShowCheckBox {
             get {

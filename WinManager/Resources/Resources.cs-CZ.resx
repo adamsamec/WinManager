@@ -161,9 +161,9 @@
           xml:space="preserve">
         <value>Zavřít</value>
     </data>
-                <data name="checkForUpdatesButton"
+                <data name="checkForUpdateButton"
           xml:space="preserve">
-        <value>Zkontrolovat aktualizace</value>
+        <value>Zkontrolovat aktualizaci</value>
     </data>
             <data name="updateAvailableTitle"
           xml:space="preserve">

@@ -83,7 +83,7 @@ namespace WinManager
             _manager.ChangeCheckUpdateOnFirstShowSetting(false);
         }
 
-        private async void checkForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        private async void checkForUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             var doUpdate = false;
             UpdateData? updateData = null;

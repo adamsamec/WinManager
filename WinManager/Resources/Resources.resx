@@ -191,15 +191,15 @@
     </data>
     <data name="checkUpdateOnFirstShowCheckBox"
     xml:space="preserve">
-  <value>Automatically check for updates when WinManager is shown for the firs tttime after its launch</value>
+  <value>Automatically check for update when WinManager is shown for the firs tttime after its launch</value>
 </data>
         <data name="closeButton"
           xml:space="preserve">
         <value>Close</value>
     </data>
-            <data name="checkForUpdatesButton"
+            <data name="checkForUpdateButton"
           xml:space="preserve">
-        <value>Check for updates</value>
+        <value>Check for update</value>
     </data>
             <data name="updateAvailableTitle"
           xml:space="preserve">
