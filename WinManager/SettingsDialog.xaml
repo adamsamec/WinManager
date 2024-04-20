@@ -24,13 +24,14 @@ Unchecked="launchOnStartupCheckBox_Unchecked"
 Unchecked="checkUpdateOnFirstShowCheckBox_Unchecked"
                   HorizontalAlignment="Left" />
 
-    <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>
-    <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsHeader}"/>
-
     <Button Name="checkForUpdateButton"
                 Content="{x:Static lang:Resources.checkForUpdateButton}"
 Click="checkForUpdateButton_Click"
                 HorizontalAlignment="Left" />
+
+    <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>
+    <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsHeader}"/>
+
     <Button Name="closeButton"
                 Content="{x:Static lang:Resources.closeButton}"
 IsDefault="True"
