@@ -122,16 +122,15 @@ namespace WinManager
                     if (doUpdate)
                     {
                         var downloadingUpdateDialog = new DownloadingUpdateDialog(this, AppUpdateData);
-                        downloadingUpdateDialog.Owner = _mainWindow;
                         downloadingUpdateDialog.DownloadUpdate();
                         downloadingUpdateDialog.ShowDialog();
                     }
                 }
             }
-            catch (ArgumentException)
+            catch (Exception ex)
             {
                 // Ignore if check for update fails
-                Debug.WriteLine("Problem updating");
+                    Debug.WriteLine("Exception during first launch update check: " + ex.ToString());
             }
         }
 
@@ -692,9 +691,9 @@ namespace WinManager
                     startupRegistryKey.DeleteValue(Consts.StartupRegistryKeyName);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Debug.WriteLine("Failed to update launch on startup registry");
+                    Debug.WriteLine("Exception during updating launch on startup registry: " + ex.ToString());
             }
             // Update settings
             AppSettings.launchOnStartup = Config.BoolToString(value);
