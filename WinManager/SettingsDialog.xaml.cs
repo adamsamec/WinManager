@@ -11,7 +11,6 @@ namespace WinManager
     public partial class SettingsDialog : Window
     {
         private Manager _manager;
-        private UpdateDownloadInProgressDialog? _updateDownloadInProgressDialog;
 
         public SettingsDialog(Manager manager)
         {

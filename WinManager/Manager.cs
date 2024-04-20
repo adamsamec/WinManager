@@ -18,6 +18,7 @@ namespace WinManager
         private MainWindow _mainWindow;
         private AutoOutput _srOutput = new AutoOutput();
         private Updater _appUpdater = new Updater();
+        private bool _hasCheckedForUpdateOnFirstShow = false;
 
         private List<RunningApplication> _appsList = new List<RunningApplication>();
         private List<RunningApplication> _filteredAppsList = new List<RunningApplication>();
@@ -31,7 +32,6 @@ namespace WinManager
         private const int RefreshAfterAppQuitDelay = 1500;
         private const int RefreshAfterWindowCloseDelay = 500;
 
-        public bool ShouldShowUpdatePromptOnStart { get; }
         public Settings AppSettings
         {
             get { return _config.AppSettings; }
@@ -110,8 +110,13 @@ namespace WinManager
             _srOutput.Speak(message);
         }
 
-        public async void CheckForUpdateOnStart()
+        private async void CheckForUpdateOnFirstShow()
         {
+            if (_hasCheckedForUpdateOnFirstShow)
+            {
+                return;
+            }
+                _hasCheckedForUpdateOnFirstShow = true;
             try
             {
                 AppUpdateData = await AppUpdater.CheckForUpdate();
@@ -131,6 +136,25 @@ namespace WinManager
             {
                 // Ignore if check for update fails
                     Debug.WriteLine("Exception during first launch update check: " + ex.ToString());
+            }
+        }
+
+        private void CheckOngoingUpdateDownload()
+        {
+            if (AppUpdater.State == Updater.UpdateState.Downloading || AppUpdater.State == Updater.UpdateState.Deleting)
+            {
+                var downloadingUpdateDialog = new DownloadingUpdateDialog(this, AppUpdateData);
+                downloadingUpdateDialog.Owner = _mainWindow;
+                downloadingUpdateDialog.ShowDialog();
+            }
+            else if (AppUpdater.DownloadingDialog != null)
+            {
+                // Make sure possibly existing previous launch update installer dialog is closed before opening it again
+                if (AppUpdater.LaunchInstallerDialog != null && AppUpdater.LaunchInstallerDialog.IsVisible)
+                {
+                    AppUpdater.LaunchInstallerDialog.DialogResult = false;
+                }
+                AppUpdater.DownloadingDialog.ShowLaunchUpdateInstallerDialog();
             }
         }
 
@@ -184,21 +208,9 @@ namespace WinManager
             // Display main window
             _mainWindow.Show(); // This extra Show() fixes the initial display
             _mainWindow.Display();
-            if (AppUpdater.State == Updater.UpdateState.Downloading || AppUpdater.State == Updater.UpdateState.Deleting)
-            {
-                var downloadingUpdateDialog = new DownloadingUpdateDialog(this, AppUpdateData);
-                downloadingUpdateDialog.Owner = _mainWindow;
-                downloadingUpdateDialog.ShowDialog();
-            }
-            else if (AppUpdater.DownloadingDialog != null)
-            {
-                // Make sure possibly existing previous launch update installer dialog is closed before opening it again
-                if (AppUpdater.LaunchInstallerDialog != null && AppUpdater.LaunchInstallerDialog.IsVisible)
-                {
-                    AppUpdater.LaunchInstallerDialog.DialogResult = false;
-                }
-                AppUpdater.DownloadingDialog.ShowLaunchUpdateInstallerDialog();
-            }
+
+            CheckForUpdateOnFirstShow();
+            CheckOngoingUpdateDownload();
         }
 
         private bool IsShown()
