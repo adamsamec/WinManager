@@ -191,8 +191,13 @@ namespace WinManager
                 downloadingUpdateDialog.Owner = _mainWindow;
                 downloadingUpdateDialog.ShowDialog();
             }
-            else if (AppUpdater.State == Updater.UpdateState.Downloaded && AppUpdater.DownloadingDialog != null)
+            else if (AppUpdater.DownloadingDialog != null)
             {
+                // Make sure possibly existing previous launch update installer dialog is closed before opening it again
+                if (AppUpdater.LaunchInstallerDialog != null && AppUpdater.LaunchInstallerDialog.IsVisible)
+                {
+                    AppUpdater.LaunchInstallerDialog.DialogResult = false;
+                }
                 AppUpdater.DownloadingDialog.ShowLaunchUpdateInstallerDialog();
             }
         }

@@ -64,12 +64,18 @@ namespace WinManager
 
         public void ShowLaunchUpdateInstallerDialog()
         {
+            if (_manager.AppUpdater.State != Updater.UpdateState.Downloaded)
+            {
+                return;
+            }
             var launchUpdateInstallerDialog = new LaunchUpdateInstallerDialog();
+            _manager.AppUpdater.LaunchInstallerDialog = launchUpdateInstallerDialog;
             if (IsVisible)
             {
                 launchUpdateInstallerDialog.Owner = this;
             }
             var doLaunchInstaller = launchUpdateInstallerDialog.ShowDialog() == true;
+            _manager.AppUpdater.State = Updater.UpdateState.Initial;
             if (doLaunchInstaller)
             {
                 _manager.AppUpdater.LaunchInstaller();

@@ -12,18 +12,15 @@ namespace WinManager
     /// </summary>
     public class Updater
     {
-        private UpdateState _state = UpdateState.Initial;
         private CancellationTokenSource? _cancellationTokenSource;
         private string _installerDownloadPath = "";
 
         private const int FileDeletionTimeLimit = 30000; // 30 seconds   
         private const int FileDeletionCheckInterval = 500; // 0.5 seconds
 
-        public UpdateState State
-        {
-            get { return _state; }
-        }
+        public UpdateState State { get; set; }
         public DownloadingUpdateDialog? DownloadingDialog { get; set; }
+        public LaunchUpdateInstallerDialog? LaunchInstallerDialog { get; set; }
 
         public enum UpdateState
         {
@@ -32,6 +29,11 @@ namespace WinManager
             FilesExist,
             Downloaded,
             Deleting
+        }
+
+        public Updater()
+        {
+            State = UpdateState.Initial;
         }
 
         public async Task<UpdateData?> CheckForUpdate()
@@ -52,7 +54,7 @@ namespace WinManager
 
         public async Task<bool> DownloadAsync(UpdateData updateData, DownloadProgressHandler downloadProgressHandler, DownloadCompleteHandler downloadCompleteHandler, InstallerRunningHandler installerRunningHandler, DownloadErrorHandler downloadErrorHandler)
         {
-            if (_state == UpdateState.Downloading || _state == UpdateState.Deleting)
+            if (State == UpdateState.Downloading || State == UpdateState.Deleting)
             {
                 Debug.WriteLine("Returning because update is being downloaded or deleted");
                 return false;
@@ -64,7 +66,7 @@ namespace WinManager
             _installerDownloadPath = Path.Combine(Consts.InstallerDownloadFolder, installerFilename);
 
             // Check if installer is not running
-            if (_state == UpdateState.Downloaded || _state == UpdateState.Initial)
+            if (State == UpdateState.Downloaded || State == UpdateState.Initial)
             {
                 if (File.Exists(_installerDownloadPath) && Utils.IsFileInUse(_installerDownloadPath))
                 {
@@ -76,12 +78,12 @@ namespace WinManager
 
             // Make sure empty installer folder is prepared for download
             Directory.CreateDirectory(Consts.InstallerDownloadFolder);
-            if (_state == UpdateState.FilesExist || _state == UpdateState.Downloaded)
+            if (State == UpdateState.FilesExist || State == UpdateState.Downloaded)
             {
-                _state = UpdateState.Deleting;
+                State = UpdateState.Deleting;
                 DeleteInstallerFiles();
             }
-            _state = UpdateState.Downloading;
+            State = UpdateState.Downloading;
 
             using (var client = new HttpClientDownloadWithProgress(installerUrlString, _installerDownloadPath))
             {
@@ -99,13 +101,13 @@ namespace WinManager
                     Debug.WriteLine("Starting download");
                     await client.StartDownload(_cancellationTokenSource);
                     Debug.WriteLine("Downloadd completed successfully");
-                    _state = UpdateState.Downloaded;
+                    State = UpdateState.Downloaded;
                     downloadCompleteHandler();
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("Exception during download: " + ex.ToString());
-                    _state = UpdateState.FilesExist;
+                    State = UpdateState.FilesExist;
                     if (ex is TaskCanceledException)
                     {
                         Debug.WriteLine("Downloadd cancelled by user");
@@ -123,13 +125,13 @@ namespace WinManager
 
         public void LaunchInstaller()
         {
-            try
-            {
-            Process.Start(_installerDownloadPath);
-            } catch (Win32Exception ex)
-            {
-                Debug.WriteLine("Exception during update installer launch: " + ex.ToString());
-            }
+                try
+                {
+                    Process.Start(_installerDownloadPath);
+                } catch (Win32Exception ex)
+                {
+                    Debug.WriteLine("Exception during update installer launch: " + ex.ToString());
+                }
         }
 
         public void DeleteInstallerFiles()
