@@ -22,6 +22,9 @@ namespace WinManager
             var html = _manager.GetHelpHTML();
             html = @"
 <html>
+<head>
+<meta charset='utf-8'>
+</head>
  <body>
 <div id='page' tabindex='0'>
 <h1>WinManager " + Consts.AppVersion + @"</h1>
