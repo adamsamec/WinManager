@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WinManager
 {
@@ -21,7 +20,7 @@ namespace WinManager
         {
             var html = _manager.GetHelpHTML();
             html = @"
-<html>
+<html lang='" + WinManager.Resources.Culture.TwoLetterISOLanguageName + @"'>
 <head>
 <meta charset='utf-8'>
 </head>
@@ -39,7 +38,6 @@ page.focus();
 </body>
 </html>
 ";
-            Debug.WriteLine(html);
             webBrowser.LoadCompleted += (sendr, e) =>
             {
                 webBrowser.InvokeScript("focusBegining");

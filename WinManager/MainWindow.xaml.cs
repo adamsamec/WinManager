@@ -38,9 +38,10 @@ namespace WinManager
             SetWindowToolStyle(new WindowInteropHelper(this).Handle);
 
             _manager.HandleMainWindowLoad();
-            itemsListBox.KeyDown += new KeyEventHandler((sender, e) => {
+            itemsListBox.KeyDown += new KeyEventHandler((sender, e) =>
+            {
                 var result = ItemsListBox_KeyDown(sender, e);
-                });
+            });
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -66,8 +67,8 @@ namespace WinManager
                 case Key.Delete:
                     var doForce = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
                     var newIndex = await _manager.CloseItem(itemsListBox.SelectedIndex, doForce);
-                        FocusItemAfterDelay(newIndex);
-                    break; 
+                    FocusItemAfterDelay(newIndex);
+                    break;
                 case Key.Back:
                     _manager.ResetFilter();
                     break;
