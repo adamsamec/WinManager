@@ -16,7 +16,7 @@ WinManager je nástroj, který přináší jednodušší správu aplikací a oke
 
 1. Vyvolejte WinManager se seznamem běžících aplikací stisknutím Windows + F12 nebo Windows + Shift + A.
 2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu.
-3. Stiskněte Shift + Dellete pro vynucené ukončení Microsoft Edge, čímž zajistíte, že se při příštím spuštění zeptá na obnovení všech svých naposledy zavřených oken.
+3. Stiskněte Shift + Delete pro vynucené ukončení Microsoft Edge, čímž zajistíte, že se při příštím spuštění zeptá na obnovení všech svých naposledy zavřených oken.
 
 ### Example 3: Same application window switching or closing
 Řekněme, že máte otevřeného Průzkumníka a chcete se přepnout do nebo zavřít jeho jiné okno "Stahování", které jste používali před dlouhou dobou.

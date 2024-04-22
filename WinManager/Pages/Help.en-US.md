@@ -16,7 +16,7 @@ Let's say you want to quit Microsoft Edge with all its windows so that it asks f
 
 1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
 2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
-3. Press Shift + Dellete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
+3. Press Shift + Delete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
 
 ### Example 3: Same application window switching or closing
 Let's say you are in File Explorer, and want to switch or close its another "Downloads" window that you used a long time ago:

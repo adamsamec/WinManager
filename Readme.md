@@ -17,7 +17,7 @@ Let's say you want to quit Microsoft Edge with all its windows so that it asks f
 
 1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
 2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
-3. Press Shift + Dellete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
+3. Press Shift + Delete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
 
 ### Example 3: Same application window switching or closing
 Let's say you are in File Explorer, and want to switch or close its another "Downloads" window that you used a long time ago:
@@ -79,7 +79,7 @@ For invoking the list of open windows for the application in the foreground, you
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
 ## Download
-Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info"link which should be available on the page displayed to you, and then press the "Run anyway" button.
+Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info" link which should be available on the page displayed to you, and then press the "Run anyway" button.
 
 ### Installer
 Below, you can download the installer for WinManager. The installer creates a Desktop shortcut. 
