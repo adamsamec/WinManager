@@ -79,6 +79,8 @@ For invoking the list of open windows for the application in the foreground, you
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
 ## Download
+Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info"link which should be available on the page displayed to you, and then press the "Run anyway" button.
+
 ### Installer
 Below, you can download the installer for WinManager. The installer creates a Desktop shortcut. 
 
