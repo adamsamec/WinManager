@@ -9,8 +9,8 @@ cs.LaunchAfterInstall=Spustit WinManager po dokončení instalace
 ExecutableFilename={cm:MyAppName}.exe
 
 [Setup]
-OutputBaseFilename=WinManager-0.1.0-win32-setup
-AppVersion=0.1.0
+OutputBaseFilename=WinManager-1.0.0-win32-setup
+AppVersion=1.0.0
 AppName={cm:MyAppName}
 AppId=WinManager
 ;PrivilegesRequired=lowest
