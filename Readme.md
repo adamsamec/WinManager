@@ -26,6 +26,9 @@ Let's say you are in File Explorer, and want to switch or close its another "Dow
 2. Arrow down to the "Downloads" window, or simply just type "down" to filter the list.
 3. Press Enter when on the "Downloads" window to switch to it, or press Delete to close it.
 
+## What's new
+The complete [changelog can be found here][changelog].
+
 ## Features
 After starting, WinManager notifies the user it has been started and then runs in background until its functionality is invoked using the corresponding keyboard shortcuts, which are global, that is, the shortcuts work no matter which application or window is currently in the foreground. The user can invoke the following lists:
 
@@ -118,5 +121,6 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+[changelog]: https://github.com/adamsamec/WinManager/blob/main/WinManager/Pages/ChangeLog.en-US.md
 [installer-download]: https://files.adamsamec.cz/apps/WinManager-win32-setup.exe
 [portable-download]: https://files.adamsamec.cz/apps/WinManager-win32.zip
