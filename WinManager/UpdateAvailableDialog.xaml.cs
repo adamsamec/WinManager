@@ -21,7 +21,14 @@ namespace WinManager
         private void UpdateAvailableDialog_Loaded(object sender, RoutedEventArgs e)
         {
             updateAvailableMessage.Text = String.Format(WinManager.Resources.updateAvailableMessage, _updateData.version, Consts.AppVersion);
-            yesButton.Focus();
+            whatsNewButton.Focus();
+        }
+
+        private void whatsNewButton_Click(object sender, RoutedEventArgs e)
+        {
+            var changeLogWindow = new ChangeLogWindow();
+            changeLogWindow.Owner = this;
+            changeLogWindow.ShowDialog();
         }
 
         private void yesButton_Click(object sender, RoutedEventArgs e)

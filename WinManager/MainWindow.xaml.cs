@@ -98,7 +98,7 @@ namespace WinManager
 
         private void helpButton_Click(object sender, RoutedEventArgs e)
         {
-            var helpWindow = new HelpWindow(_manager);
+            var helpWindow = new HelpWindow(    );
             helpWindow.Owner = this;
             helpWindow.ShowDialog();
         }

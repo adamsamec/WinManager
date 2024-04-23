@@ -14,12 +14,15 @@ WindowStartupLocation="CenterScreen"
         Loaded="UpdateAvailableDialog_Loaded">
     <Grid>
     <TextBlock Name="updateAvailableMessage" />
+    <Button Name="whatsNewButton"
+Content="{x:Static lang:Resources.whatsNewButton}"
+Click="whatsNewButton_Click"
+                HorizontalAlignment="Right" />
     <Button Content="{x:Static lang:Resources.notNowButton}"
 Click="notNowButton_Click"
 IsCancel="True"
                 HorizontalAlignment="Right" />
-                    <Button Name="yesButton"
-                Content="{x:Static lang:Resources.yesButton}"
+                    <Button Content="{x:Static lang:Resources.yesButton}"
 Click="yesButton_Click"
 IsDefault="True"
                 HorizontalAlignment="Right" />

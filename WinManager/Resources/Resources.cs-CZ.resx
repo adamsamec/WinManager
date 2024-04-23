@@ -149,11 +149,11 @@
   xml:space="preserve">
 <value>Nápověda</value>
 </data>
-      <data name="helpWindowTitle"
+      <data name="helpTitle"
     xml:space="preserve">
   <value>Nápověda pro WinManager</value>
 </data>
-      <data name="settingsDialogTitle"
+      <data name="settingsTitle"
           xml:space="preserve">
         <value>Nastavení pro WinManager</value>
     </data>
@@ -189,6 +189,14 @@
           xml:space="preserve">
         <value>Nyní ne</value>
     </data>
+    <data name="whatsNewButton"
+    xml:space="preserve">
+  <value>Co je nového</value>
+</data>
+<data name="whatsNewTitle"
+xml:space="preserve">
+<value>Co je nového ve WinManageru</value>
+</data>
                 <data name="noUpdateAvailableTitle"
           xml:space="preserve">
         <value>Žádná dostupná instalace</value>

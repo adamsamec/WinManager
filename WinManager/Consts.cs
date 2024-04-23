@@ -7,11 +7,13 @@ namespace WinManager
     /// </summary>
     public static class Consts
     {
-        public const string AppVersion = "1.0.0";
+        public const string AppVersion = "1.0.1";
         public static readonly bool ForceCzechLanguage = false;
 
         // Paths and filenames
-        public static string HelpFileRelativePath = Path.Combine("Pages", "Help.{0}.md");
+        public const string PagesFolder = "Pages";
+        public static string HelpFileRelativePath = Path.Combine(PagesFolder, "Help.{0}.md");
+        public static string ChangeLogFileRelativePath = Path.Combine(PagesFolder, "ChangeLog.{0}.md");
         public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public const string ExecutableFilename = "WinManager.exe";
         public const string ConfigDefaultFilename = "App.config.default.json";

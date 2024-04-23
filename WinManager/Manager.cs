@@ -1,10 +1,8 @@
 ﻿using AccessibleOutput;
-using Markdig;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
-using System.Text;
 
 namespace WinManager
 {
@@ -158,22 +156,6 @@ namespace WinManager
                 }
                 AppUpdater.DownloadingDialog.ShowLaunchUpdateInstallerDialog();
             }
-        }
-
-        public string GetHelpHTML()
-        {
-            var mdRelativePath = String.Format(Consts.HelpFileRelativePath, WinManager.Resources.Culture.Name);
-            var mdPath = Path.Combine(Consts.InstallFolder, mdRelativePath);
-            try
-            {
-                var mdString = File.ReadAllText(mdPath, Encoding.UTF8);
-                var html = Markdown.ToHtml(mdString);
-            return html;
-            } catch (Exception ex)
-            {
-                Debug.WriteLine("Exception during help file load: " + ex.ToString());
-            }
-            return "Error";
         }
 
         public void HandleMainWindowLoad()

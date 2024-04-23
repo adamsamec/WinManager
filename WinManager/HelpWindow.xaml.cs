@@ -7,43 +7,16 @@ namespace WinManager
     /// </summary>
     public partial class HelpWindow : Window
     {
-        private Manager _manager;
-
-        public HelpWindow(Manager manager)
+        public HelpWindow()
         {
             InitializeComponent();
-
-            _manager = manager;
         }
 
         private void HelpWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var html = _manager.GetHelpHTML();
-            html = @"
-<html lang='" + WinManager.Resources.Culture.TwoLetterISOLanguageName + @"'>
-<head>
-<meta charset='utf-8'>
-</head>
- <body>
-<div id='page' tabindex='0'>
-<h1>WinManager " + Consts.AppVersion + @"</h1>
-" + html + @"
-</div>
-<script>
-function focusBegining() {
-var page = document.getElementById('page');
-page.focus();
-}
-</script>
-</body>
-</html>
-";
-            webBrowser.LoadCompleted += (sendr, e) =>
-            {
-                webBrowser.InvokeScript("focusBegining");
-            };
-            webBrowser.NavigateToString(html);
-            webBrowser.Focus();
+            var pageContent = "<h1>WinManager " + Consts.AppVersion + @"</h1>
+" + Page.GetHelpPageContent();
+            Page.SetupWebBrowser(webBrowser, pageContent);
         }
     }
 }

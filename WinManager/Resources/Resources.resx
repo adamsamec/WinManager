@@ -185,11 +185,11 @@
     xml:space="preserve">
   <value>Help</value>
 </data>
-    <data name="helpWindowTitle"
+    <data name="helpTitle"
     xml:space="preserve">
   <value>Help for WinManager</value>
 </data>
-    <data name="settingsDialogTitle"
+    <data name="settingsTitle"
           xml:space="preserve">
         <value>Settings for WinManager</value>
     </data>
@@ -225,6 +225,14 @@
           xml:space="preserve">
         <value>Not now</value>
     </data>
+    <data name="whatsNewButton"
+    xml:space="preserve">
+  <value>What's new</value>
+</data>
+<data name="whatsNewTitle"
+xml:space="preserve">
+<value>What's new in WinManager</value>
+</data>
                 <data name="noUpdateAvailableTitle"
           xml:space="preserve">
         <value>No update available</value>

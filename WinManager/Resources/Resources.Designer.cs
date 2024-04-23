@@ -207,9 +207,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Help for WinManager.
         /// </summary>
-        public static string helpWindowTitle {
+        public static string helpTitle {
             get {
-                return ResourceManager.GetString("helpWindowTitle", resourceCulture);
+                return ResourceManager.GetString("helpTitle", resourceCulture);
             }
         }
         
@@ -351,9 +351,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Settings for WinManager.
         /// </summary>
-        public static string settingsDialogTitle {
+        public static string settingsTitle {
             get {
-                return ResourceManager.GetString("settingsDialogTitle", resourceCulture);
+                return ResourceManager.GetString("settingsTitle", resourceCulture);
             }
         }
         
@@ -462,6 +462,24 @@ namespace WinManager {
         public static string updateInstallRunningTitle {
             get {
                 return ResourceManager.GetString("updateInstallRunningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s new.
+        /// </summary>
+        public static string whatsNewButton {
+            get {
+                return ResourceManager.GetString("whatsNewButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s new in WinManager.
+        /// </summary>
+        public static string whatsNewTitle {
+            get {
+                return ResourceManager.GetString("whatsNewTitle", resourceCulture);
             }
         }
         
