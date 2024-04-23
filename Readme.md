@@ -1,4 +1,4 @@
-# WinManager 1.0.0
+# WinManager
 ## Introduction
 WinManager is a utility which brings easier application and windows management to Microsoft Windows. WinManager enables efficient applications and windows switching and closing functionality that is optimized for the keyboard only and screen reader users. You will find the benefit of WinManager especially if you are running many applications and their open windows at the same time.
 
