@@ -2,28 +2,29 @@
 WinManager je nástroj, který přináší jednodušší správu aplikací a oken do Microsoft Windows. Umožňuje efektivnější přepínání a zavírání aplikací a oken optimalizované pro uživatele ovládající systém výhradně pomocí klávesnice nebo pomocí odečítače obrazovky. Práci usnadní zejména v případě, kdy máte spuštěno mnoho aplikací a jejich oken současně.
 
 ## Ukázky použití
-### Ukázka 1: Přepínání nebo zavírání okna
+Přínos nástroje WinManager lze demonstrovat nejlépe pomocí konkrétních ukázek jeho použití. Dejme tomu, že máte otevřené dva dokumenty aplikace Microsoft Word, dále pět oken webového prohlížeče Microsoft Edge, tři okna Průzkumníka souborů a ještě okno s doručenou poštou v aplikaci Microsoft Outlook.
+
+### Ukázka 1: Přepínání nebo zavírání oken
 řekněme, že se chcete přepnout do nebo zavřít určité okno aplikace Microsoft Edge, ve kterém jste něco hledali pomocí vyhledávače Google:
 
-1. Vyvolejte WinManager se seznamem běžících aplikací stisknutím Windows + F12 nebo Windows + Shift + A.
-2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu.
+1. Stisknutím Windows + F12 nebo Windows + Shift + A vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
+2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu aplikací.
 3. Stiskněte šipku doprava pro zobrazení všech oken aplikace Microsoft Edge.
 4. Šipkou dolů se přesuňte na požadované okno s vyhledávačem Google, nebo vyfiltrujte seznam oken pouhým napsáním "Google".
 5. Stiskněte Enter na požadovaném okně pro přepnutí do něj, nebo stiskněte Delete pro jeho zavření.
 
-### Ukázka 2: Ukončování aplikace
+### Ukázka 2: Ukončování aplikací
 Řekněme, že chcete zavřít aplikaci Microsoft Edge tak, aby se při jejím příštím spuštění zeptala na obnovení všech svých naposledy zavřených oken.
 
-1. Vyvolejte WinManager se seznamem běžících aplikací stisknutím Windows + F12 nebo Windows + Shift + A.
-2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu.
+1. Stisknutím Windows + F12 nebo Windows + Shift + A vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
+2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu aplikací.
 3. Stiskněte Shift + Delete pro vynucené ukončení Microsoft Edge, čímž zajistíte, že se při příštím spuštění zeptá na obnovení všech svých naposledy zavřených oken.
 
-### Example 3: Same application window switching or closing
+### Ukázka 3: Přepínání nebo ukončování oken pouze pro aplikaci v popředí
 Řekněme, že máte otevřeného Průzkumníka a chcete se přepnout do nebo zavřít jeho jiné okno "Stahování", které jste používali před dlouhou dobou.
 
-1. Vyvolejte WinManager se seznamem otevřených oken jen pro aplikaci Průzkumník, která je v popředí, stisknutím Windows + F11 nebo Windows + Shift + Q.
+1. Stisknutím Windows + F11 nebo Windows + Shift + Q vyvolejte nástroj WinManager. Zobrazí se seznam otevřených oken jen pro aplikaci, která je právě v popředí, tedy pro Průzkumník.
 2. Šipkou dolů se přesuňte na okno "Stahování"", nebo vyfiltrujte seznam oken pouhým napsáním "stah".
-2. Arrow down to the "Downloads" window, or ssimply type "down" to filter the list.
 3. Stiskněte Enter na okně "Stahování" pro přepnutí do něj, nebo stiskněte Delete pro jeho zavření.
 
 ## Funkce
@@ -37,7 +38,7 @@ Stisknutím zkratky Windows + F12 nebo alternativně Windows + Shift + A můžet
 
 * Šipka dolů nebo nahoru: Přesune vás na následující nebo předchozí položku v seznamu.
 * Šipka doprava: Jestliže je vybrána aplikace, tak vás přesune do seznamu otevřených oken jen této vybrané aplikace.
-* Šipka doleva: Jestliže je vybráno okno, tak vás přesune zpět do seznamu spuštěných aplikací.
+* Šipka doleva: Jestliže je vybráno okno, tak vás přesune zpět do seznamu běžících aplikací.
 * Enter: Jestliže je vybrána aplikace, přepne vás do naposledy používaného okna této aplikace. Pokud je vybráno okno, tak vás přepne do tohoto okna. Poté skryje WinManager.
 * Delete: Jestliže je vybrána aplikace, ukončí tuto aplikaci. Pokud je vybráno okno, tak zavře toto okno. Chcete-li aplikaci ukončit vynuceně, stiskněte Shift + Delete. Upozornění: Vynucené ukončení aplikaci ukončí bez ohledu na to, jestli v ní máte neuloženou práci, kdežto běžné ukončení aplikace nebo zavírání okna může v případě, že v nich máte neuloženou práci, selhat.
 * Escape: Skryje WinManager.
@@ -53,11 +54,11 @@ Stisknutím zkratky Windows + F11 nebo alternativně Windows + Shift + Q můžet
 * Alt + F4: Ukončí WinManager, takže už nebude nadále běžet na pozadí. WinManager oznámí, že byl ukončen.
 
 ### Nastavení nástroje WinManager
-Nastavení je dostupné přes tlačítko „Nastavení a další“, na které se lze přesunout pomocí klávesy tabulátor nebo Shift + tabulátor v okně nástroje WinManager.
+Nastavení je dostupné přes tlačítko „Nastavení a další“, na které se lze přesunout pomocí klávesy tabulátor nebo Shift + tabulátor v základním okně nástroje WinManager.
 
 Po spuštění bude WinManager přidán mezi aplikace, které se spouští automaticky po přihlášení aktuálního uživatele do systému Microsoft Windows. Toto automatické spouštění nástroje WinManager můžete zrušit v dialogu pro jeho nastavení.
 
-### Filtrování seznamu aplikací nebo oken a navigace v něm počátečními písmeny
+### Filtrování seznamu aplikací nebo oken psaním
 Pro urychlení nalezení požadované aplikace nebo okna podporují seznam aplikací i oken funkcionalitu filtrování těchto seznamů prostřednictvím psaní, což znamená, že v případě, kdy je seznam zaměřen fokusem, můžete psát znaky a seznam bude okamžitě náležitě vyfiltrován, čili zobrazí se jen aplikace nebo okna, jejichž titulek obsahuje napsané znaky. Filtrování nerozlišuje velká a malá písmena.
 
 Filtr je možné resetovat a opět tak zobrazit původní aplikace nebo okna stisknutím klávesy Backspace.

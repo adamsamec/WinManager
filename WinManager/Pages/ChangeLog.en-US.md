@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.2
+* Small text corrections and other changes for the help page.
+
 ## WinManager 1.0.1
 * Added this "What's new in WinManager" page.
 

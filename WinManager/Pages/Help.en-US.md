@@ -2,27 +2,29 @@
 WinManager is a utility which brings easier application and windows management to Microsoft Windows. WinManager enables efficient applications and windows switching and closing functionality that is optimized for the keyboard only and screen reader users. You will find the benefit of WinManager especially if you are running many applications and their open windows at the same time.
 
 ## Example usage
-### Example 1: Window switching or closing
+The benefit of WinManager can be best demonstrated on specific example of its usage. Let's assume you have open two Microsoft Word documents, four windows in the Microsoft Edge web browser, three File Explorer windows, and a Microsoft Outlook window with the inbox folder.
+
+### Example 1: Windows switching or closing
 Let's say you want to switch to or close certain window in Microsoft Edge where you searched something using Google:
 
-1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
-2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
+1. Press Windows + F12, or Windows + Shift + A, to invoke WinManager. A list of four running applications mentioned above will be displayed.
+2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list of applications.
 3. Press the Right arrow key to show all windows for Microsoft Edge.
 4. Arrow down to the desired Google search window, or narrow down the windows list just by typing "google".
 5. Press Enter when on the desired window to switch to it, or press Delete to close it.
 
-### Example 2: Application quitting
+### Example 2: Applications quitting
 Let's say you want to quit Microsoft Edge with all its windows so that it asks for restoring all the windows next time you start it:
 
-1. Invoke WinManager with the list of running applications by pressing Windows + F12, or Windows + Shift + A.
-2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list.
+1. Press Windows + F12, or Windows + Shift + A, to invoke WinManager. A list of four running applications mentioned above will be displayed.
+2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list of applications.
 3. Press Shift + Delete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
 
-### Example 3: Same application window switching or closing
+### Example 3: Windows switching or closing only for the application in foreground
 Let's say you are in File Explorer, and want to switch or close its another "Downloads" window that you used a long time ago:
 
-1. Invoke WinManager with the list of open windows only for the File Explorer application which is in foreground by pressing Windows + F11, or Windows + Shift + Q.
-2. Arrow down to the "Downloads" window, or simply just type "down" to filter the list.
+1. Press Windows + F11, or Windows + Shift + Q, to invoke WinManager. A list of open windows only for the application in foreground will be displayed, that is, for File Explorer.
+2. Arrow down to the "Downloads" window, or simply just type "down" to filter the list of windows.
 3. Press Enter when on the "Downloads" window to switch to it, or press Delete to close it.
 
 ## Features
@@ -56,7 +58,7 @@ The WinManager settings can be accessed by the "Settings and more" button which 
 
 After WinManager is launched, it registers itself so that it will be automatically launched every time you log in to Microsoft Windows. This auto launch behavior can be disabled in WinManager settings dialog.
 
-### Applications or windows list filtering and first-letter navigation
+### Applications or windows list filtering by typing
 To make the finding of the desired application or window faster, the list of applications or windows supports filter by typing feature, which means that whenever the list is focused, typing characters immediately filters the list, displaying only the applications or windows whose titles contain the typed characters. The filtering is not case sensitive.
 
 The filter can be reset and the original unfiltered list of applications or windows displayed back again by pressing Backspace.

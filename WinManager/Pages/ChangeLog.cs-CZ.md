@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.2
+* Drobné opravy a jiné změny textu na stránce s nápovědou.
+
 ## WinManager 1.0.1
 * Přidána tato stránka "Co je nového ve WinManageru".
 
