@@ -76,7 +76,7 @@ For invoking the list of open windows for the application in the foreground, you
 * Windows + F11 (checked by default).
 * Windows + Shift + Q (checked by default).
 
-### Known limitations
+## Known limitations
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
 ## Contact and feedback

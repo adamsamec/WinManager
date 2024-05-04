@@ -96,7 +96,7 @@ WinManager is also available as a portable executable not requiring installation
 ### Source files
 WinManager is a free and open-source software developed in C# as a WPF application using the .NET 8.0 framework. You can find all the necessary source files in the "WinManager" folder of this repo.
 
-### Known limitations
+## Known limitations
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
 ## License
