@@ -80,9 +80,6 @@ For invoking the list of open windows for the application in the foreground, you
 * Windows + F11 (checked by default).
 * Windows + Shift + Q (checked by default).
 
-### Known limitations
-* Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
-
 ## Download
 Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info" link which should be available on the page displayed to you, and then press the "Run anyway" button.
 
@@ -98,6 +95,9 @@ WinManager is also available as a portable executable not requiring installation
 
 ### Source files
 WinManager is a free and open-source software developed in C# as a WPF application using the .NET 8.0 framework. You can find all the necessary source files in the "WinManager" folder of this repo.
+
+### Known limitations
+* Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
 
 ## License
 WinManager is available under the MIT license.
