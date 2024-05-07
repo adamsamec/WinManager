@@ -1,8 +1,8 @@
-﻿using AccessibleOutput;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
+using System.Speech.Synthesis;
 
 namespace WinManager
 {
@@ -16,7 +16,7 @@ namespace WinManager
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
         private MainWindow _mainWindow;
-        private AutoOutput _srOutput = new AutoOutput();
+        private SpeechSynthesizer _sspeech = new SpeechSynthesizer();
         private Updater _appUpdater = new Updater();
         private bool _hasCheckedForUpdateOnFirstShow = false;
 
@@ -107,7 +107,7 @@ namespace WinManager
 
         public void Speak(string message)
         {
-            _srOutput.Speak(message);
+            _sspeech.Speak(message);
         }
 
         private async void CheckForUpdateOnFirstShow()

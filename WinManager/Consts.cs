@@ -7,7 +7,7 @@ namespace WinManager
     /// </summary>
     public static class Consts
     {
-        public const string AppVersion = "1.0.2";
+        public const string AppVersion = "1.0.3";
         public static readonly bool ForceCzechLanguage = false;
 
         // Paths and filenames

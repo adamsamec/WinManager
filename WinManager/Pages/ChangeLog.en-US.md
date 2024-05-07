@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.3
+* Fix where for some users WinManager failed to launch. WinManager now uses voice installed in Windows instead of screen reader voice.
+
 ## WinManager 1.0.2
 * Small text corrections and other changes for the help page.
 

@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.3
+* Oprava nemožnosti spustit WinManager u některých uživatelů. WinManager nyní používá hlas nainstalovaný v systému Windows namísto hlasu odečítače.
+
 ## WinManager 1.0.2
 * Drobné opravy a jiné změny textu na stránce s nápovědou.
 

@@ -11,11 +11,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AccessibleOutput" Version="1.0.0" />
 		<PackageReference Include="Markdig" Version="0.37.0" />
 		<PackageReference Include="System.Speech" Version="8.0.0" />
 	</ItemGroup>
-
+							
 	<ItemGroup>
 		<Compile Update="Resources\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
