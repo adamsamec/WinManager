@@ -1,7 +1,10 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
+using System.Linq.Expressions;
 using System.Media;
+using System.Reflection;
+using System.Speech.Recognition;
 using System.Speech.Synthesis;
 
 namespace WinManager
@@ -16,7 +19,7 @@ namespace WinManager
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
         private MainWindow _mainWindow;
-        private SpeechSynthesizer _sspeech = new SpeechSynthesizer();
+        private SpeechSynthesizer _speech = new SpeechSynthesizer();
         private Updater _appUpdater = new Updater();
         private bool _hasCheckedForUpdateOnFirstShow = false;
 
@@ -63,10 +66,8 @@ namespace WinManager
             _mainWindow = mainWindow;
 
             InitTriggerShortcuts();
-
-            // Update WinManager launch on startup seting from config
-            var isLaunchOnStartupEnabled = Config.StringToBool(AppSettings.launchOnStartup);
-            ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
+            InitSettingsFromConfig();
+            InitSpeech();
 
             // Announce WinManager start
             Speak(Resources.startAnnouncement);
@@ -88,6 +89,26 @@ namespace WinManager
             }
         }
 
+        private void InitSettingsFromConfig()
+        {
+            // Update WinManager launch on startup seting from config
+            var isLaunchOnStartupEnabled = Config.StringToBool(AppSettings.launchOnStartup);
+            ChangeLaunchOnStartupSetting(isLaunchOnStartupEnabled);
+        }
+
+        private void InitSpeech()
+        {
+            try
+            {
+                _speech.InjectOneCoreVoices();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception during OneCore voices injection: " + ex.ToString());
+            }
+            _speech.SelectVoiceByHints(VoiceGender.NotSet, VoiceAge.NotSet, 0, WinManager.Resources.Culture);
+        }
+
         private void UpdateHook(TriggerShortcut shortcut)
         {
             if (shortcut.IsEnabled && shortcut.Hook == null)
@@ -107,7 +128,7 @@ namespace WinManager
 
         public void Speak(string message)
         {
-            _sspeech.Speak(message);
+            _speech.Speak(message);
         }
 
         private async void CheckForUpdateOnFirstShow()

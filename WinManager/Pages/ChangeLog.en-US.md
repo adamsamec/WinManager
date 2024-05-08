@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.4
+* WinManager now detects all installed Windows OneCore voices and selects one based on current Windows language.
+
 ## WinManager 1.0.3
 * Fix where for some users WinManager failed to launch. WinManager now uses voice installed in Windows instead of screen reader voice.
 
