@@ -441,8 +441,17 @@ namespace WinManager
             switch (View)
             {
                 case ListView.Apps:
-                    var process = _filteredAppsList[itemIndex].AppProcess;
+                    var app = _filteredAppsList[itemIndex];
+                    var process = app.AppProcess;
+
+                    // In case of explorer.exe, switch to its first window instead of its main window
+                if (process.ProcessName == "explorer" && app.Windows.Count >= 1)
+                    {
+                        handle = app.Windows[0].Handle;
+                    } else
+                    {
                     handle = process.MainWindowHandle;
+                    }
                     break;
                 case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
