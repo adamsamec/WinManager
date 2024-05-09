@@ -1,3 +1,4 @@
 ## TODO
-* Update English and Czech help pages.
+* Fix File Explorer quitting.
+* Fix when closing a window rearranges running applications list.
 * Fix listing of Settings, Calculator and maybe some other modern apps.
