@@ -1,10 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
-using System.Linq.Expressions;
 using System.Media;
-using System.Reflection;
-using System.Speech.Recognition;
 using System.Speech.Synthesis;
 
 namespace WinManager
@@ -44,9 +41,9 @@ namespace WinManager
             get { return _config.TriggerShortcuts; }
         }
         public int CurrentAppIndex
-        { 
-        get { return _currentAppIndex; }
-}
+        {
+            get { return _currentAppIndex; }
+        }
         public ListView View
         {
             get { return _view; }
@@ -371,9 +368,15 @@ namespace WinManager
                 app = new RunningApplication(appName, process);
                 processesAppsList.Add(app);
             }
-            processesAppsList = processesAppsList.OrderBy(app => app.ZIndex).ToList();
             RefreshAndCategorizeWindows(ref processesAppsList);
             _appsList.Clear();
+
+            // Order apps and their windows according to time last used
+            foreach (var app in processesAppsList)
+            {
+                app.SetZOrder();
+            }
+            processesAppsList = processesAppsList.OrderBy(app => app.ZIndex).ToList();
 
             // Turn apps with the same process name into windows
             foreach (var processApp in processesAppsList)
@@ -445,12 +448,13 @@ namespace WinManager
                     var process = app.AppProcess;
 
                     // In case of explorer.exe, switch to its first window instead of its main window
-                if (process.ProcessName == "explorer" && app.Windows.Count >= 1)
+                    if (process.ProcessName == "explorer" && app.Windows.Count >= 1)
                     {
                         handle = app.Windows[0].Handle;
-                    } else
+                    }
+                    else
                     {
-                    handle = process.MainWindowHandle;
+                        handle = process.MainWindowHandle;
                     }
                     break;
                 case ListView.ForegroundAppWindows:
@@ -565,14 +569,15 @@ namespace WinManager
                     var windowToClose = _filteredWindowsList[itemIndex];
                     RefreshApps();
                     var appIndex = -1;
-                    var refreshedAppWithWindowToClose = _filteredAppsList.Find(app => {
+                    var refreshedAppWithWindowToClose = _filteredAppsList.Find(app =>
+                    {
                         appIndex += 1;
                         var doFilter = app.Equals(appWithWindowToClose);
                         return doFilter;
-                        });
+                    });
                     if (refreshedAppWithWindowToClose != null && _appsList.Contains(refreshedAppWithWindowToClose))
                     {
-                    _currentAppIndex = appIndex;
+                        _currentAppIndex = appIndex;
                         var closingFailed = false;
                         foreach (var window in refreshedAppWithWindowToClose.Windows)
                         {

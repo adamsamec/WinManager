@@ -1,8 +1,9 @@
 # Co je nového ve WinManageru
 ## WinManager 1.0.4
 * WinManager nyní rozpozná všechny OneCore hlasy nainstalované ve Windows a zvolí hlas podle současného jazyka windows.
-* Oprava špatného zvolení aplikace při zavírání okna, jestliže se pořadí aplikace změnilo.
 * Oprava nemožnosti přepnout se do Průzkumníka ze seznamu aplikací.
+* Oprava špatného zvolení aplikace při zavírání okna, jestliže se pořadí aplikace změnilo.
+* Oprava pořadí Průzkumníka v seznamu aplikací.
 
 ## WinManager 1.0.3
 * Oprava nemožnosti spustit WinManager u některých uživatelů. WinManager nyní používá hlas nainstalovaný v systému Windows namísto hlasu odečítače.

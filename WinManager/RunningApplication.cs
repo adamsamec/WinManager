@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Reflection.Metadata;
 
 namespace WinManager
 {
@@ -25,13 +24,19 @@ namespace WinManager
             AppProcess = process;
             HasWindowsWithOwnProcesses = hasWindowsWithOwnProcesses;
             Windows = new List<OpenWindow>();
-
-            SetZOrder();
         }
 
         public void SetZOrder()
         {
-            IntPtr handle = AppProcess.MainWindowHandle;
+            IntPtr handle;
+            if (Windows.Count >= 1)
+            {
+                handle = Windows[0].Handle;
+            }
+            else
+            {
+                handle = AppProcess.MainWindowHandle;
+            }
             var z = 0;
             // 3 is GetWindowType.GW_HWNDPREV
             for (var h = handle; h != IntPtr.Zero; h = NativeMethods.GetWindow(h, 3))
