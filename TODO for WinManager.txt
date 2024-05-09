@@ -1,4 +1,4 @@
 ## TODO
-* Fix File Explorer quitting.
-* Fix when closing a window rearranges running applications list.
+* Load the What's new page from Internet.
+* Delete old installers after new one is downloaded.
 * Fix listing of Settings, Calculator and maybe some other modern apps.
