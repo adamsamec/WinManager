@@ -43,6 +43,10 @@ namespace WinManager
         {
             get { return _config.TriggerShortcuts; }
         }
+        public int CurrentAppIndex
+        { 
+        get { return _currentAppIndex; }
+}
         public ListView View
         {
             get { return _view; }
@@ -551,9 +555,15 @@ namespace WinManager
                     var appWithWindowToClose = _filteredAppsList[_currentAppIndex];
                     var windowToClose = _filteredWindowsList[itemIndex];
                     RefreshApps();
-                    var refreshedAppWithWindowToClose = _filteredAppsList.Find(app => app.Equals(appWithWindowToClose));
+                    var appIndex = -1;
+                    var refreshedAppWithWindowToClose = _filteredAppsList.Find(app => {
+                        appIndex += 1;
+                        var doFilter = app.Equals(appWithWindowToClose);
+                        return doFilter;
+                        });
                     if (refreshedAppWithWindowToClose != null && _appsList.Contains(refreshedAppWithWindowToClose))
                     {
+                    _currentAppIndex = appIndex;
                         var closingFailed = false;
                         foreach (var window in refreshedAppWithWindowToClose.Windows)
                         {

@@ -13,7 +13,6 @@ namespace WinManager
     public partial class MainWindow : Window
     {
         private Manager _manager;
-        private int _prevItemsListIndex = 0;
 
         public MainWindow()
         {
@@ -73,7 +72,6 @@ namespace WinManager
                     _manager.ResetFilter();
                     break;
                 case Key.Right:
-                    _prevItemsListIndex = itemsListBox.SelectedIndex;
                     if (_manager.ShowSelectedAppWindows(itemsListBox.SelectedIndex))
                     {
                         FocusItemAfterDelay(0);
@@ -82,7 +80,7 @@ namespace WinManager
                 case Key.Left:
                     if (_manager.ShowApps())
                     {
-                        FocusItemAfterDelay(_prevItemsListIndex);
+                        FocusItemAfterDelay(_manager.CurrentAppIndex);
                     }
                     break;
                 default:
