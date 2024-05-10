@@ -1,4 +1,5 @@
 ## TODO
-* Load the What's new page from Internet.
+* Load the What's new page from Internet, ideally from GitHub as a raw page.
+* Fix not working desktop shortcut.
 * Delete old installers after new one is downloaded.
 * Fix listing of Settings, Calculator and maybe some other modern apps.
