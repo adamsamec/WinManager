@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.5
+* Oprava, aby se stránka Co je nového načítalla z Internetu s aktuálním obsahem.
+
 ## WinManager 1.0.4
 * WinManager nyní rozpozná všechny OneCore hlasy nainstalované ve Windows a zvolí hlas podle současného jazyka windows.
 * Oprava nemožnosti přepnout se do Průzkumníka ze seznamu aplikací.

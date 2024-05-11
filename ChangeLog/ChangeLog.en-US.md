@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.5
+* Fix for the What's new page to be loaded from the Internet with the latest contents.
+
 ## WinManager 1.0.4
 * WinManager now detects all installed Windows OneCore voices and selects one based on current Windows language.
 * Fix unable to switch to File Explorer from the apps list.

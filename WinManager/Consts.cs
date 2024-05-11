@@ -12,7 +12,7 @@ namespace WinManager
 
         // URLs
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
-        public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}].md";
+        public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}.md";
 
         // Paths and filenames
         public const string PagesFolder = "Pages";
