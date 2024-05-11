@@ -48,7 +48,7 @@ namespace WinManager
                 {
                     if (token == null || GetProperty(token, "Attributes") == null) continue;
 
-                    var voiceInfo =
+                    var voiceInfo = VoiceInfoType?.FullName == null ? null :
                         typeof(SpeechSynthesizer).Assembly
                             .CreateInstance(VoiceInfoType.FullName, true,
                                 BindingFlags.Instance | BindingFlags.NonPublic, null,
@@ -57,7 +57,7 @@ namespace WinManager
                     if (voiceInfo == null)
                         throw new NotSupportedException($"Failed to instantiate {VoiceInfoType}");
 
-                    var installedVoice =
+                    var installedVoice = InstalledVoiceType?.FullName == null ? null :
                         typeof(SpeechSynthesizer).Assembly
                             .CreateInstance(InstalledVoiceType.FullName, true,
                                 BindingFlags.Instance | BindingFlags.NonPublic, null,
