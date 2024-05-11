@@ -77,6 +77,10 @@ namespace WinManager
 
             // Make sure empty installer folder is prepared for download
             Directory.CreateDirectory(Consts.InstallerDownloadFolder);
+            if (!Utils.IsDirectoryEmpty(Consts.InstallerDownloadFolder))
+            {
+                State = UpdateState.FilesExist;
+            }
             if (State == UpdateState.FilesExist || State == UpdateState.Downloaded)
             {
                 State = UpdateState.Deleting;
@@ -143,7 +147,7 @@ namespace WinManager
             {
                 try
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo(Consts.InstallerDownloadFolder);
+                    var dirInfo = new DirectoryInfo(Consts.InstallerDownloadFolder);
                     var files = dirInfo.GetFiles();
                     if (files.Count() == 0)
                     {

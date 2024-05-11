@@ -72,11 +72,16 @@ namespace WinManager
         public static string? GetProcessFilePath(IntPtr handle, int buffer = 1024)
         {
             var filePathBuilder = new StringBuilder(buffer);
-            uint bufferLength = (uint)filePathBuilder.Capacity + 1;
+            var bufferLength = (uint)filePathBuilder.Capacity + 1;
             var path = NativeMethods.QueryFullProcessImageName(handle, 0, filePathBuilder, ref bufferLength) ?
                 filePathBuilder.ToString() :
                 null;
             return path;
+        }
+
+        public static bool IsDirectoryEmpty(string path)
+        {
+            return !Directory.EnumerateFileSystemEntries(path).Any();
         }
     }
 
@@ -95,15 +100,15 @@ namespace WinManager
                 return "";
             }
 
-            string character = "";
-            int virtualKey = KeyInterop.VirtualKeyFromKey(key);
+            var character = "";
+            var virtualKey = KeyInterop.VirtualKeyFromKey(key);
             var keyboardState = new byte[256];
             NativeMethods.GetKeyboardState(keyboardState);
 
-            uint scanCode = NativeMethods.MapVirtualKey((uint)virtualKey, Utils.MapType.MAPVK_VK_TO_VSC);
+            var scanCode = NativeMethods.MapVirtualKey((uint)virtualKey, Utils.MapType.MAPVK_VK_TO_VSC);
             var stringBuilder = new StringBuilder(2);
 
-            int result = NativeMethods.ToUnicode((uint)virtualKey, scanCode, keyboardState, stringBuilder, stringBuilder.Capacity, 0);
+            var result = NativeMethods.ToUnicode((uint)virtualKey, scanCode, keyboardState, stringBuilder, stringBuilder.Capacity, 0);
             switch (result)
             {
                 case -1:
