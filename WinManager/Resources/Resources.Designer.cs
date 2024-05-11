@@ -259,6 +259,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modern applications  .
+        /// </summary>
+        public static string modernAppsOverride {
+            get {
+                return ResourceManager.GetString("modernAppsOverride", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No apps found.
         /// </summary>
         public static string noAppsFound {

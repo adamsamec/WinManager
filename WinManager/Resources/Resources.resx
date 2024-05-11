@@ -149,6 +149,10 @@
     xml:space="preserve">
   <value>Notepad</value>
 </data>
+<data name="modernAppsOverride"
+xml:space="preserve">
+<value>Modern applications  </value>
+</data>
     <data name="exitAnnouncement"
           xml:space="preserve">
         <value>Exiting WinManager</value>

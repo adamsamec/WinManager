@@ -121,6 +121,10 @@
   xml:space="preserve">
 <value>Poznámkový blok</value>
 </data>
+<data name="modernAppsOverride"
+xml:space="preserve">
+<value>Moderní aplikace</value>
+</data>
   <data name="exitAnnouncement" xml:space="preserve">
     <value>Ukončuji WinManager</value>
   </data>

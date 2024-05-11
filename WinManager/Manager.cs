@@ -341,7 +341,8 @@ namespace WinManager
                     processesAppsList.Add(app);
                     continue;
                 }
-                if (String.IsNullOrEmpty(process.MainWindowTitle))
+                var doIgnore = Consts.IgnoredProcesses.Contains(process.ProcessName);
+                if (String.IsNullOrEmpty(process.MainWindowTitle) || doIgnore)
                 {
                     continue;
                 }
@@ -364,9 +365,9 @@ namespace WinManager
                     appName = process.MainWindowTitle;
                 }
                 // Override certain app names
-                if (Consts.AppNamesOverrides.ContainsKey(appName))
+                if (Consts.AppNamesOverrides.ContainsKey(process.ProcessName))
                 {
-                    appName = Consts.AppNamesOverrides[appName];
+                    appName = Consts.AppNamesOverrides[process.ProcessName];
                 }
 
                 app = new RunningApplication(appName, process);

@@ -1,5 +1,6 @@
 # Co je nového ve WinManageru
 ## WinManager 1.0.5
+* Zamezení zobrazování některých aplikací, do kterých se nešlo přepnout, a zařazení moderních aplikací do jedné položky.
 * Oprava, aby se stránka Co je nového načítalla z Internetu s aktuálním obsahem.
 
 ## WinManager 1.0.4

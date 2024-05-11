@@ -123,6 +123,6 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[changelog]: https://github.com/adamsamec/WinManager/blob/main/WinManager/Pages/ChangeLog.en-US.md
+[changelog]: https://github.com/adamsamec/WinManager/blob/main/ChangeLog/ChangeLog.en-US.md
 [installer-download]: https://files.adamsamec.cz/apps/WinManager-win32-setup.exe
 [portable-download]: https://files.adamsamec.cz/apps/WinManager-win32.zip

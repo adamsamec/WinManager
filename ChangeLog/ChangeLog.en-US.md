@@ -1,5 +1,6 @@
 # What's new in WinManager
 ## WinManager 1.0.5
+* Don't show certain apps which it was inpossible to switched to and categorize modern apps unto single app item.
 * Fix for the What's new page to be loaded from the Internet with the latest contents.
 
 ## WinManager 1.0.4

@@ -39,11 +39,16 @@ namespace WinManager
             }
         }
 
-        // App names overrides
+        // Running apps filtering and names overrides
+        public static string[] IgnoredProcesses = {
+      "SystemSettings",
+      "CalculatorApp"
+        };
         public static Dictionary<string, string> AppNamesOverrides = new Dictionary<string, string>
         {
-            {"Notepad.exe", WinManager.Resources.notepadOverride},
-            {"WindowsTerminal.exe", "Windows Terminal"}
+            {"ApplicationFrameHost", WinManager.Resources.modernAppsOverride},
+            {"Notepad", WinManager.Resources.notepadOverride},
+            {"WindowsTerminal", "Windows Terminal"},
         };
 
         // Other
