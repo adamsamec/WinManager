@@ -80,7 +80,7 @@ namespace WinManager
             {
                 // Determine enabled state for shortcuts from settings
                 var settingAction = _config.GetActionSetting(shortcut.Action);
-                shortcut.IsEnabled = Config.StringToBool((string)Utils.GetPropValue(settingAction, shortcut.Id));
+                shortcut.IsEnabled = Config.StringToBool((string?)Utils.GetPropValue(settingAction, shortcut.Id));
 
                 // Create keyboard hook if shortcut is enabled
                 if (shortcut.IsEnabled)

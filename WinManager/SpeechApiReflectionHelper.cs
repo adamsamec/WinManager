@@ -13,13 +13,13 @@ namespace WinManager
 
         private const string ONE_CORE_VOICES_REGISTRY = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices";
 
-        private static readonly Type ObjectTokenCategoryType = typeof(SpeechSynthesizer).Assembly
+        private static readonly Type? ObjectTokenCategoryType = typeof(SpeechSynthesizer).Assembly
             .GetType("System.Speech.Internal.ObjectTokens.ObjectTokenCategory");
 
-        private static readonly Type VoiceInfoType = typeof(SpeechSynthesizer).Assembly
+        private static readonly Type? VoiceInfoType = typeof(SpeechSynthesizer).Assembly
             .GetType("System.Speech.Synthesis.VoiceInfo");
 
-        private static readonly Type InstalledVoiceType = typeof(SpeechSynthesizer).Assembly
+        private static readonly Type? InstalledVoiceType = typeof(SpeechSynthesizer).Assembly
             .GetType("System.Speech.Synthesis.InstalledVoice");
 
 
@@ -32,7 +32,7 @@ namespace WinManager
             if (installedVoices == null)
                 throw new NotSupportedException($"Field not found or null: {FIELD_INSTALLED_VOICES}");
 
-            if (!(ObjectTokenCategoryType.GetMethod("Create", BindingFlags.Static | BindingFlags.NonPublic)?.Invoke(null, new object[] { ONE_CORE_VOICES_REGISTRY }) is IDisposable otc))
+            if (!(ObjectTokenCategoryType?.GetMethod("Create", BindingFlags.Static | BindingFlags.NonPublic)?.Invoke(null, new object[] { ONE_CORE_VOICES_REGISTRY }) is IDisposable otc))
             {
                 throw new NotSupportedException($"Failed to call Create on {ObjectTokenCategoryType} instance");
             }
@@ -41,7 +41,7 @@ namespace WinManager
             {
                 if (!(ObjectTokenCategoryType
                         .GetMethod("FindMatchingTokens", BindingFlags.Instance | BindingFlags.NonPublic)?
-                        .Invoke(otc, new object[] { null, null }) is System.Collections.IList tokens))
+                        .Invoke(otc, new object?[] { null, null }) is System.Collections.IList tokens))
                     throw new NotSupportedException($"Failed to list matching tokens");
 
                 foreach (var token in tokens)
@@ -76,7 +76,7 @@ namespace WinManager
             return target.GetType().GetProperty(propName, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(target);
         }
 
-        private static object GetField(object target, string propName)
+        private static object? GetField(object target, string propName)
         {
             return target.GetType().GetField(propName, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(target);
         }

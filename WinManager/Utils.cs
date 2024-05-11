@@ -40,9 +40,9 @@ namespace WinManager
             }
         }
 
-        public static object GetPropValue(object obj, string propName)
+        public static object? GetPropValue(object obj, string propName)
         {
-            return obj.GetType().GetProperty(propName).GetValue(obj, null);
+            return obj.GetType().GetProperty(propName)?.GetValue(obj, null);
         }
 
         public static void SetPropValue(object obj, string propName, object propValue)
@@ -52,11 +52,11 @@ namespace WinManager
 
         public static void SetYesOrNo(object obj, object defaultObj, string[] propNames)
         {
-            foreach (string propName in propNames)
+            foreach (var propName in propNames)
             {
-                string propValue = (string)GetPropValue(obj, propName);
-                string defaultPropValue = (string)GetPropValue(defaultObj, propName);
-                string newPropValue = (propValue == "yes" || propValue == "no") ? propValue : defaultPropValue;
+                var propValue = (string?)GetPropValue(obj, propName);
+                var defaultPropValue = (string?)GetPropValue(defaultObj, propName);
+                var newPropValue = (propValue == "yes" || propValue == "no") ? propValue : defaultPropValue;
                 SetPropValue(obj, propName, newPropValue);
             }
         }

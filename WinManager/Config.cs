@@ -90,7 +90,7 @@ namespace WinManager
             File.WriteAllText(_path, configString, Encoding.UTF8);
         }
 
-        public static bool StringToBool(string value)
+        public static bool StringToBool(string? value)
         {
             return value == TrueString;
         }
