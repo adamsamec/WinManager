@@ -14,7 +14,7 @@ namespace WinManager
 
         private void ChangeLogWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var pageContent = Page.GetChangeLogPageContent(); ;
+            var pageContent = Page.GetChangeLogPageContent();
             Page.SetupWebBrowser(webBrowser, pageContent);
         }
     }
