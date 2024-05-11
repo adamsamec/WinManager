@@ -13,9 +13,9 @@ namespace WinManager
     /// </summary>
     public static class Utils
     {
-        private static string _installFolder;
+        private static string? _installFolder;
 
-        public static string GetInstallFolder()
+        public static string? GetInstallFolder()
         {
             if (_installFolder== null)
             {
@@ -45,9 +45,9 @@ namespace WinManager
             return obj.GetType().GetProperty(propName)?.GetValue(obj, null);
         }
 
-        public static void SetPropValue(object obj, string propName, object propValue)
+        public static void SetPropValue(object obj, string propName, object? propValue)
         {
-            obj.GetType().GetProperty(propName).SetValue(obj, propValue, null);
+            obj.GetType().GetProperty(propName)?.SetValue(obj, propValue, null);
         }
 
         public static void SetYesOrNo(object obj, object defaultObj, string[] propNames)
@@ -69,7 +69,7 @@ namespace WinManager
             MAPVK_VSC_TO_VK_EX = 0x3,
         }
 
-        public static string GetProcessFilePath(IntPtr handle, int buffer = 1024)
+        public static string? GetProcessFilePath(IntPtr handle, int buffer = 1024)
         {
             var filePathBuilder = new StringBuilder(buffer);
             uint bufferLength = (uint)filePathBuilder.Capacity + 1;
@@ -82,7 +82,7 @@ namespace WinManager
 
     internal static class Extensions
     {
-        public static string GetFilePath(this Process process)
+        public static string? GetFilePath(this Process process)
         {
             return Utils.GetProcessFilePath(process.Handle);
         }

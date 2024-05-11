@@ -345,11 +345,15 @@ namespace WinManager
                 {
                     continue;
                 }
-                string? appName;
+                string? appName = null;
                 try
                 {
-                    var fileVersionInfo = FileVersionInfo.GetVersionInfo(process.GetFilePath());
-                    appName = fileVersionInfo.FileDescription;
+                    var filePath = process.GetFilePath();
+                    if (filePath != null)
+                    {
+                        var fileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
+                        appName = fileVersionInfo.FileDescription;
+                    }
                     if (String.IsNullOrEmpty(appName))
                     {
                         continue;

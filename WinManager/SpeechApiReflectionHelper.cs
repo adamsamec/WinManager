@@ -71,7 +71,7 @@ namespace WinManager
             }
         }
 
-        private static object GetProperty(object target, string propName)
+        private static object? GetProperty(object target, string propName)
         {
             return target.GetType().GetProperty(propName, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(target);
         }
