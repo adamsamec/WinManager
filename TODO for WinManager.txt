@@ -1,2 +1,2 @@
 ## TODO
-* Fix listing of Settings, Calculator and maybe some other modern apps.
+* Add possibility to show CPU and memory utilization info and order list accordingly.
