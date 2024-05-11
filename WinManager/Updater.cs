@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
-using System.Windows.Controls;
-using System.Windows;
-using System.ComponentModel;
+
 namespace WinManager
 {
     /// <summary>
@@ -89,8 +88,9 @@ namespace WinManager
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
-                    if (progressPercentage != null) { 
-                    downloadProgressHandler((int)progressPercentage);
+                    if (progressPercentage != null)
+                    {
+                        downloadProgressHandler((int)progressPercentage);
                     }
                 };
                 _cancellationTokenSource = new CancellationTokenSource();
@@ -125,13 +125,14 @@ namespace WinManager
 
         public void LaunchInstaller()
         {
-                try
-                {
-                    Process.Start(_installerDownloadPath);
-                } catch (Win32Exception ex)
-                {
-                    Debug.WriteLine("Exception during update installer launch: " + ex.ToString());
-                }
+            try
+            {
+                Process.Start(_installerDownloadPath);
+            }
+            catch (Win32Exception ex)
+            {
+                Debug.WriteLine("Exception during update installer launch: " + ex.ToString());
+            }
         }
 
         public void DeleteInstallerFiles()

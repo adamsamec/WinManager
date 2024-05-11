@@ -7,14 +7,16 @@ namespace WinManager
     /// </summary>
     public static class Consts
     {
-        public const string AppVersion = "1.0.4";
+        public const string AppVersion = "1.0.5";
         public static readonly bool ForceCzechLanguage = false;
 
-        // Paths and filenames
+        // URLs
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
+        public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}].md";
+
+        // Paths and filenames
         public const string PagesFolder = "Pages";
         public static string HelpFileRelativePath = Path.Combine(PagesFolder, "Help.{0}.md");
-        public static string ChangeLogFileRelativePath = Path.Combine(PagesFolder, "ChangeLog.{0}.md");
         public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
         public static string InstallerDownloadFolder = Path.Combine(localUserFolder, "installer");
         public const string ExecutableFilename = "WinManager.exe";

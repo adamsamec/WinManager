@@ -79,6 +79,15 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What&apos;s new page load was not successful. Please verify that you are connected to the Internet..
+        /// </summary>
+        public static string changeLogRetrievalFailedMessage {
+            get {
+                return ResourceManager.GetString("changeLogRetrievalFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for update.
         /// </summary>
         public static string checkForUpdateButton {

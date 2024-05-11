@@ -233,6 +233,10 @@
 xml:space="preserve">
 <value>What's new in WinManager</value>
 </data>
+<data name="changeLogRetrievalFailedMessage"
+xml:space="preserve">
+<value>What's new page load was not successful. Please verify that you are connected to the Internet.</value>
+</data>
                 <data name="noUpdateAvailableTitle"
           xml:space="preserve">
         <value>No update available</value>

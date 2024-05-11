@@ -1,6 +1,7 @@
 ﻿using Markdig;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Controls;
 
@@ -16,10 +17,28 @@ namespace WinManager
             return GetHTML(Consts.HelpFileRelativePath);
         }
 
-        public static string GetChangeLogPageContent()
+        public async static Task<string> GetChangeLogPageContent()
         {
-            return GetHTML(Consts.ChangeLogFileRelativePath);
-        }
+            string mdString;
+            try
+            {
+            var url = String.Format(Consts.ChangeLogUrl, WinManager.Resources.Culture.Name);
+            mdString = await new HttpClient().GetStringAsync(url);
+            } catch (Exception)
+            {
+                throw new PageRetrieveFailedException("Unable to retrieve the What's new page from Internet");
+            }
+            try
+            {
+                var html = Markdown.ToHtml(mdString);
+                return html;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception during Markdown conversion: " + ex.ToString());
+            }
+            return "Error";
+    }
 
         private static string GetHTML(string fileRelativePath)
         {
@@ -64,5 +83,17 @@ page.focus();
             webBrowser.Focus();
         }
     }
+
+[Serializable]
+public class PageRetrieveFailedException : Exception
+{
+    public PageRetrieveFailedException() { }
+
+    public PageRetrieveFailedException(string message)
+        : base(message) { }
+
+    public PageRetrieveFailedException(string message, Exception inner)
+        : base(message, inner) { }
+}
 }
 

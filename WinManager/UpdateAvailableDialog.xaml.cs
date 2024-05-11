@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Documents;
 
 namespace WinManager
 {
@@ -24,9 +25,17 @@ namespace WinManager
             whatsNewButton.Focus();
         }
 
-        private void whatsNewButton_Click(object sender, RoutedEventArgs e)
+        private async void whatsNewButton_Click(object sender, RoutedEventArgs e)
         {
-            var changeLogWindow = new ChangeLogWindow();
+            string pageContent;
+            try { 
+            pageContent = await Page.GetChangeLogPageContent();
+            }
+            catch (PageRetrieveFailedException)
+            {
+                pageContent = WinManager.Resources.changeLogRetrievalFailedMessage;
+            }
+            var changeLogWindow = new ChangeLogWindow(pageContent);
             changeLogWindow.Owner = this;
             changeLogWindow.ShowDialog();
         }

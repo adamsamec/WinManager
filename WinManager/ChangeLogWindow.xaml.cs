@@ -7,15 +7,18 @@ namespace WinManager
     /// </summary>
     public partial class ChangeLogWindow : Window
     {
-        public ChangeLogWindow()
+        private string _pageContent;
+
+        public ChangeLogWindow(string pageContent)
         {
             InitializeComponent();
+
+            _pageContent = pageContent;
         }
 
         private void ChangeLogWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var pageContent = Page.GetChangeLogPageContent();
-            Page.SetupWebBrowser(webBrowser, pageContent);
+            Page.SetupWebBrowser(webBrowser, _pageContent);
         }
     }
 }

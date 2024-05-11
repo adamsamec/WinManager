@@ -197,6 +197,10 @@
 xml:space="preserve">
 <value>Co je nového ve WinManageru</value>
 </data>
+<data name="changeLogRetrievalFailedMessage"
+xml:space="preserve">
+<value>Načtení stránky Co je nového nebylo úspěšné. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+</data>
                 <data name="noUpdateAvailableTitle"
           xml:space="preserve">
         <value>Žádná dostupná instalace</value>
