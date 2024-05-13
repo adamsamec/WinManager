@@ -203,7 +203,7 @@ xml:space="preserve">
     </data>
     <data name="checkUpdateOnFirstShowCheckBox"
     xml:space="preserve">
-  <value>Automatically check for update when WinManager is shown for the firs tttime after its launch</value>
+  <value>Automatically check for update when WinManager is shown for the first time after its launch</value>
 </data>
         <data name="closeButton"
           xml:space="preserve">

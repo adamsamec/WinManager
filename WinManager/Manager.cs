@@ -362,14 +362,21 @@ namespace WinManager
                 }
                 catch (Exception)
                 {
-                    appName = process.MainWindowTitle;
+                    // Special treatment for the ApplicationFrameHost process
+                    if (process.ProcessName == "ApplicationFrameHost")
+                    {
+                        appName = process.ProcessName;
+                    }
+                    else
+                    {
+                        appName = process.MainWindowTitle;
+                    }
                 }
                 // Override certain app names
                 if (Consts.AppNamesOverrides.ContainsKey(process.ProcessName))
                 {
                     appName = Consts.AppNamesOverrides[process.ProcessName];
                 }
-
                 app = new RunningApplication(appName, process);
                 processesAppsList.Add(app);
             }
@@ -390,7 +397,7 @@ namespace WinManager
                 foreach (var app in _appsList)
                 {
                     var process = processApp.AppProcess;
-                    if (app.AppProcess.ProcessName == process.ProcessName)
+                    if (app.AppProcess != null && process != null && app.AppProcess.ProcessName == process.ProcessName)
                     {
                         appExists = true;
                         if (processApp.Windows.Count > 0)
@@ -421,10 +428,42 @@ namespace WinManager
             {
                 foreach (var app in appsList)
                 {
-                    if (window.Pid == app.AppProcess.Id)
+                    if (app.AppProcess != null && window.Pid == app.AppProcess.Id)
                     {
                         app.Windows.Add(window);
                     }
+                }
+            }
+
+            // Turn modern windows into separate apps
+            var appWithModern = appsList.Find(app =>
+            {
+                return app.Name == "ApplicationFrameHost";
+            });
+            if (appWithModern != null)
+            {
+                var modernAppsList = new List<RunningApplication>();
+                foreach (var window in appWithModern.Windows)
+                {
+                    var existingModernApp = modernAppsList.Find(modernApp =>
+                    {
+                        return modernApp.Name == window.Title;
+                    });
+                    if (existingModernApp == null)
+                    {
+                        var modernApp = new RunningApplication(window.Title);
+                        modernApp.Windows.Add(window);
+                        modernAppsList.Add(modernApp);
+                    }
+                    else
+                    {
+                        existingModernApp.Windows.Add(window);
+                    }
+                }
+                appsList.Remove(appWithModern);
+                foreach (var modernApp in modernAppsList)
+                {
+                    appsList.Add(modernApp);
                 }
             }
 
@@ -450,17 +489,7 @@ namespace WinManager
             {
                 case ListView.Apps:
                     var app = _filteredAppsList[itemIndex];
-                    var process = app.AppProcess;
-
-                    // In case of explorer.exe, switch to its first window instead of its main window
-                    if (process.ProcessName == "explorer" && app.Windows.Count >= 1)
-                    {
-                        handle = app.Windows[0].Handle;
-                    }
-                    else
-                    {
-                        handle = process.MainWindowHandle;
-                    }
+                    handle = app.Handle;
                     break;
                 case ListView.ForegroundAppWindows:
                 case ListView.SelectedAppWindows:
@@ -499,7 +528,9 @@ namespace WinManager
                 case ListView.Apps:
                     var appToQuit = _filteredAppsList[itemIndex];
                     var isAppQuitted = false;
-                    if (doForce)
+
+                    // Modern apps cannot be force quitted
+                    if (doForce && appToQuit.AppProcess != null)
                     {
                         Speak(Resources.forceQuittingApp);
                         var processesKillTasks = new List<Task>();

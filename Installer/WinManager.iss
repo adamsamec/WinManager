@@ -1,6 +1,6 @@
 ; WinManager installer configuration
 #define MyAppName "WinManager"
-#define MyAppVersion "1.0.5"
+#define MyAppVersion "1.0.6"
 #define MyAppPublisher "Adam Samec"
 #define MyAppExecutable "WinManager.exe"
 
@@ -11,7 +11,7 @@ cs.MyDescription=Nástroj pro snadné a přístupnější přepínání a zavír
 cs.LaunchAfterInstall=Spustit WinManager po dokončení instalace
 
 [Setup]
-OutputBaseFilename=WinManager-{#MyAppVersion}}-win32-setup
+OutputBaseFilename=WinManager-{#MyAppVersion}-win32-setup
 AppVersion={#MyAppVersion}
 AppName={#MyAppName}
 AppId={#MyAppName}

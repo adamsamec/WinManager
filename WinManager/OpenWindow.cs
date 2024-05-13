@@ -8,8 +8,8 @@ namespace WinManager
     public class OpenWindow
     {
         public string Title { get; set; }
-        public IntPtr Handle { get; }
-        public Process? WindowProcess { get; }
+        public IntPtr Handle { get; set; }
+        public Process? WindowProcess { get; set; }
         public uint Pid { get; }
 
         public OpenWindow(string title, IntPtr handle, Process? windowProcess = null)

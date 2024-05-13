@@ -7,7 +7,7 @@ namespace WinManager
     /// </summary>
     public static class Consts
     {
-        public const string AppVersion = "1.0.5";
+        public const string AppVersion = "1.0.6";
         public static readonly bool ForceCzechLanguage = false;
 
         // URLs
@@ -46,7 +46,7 @@ namespace WinManager
         };
         public static Dictionary<string, string> AppNamesOverrides = new Dictionary<string, string>
         {
-            {"ApplicationFrameHost", WinManager.Resources.modernAppsOverride},
+            //{"ApplicationFrameHost", WinManager.Resources.modernAppsOverride},
             {"Notepad", WinManager.Resources.notepadOverride},
             {"WindowsTerminal", "Windows Terminal"},
         };

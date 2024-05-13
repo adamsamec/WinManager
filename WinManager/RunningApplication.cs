@@ -10,15 +10,20 @@ namespace WinManager
         private int _zIndex;
 
         public string Name { get; set; }
-        public Process AppProcess { get; }
+        public Process? AppProcess { get; set; }
         public bool HasWindowsWithOwnProcesses { get; set; }
-        public List<OpenWindow> Windows { get; }
+        public List<OpenWindow> Windows { get; set; }
+        public IntPtr Handle
+        {
+            // In case of modern app and explorer.exe, use the first window handle
+            get { return AppProcess == null || AppProcess.ProcessName == "explorer" ? Windows[0].Handle : AppProcess.MainWindowHandle; }
+        }
         public int ZIndex
         {
             get { return _zIndex; }
         }
 
-        public RunningApplication(string name, Process process, bool hasWindowsWithOwnProcesses = false)
+        public RunningApplication(string name, Process? process, bool hasWindowsWithOwnProcesses = false)
         {
             Name = name;
             AppProcess = process;
@@ -26,10 +31,12 @@ namespace WinManager
             Windows = new List<OpenWindow>();
         }
 
+        public RunningApplication(string name) : this(name, null) { }
+
         public void SetZOrder()
         {
             IntPtr handle;
-            if (Windows.Count >= 1)
+            if (AppProcess == null || Windows.Count >= 1)
             {
                 handle = Windows[0].Handle;
             }
@@ -53,12 +60,26 @@ namespace WinManager
             {
                 return false;
             }
-            return AppProcess.ProcessName == otherApp.AppProcess.ProcessName;
+            if (AppProcess != null && otherApp.AppProcess != null)
+            {
+                return AppProcess.ProcessName == otherApp.AppProcess.ProcessName;
+            }
+            else
+            {
+                return Name == otherApp.Name;
+            }
         }
 
         public override int GetHashCode()
         {
-            return AppProcess.ProcessName.GetHashCode();
+            if (AppProcess != null)
+            {
+                return AppProcess.ProcessName.GetHashCode();
+            }
+            else
+            {
+                return Name.GetHashCode();
+            }
         }
     }
 }

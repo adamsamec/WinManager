@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.6
+* Okna moderních aplikací jsou nyní správně zařazena do příslušných názvů aplikací namísto společné položky nazvané "Moderní aplikace".
+
 ## WinManager 1.0.5
 * Oprava nefunkčního zástupce na ploše.
 * Zamezení zobrazování některých aplikací, do kterých se nešlo přepnout, a zařazení moderních aplikací do jedné položky.

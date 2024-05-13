@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.6
+* Modern app windows are now properly categorized into respective app names instead of the common item named "Modern applications".
+
 ## WinManager 1.0.5
 * Fix not working desktop shortcut.
 * Don't show certain apps which it was inpossible to switched to and categorize modern apps unto single app item.
