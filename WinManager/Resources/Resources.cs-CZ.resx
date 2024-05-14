@@ -121,10 +121,6 @@
   xml:space="preserve">
 <value>Poznámkový blok</value>
 </data>
-<data name="modernAppsOverride"
-xml:space="preserve">
-<value>Moderní aplikace</value>
-</data>
   <data name="exitAnnouncement" xml:space="preserve">
     <value>Ukončuji WinManager</value>
   </data>
@@ -286,14 +282,18 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Průzkumník</value>
     </data>
-                        <data name="enabledAppsShortcutsLabel"
+                        <data name="enabledAppsShortcutsHeader"
           xml:space="preserve">
         <value>Povolené klávesové zkratky pro seznam spuštěných aplikací</value>
     </data>
-                        <data name="enabledWindowsShortcutsLabel"
+                        <data name="enabledWindowsShortcutsHeader"
           xml:space="preserve">
         <value>Povolené klávesové zkratky pro seznam otevřených oken aplikace v popředí</value>
     </data>
+    <data name="enabledTranslatorShortcutsHeader"
+    xml:space="preserve">
+  <value>Povolené klávesové zkratky pro anglicko-český překladač</value>
+</data>
     <data name="quittingApp"
     xml:space="preserve">
   <value>Ukončuji aplikaci</value>

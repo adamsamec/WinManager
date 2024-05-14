@@ -10,6 +10,10 @@
       "showWindows": {
         "Win_F11": "yes",
         "Win_Shift_Q": "yes"
+      },
+      "showTranslator": {
+        "Win_F10": "yes",
+        "Win_Shift_P": "yes"
       }
     }
   }

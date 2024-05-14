@@ -22,6 +22,10 @@ namespace WinManager
             // Show windows
             new TriggerShortcut("Win_F11", "Windows + F11", ModifierKeyCodes.Windows, 0x7A, TriggerShortcut.TriggerAction.ShowWindows),
             new TriggerShortcut("Win_Shift_Q", "Windows + Shift + Q", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x51, TriggerShortcut.TriggerAction.ShowWindows),
+
+            // Show translator
+            new TriggerShortcut("Win_F10", "Windows + F10", ModifierKeyCodes.Windows, 0x79, TriggerShortcut.TriggerAction.ShowTranslator),
+            new TriggerShortcut("Win_Shift_P", "Windows + Shift + P", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x50, TriggerShortcut.TriggerAction.ShowTranslator),
         };
         public Settings AppSettings
         {
@@ -77,9 +81,13 @@ namespace WinManager
                 {
                     settings.enabledShortcuts.showWindows = defaultSettings.enabledShortcuts.showWindows;
                 }
+                if (settings.enabledShortcuts.showTranslator== null)
+                {
+                    settings.enabledShortcuts.showTranslator = defaultSettings.enabledShortcuts.showTranslator;
+                }
             }
-            Utils.SetYesOrNo(settings.enabledShortcuts.showApps, defaultSettings.enabledShortcuts.showApps, ["Win_F12", "Win_Shift_A"]);
-            Utils.SetYesOrNo(settings.enabledShortcuts.showWindows, defaultSettings.enabledShortcuts.showWindows, ["Win_F11", "Win_Shift_Q"]);
+            Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_P"]);
+            Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_P"]);
             Save();
         }
 
@@ -105,6 +113,7 @@ namespace WinManager
             var actionMapping = new List<Object> {
 AppSettings.enabledShortcuts.showApps,
 AppSettings.enabledShortcuts.showWindows,
+AppSettings.enabledShortcuts.showTranslator,
             };
             return actionMapping[(int)action];
         }

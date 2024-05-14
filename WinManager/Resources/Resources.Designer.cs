@@ -97,7 +97,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically check for update when WinManager is shown for the firs tttime after its launch.
+        ///   Looks up a localized string similar to Automatically check for update when WinManager is shown for the first time after its launch.
         /// </summary>
         public static string checkUpdateOnFirstShowCheckBox {
             get {
@@ -165,6 +165,15 @@ namespace WinManager {
         public static string enabledAppsShortcutsHeader {
             get {
                 return ResourceManager.GetString("enabledAppsShortcutsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled keyboard shortcuts for English-Czech translator.
+        /// </summary>
+        public static string enabledTranslatorShortcutsHeader {
+            get {
+                return ResourceManager.GetString("enabledTranslatorShortcutsHeader", resourceCulture);
             }
         }
         
@@ -255,15 +264,6 @@ namespace WinManager {
         public static string launchUpdateInstallerTitle {
             get {
                 return ResourceManager.GetString("launchUpdateInstallerTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Modern applications  .
-        /// </summary>
-        public static string modernAppsOverride {
-            get {
-                return ResourceManager.GetString("modernAppsOverride", resourceCulture);
             }
         }
         

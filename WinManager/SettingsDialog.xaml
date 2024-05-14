@@ -31,6 +31,7 @@ Click="checkForUpdateButton_Click"
 
     <GroupBox Name="appsShortcutsGroup" Header="{x:Static lang:Resources.enabledAppsShortcutsHeader}"/>
     <GroupBox Name="windowsShortcutsGroup" Header="{x:Static lang:Resources.enabledWindowsShortcutsHeader}"/>
+    <GroupBox Name="translatorShortcutsGroup" Header="{x:Static lang:Resources.enabledTranslatorShortcutsHeader}"/>
 
     <Button Name="closeButton"
                 Content="{x:Static lang:Resources.closeButton}"

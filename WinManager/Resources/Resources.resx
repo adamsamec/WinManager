@@ -149,10 +149,6 @@
     xml:space="preserve">
   <value>Notepad</value>
 </data>
-<data name="modernAppsOverride"
-xml:space="preserve">
-<value>Modern applications  </value>
-</data>
     <data name="exitAnnouncement"
           xml:space="preserve">
         <value>Exiting WinManager</value>
@@ -330,6 +326,10 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Enabled keyboard shortcuts for list of foreground app open windows</value>
     </data>
+    <data name="enabledTranslatorShortcutsHeader"
+    xml:space="preserve">
+  <value>Enabled keyboard shortcuts for English-Czech translator</value>
+</data>
     <data name="quittingApp"
     xml:space="preserve">
   <value>Quitting the app</value>

@@ -16,7 +16,8 @@
         public enum TriggerAction
         {
             ShowApps,
-            ShowWindows
+            ShowWindows,
+            ShowTranslator,
         }
 
         public TriggerShortcut(string id, string text, ModifierKeyCodes modifiers, int keyCode, TriggerAction action)

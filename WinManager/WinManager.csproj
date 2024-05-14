@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
 		<PackageReference Include="Markdig" Version="0.37.0" />
 		<PackageReference Include="System.Speech" Version="8.0.0" />
 	</ItemGroup>

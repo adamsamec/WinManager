@@ -16,7 +16,7 @@ namespace WinManager
 
             _manager = manager;
 
-            CreateAppsAndWindowsShortcutsCheckBoxes();
+            CreateShortcutsCheckBoxes();
 
         }
 
@@ -30,10 +30,11 @@ namespace WinManager
             launchOnStartupCheckBox.Focus();
         }
 
-        private void CreateAppsAndWindowsShortcutsCheckBoxes()
+        private void CreateShortcutsCheckBoxes()
         {
             var appsStackPanel = new StackPanel();
             var windowsStackPanel = new StackPanel();
+            var translatorStackPanel = new StackPanel();
             foreach (var shortcut in _manager.TriggerShortcuts)
             {
                 var checkBox = new CheckBox
@@ -57,10 +58,14 @@ namespace WinManager
                     case TriggerShortcut.TriggerAction.ShowWindows:
                         windowsStackPanel.Children.Add(checkBox);
                         break;
+                    case TriggerShortcut.TriggerAction.ShowTranslator:
+                        translatorStackPanel.Children.Add(checkBox);
+                        break;
                 }
             }
             appsShortcutsGroup.Content = appsStackPanel;
             windowsShortcutsGroup.Content = windowsStackPanel;
+            translatorShortcutsGroup.Content = translatorStackPanel;
         }
 
         private void launchOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
