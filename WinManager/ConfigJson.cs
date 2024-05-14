@@ -34,7 +34,7 @@
     public class Showtranslator
     {
         public string Win_F10 { get; set; }
-        public string Win_Shift_P { get; set; }
+        public string Win_Shift_F { get; set; }
     }
 
 }

@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Documents;
 
 namespace WinManager
 {
@@ -28,8 +27,9 @@ namespace WinManager
         private async void whatsNewButton_Click(object sender, RoutedEventArgs e)
         {
             string pageContent;
-            try { 
-            pageContent = await Page.GetChangeLogPageContent();
+            try
+            {
+                pageContent = await Page.GetChangeLogPageContent();
             }
             catch (PageRetrieveFailedException)
             {

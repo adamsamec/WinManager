@@ -214,8 +214,14 @@ namespace WinManager
             }
 
             SystemSounds.Hand.Play();
-            _view = ListView.Hidden;
 
+            if (type == TriggerShortcut.TriggerAction.ShowTranslator)
+            {
+                ShowTranslator();
+            }
+            else
+            {
+            _view = ListView.Hidden;
             RefreshApps();
             switch (type)
             {
@@ -230,6 +236,7 @@ namespace WinManager
             // Display main window
             _mainWindow.Show(); // This extra Show() fixes the initial display
             _mainWindow.Display();
+            }
 
             CheckForUpdateOnFirstShow();
             CheckOngoingUpdateDownload();
@@ -304,6 +311,12 @@ namespace WinManager
             _mainWindow.SetListBoxItems(windowsTitlesList);
 
             return true;
+        }
+
+        public void ShowTranslator()
+        {
+            var translatorWindow = new TranslatorWindow("");
+            translatorWindow.Display();
         }
 
         public bool ShowSelectedAppWindows(int appIndex)

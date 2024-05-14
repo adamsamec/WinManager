@@ -181,6 +181,26 @@
           xml:space="preserve">
         <value>windows</value>
     </data>
+    <data name="translatorTitle"
+    xml:space="preserve">
+  <value>English-Czech translator</value>
+</data>
+<data name="translatorKeywordLabel"
+xml:space="preserve">
+<value>Keyword</value>
+</data>
+<data name="translationRetrievalFailedMessage"
+xml:space="preserve">
+<value>Translation retrieval was not successful. Please verify that you are connected to the Internet.</value>
+</data>
+<data name="translationNotFoundMessage"
+xml:space="preserve">
+<value>Translation was not found.</value>
+</data>
+<data name="translateButton"
+xml:space="preserve">
+<value>Translate</value>
+</data>
     <data name="helpButton"
     xml:space="preserve">
   <value>Help</value>

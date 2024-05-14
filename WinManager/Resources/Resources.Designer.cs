@@ -385,6 +385,51 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Translate.
+        /// </summary>
+        public static string translateButton {
+            get {
+                return ResourceManager.GetString("translateButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translation was not found..
+        /// </summary>
+        public static string translationNotFoundMessage {
+            get {
+                return ResourceManager.GetString("translationNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translation retrieval was not successful. Please verify that you are connected to the Internet..
+        /// </summary>
+        public static string translationRetrievalFailedMessage {
+            get {
+                return ResourceManager.GetString("translationRetrievalFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyword.
+        /// </summary>
+        public static string translatorKeywordLabel {
+            get {
+                return ResourceManager.GetString("translatorKeywordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English-Czech translator.
+        /// </summary>
+        public static string translatorTitle {
+            get {
+                return ResourceManager.GetString("translatorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New WinManager version {0} is available. You currently have version {1}. Do you want to download the update and run its installation now?.
         /// </summary>
         public static string updateAvailableMessage {

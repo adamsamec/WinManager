@@ -3,7 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Windows.Controls;
+using HtmlAgilityPack;
+using System.Security.Policy;
 
 namespace WinManager
 {
@@ -19,12 +22,13 @@ namespace WinManager
 
         public async static Task<string> GetChangeLogPageContent()
         {
+            var url = String.Format(Consts.ChangeLogUrl, WinManager.Resources.Culture.Name);
             string mdString;
             try
             {
-            var url = String.Format(Consts.ChangeLogUrl, WinManager.Resources.Culture.Name);
-            mdString = await new HttpClient().GetStringAsync(url);
-            } catch (Exception)
+                mdString = await new HttpClient().GetStringAsync(url);
+            }
+            catch (Exception)
             {
                 throw new PageRetrieveFailedException("Unable to retrieve the What's new page from Internet");
             }
@@ -38,7 +42,41 @@ namespace WinManager
                 Debug.WriteLine("Exception during Markdown conversion: " + ex.ToString());
             }
             return "Error";
-    }
+        }
+
+        public async static Task<string> GetTranslationPageContent(string keyword)
+        {
+            var htmlString = ""; 
+            var encodedKeyword = HttpUtility.UrlEncode(keyword);
+            var url = Consts.translatorUrl + encodedKeyword;
+            try {
+                var web = new HtmlWeb();
+                var document = web.Load(url);
+
+                // Replace all the link href attributes to "#"
+                foreach (var link in document.DocumentNode.SelectNodes("//a[@href]"))
+                {
+                    var attribute = link.Attributes["href"];
+                    attribute.Value = "#";
+                }
+
+                // Select the first <article>
+                var articles = document.DocumentNode.SelectNodes("//article");
+                if (articles != null && articles.Count() >= 1)
+                {
+                    htmlString = articles.FirstOrDefault().OuterHtml;
+                }
+                else
+                {
+                    htmlString = WinManager.Resources.translationNotFoundMessage;
+                }
+            }
+            catch (Exception)
+            {
+                throw new PageRetrieveFailedException("Unable to retrieve the translation page from Internet");
+            }
+            return htmlString;
+        }
 
         private static string GetHTML(string fileRelativePath)
         {
@@ -57,14 +95,19 @@ namespace WinManager
             return "Error";
         }
 
-public static void SetupWebBrowser(WebBrowser webBrowser, string pageContent)
+        public static void SetupWebBrowser(WebBrowser webBrowser, string pageContent, string? languageCode = null, bool makePageTabable = true, bool doFocus = true)
         {
-            var html = @"<html lang='" + WinManager.Resources.Culture.TwoLetterISOLanguageName + @"'>
+            if (languageCode == null)
+            {
+                languageCode = WinManager.Resources.Culture.TwoLetterISOLanguageName;
+            }
+            var pageTabIndex = makePageTabable ? "0" : "-1";
+            var html = @"<html lang='" + languageCode + @"'>
 <head>
 <meta charset='utf-8'>
 </head>
  <body>
-<div id='page' tabindex='0'>
+<div id='page' tabindex='" + pageTabIndex + @"'>
 " + pageContent + @"
 </div>
 <script>
@@ -80,20 +123,23 @@ page.focus();
                 webBrowser.InvokeScript("focusBegining");
             };
             webBrowser.NavigateToString(html);
-            webBrowser.Focus();
+            if (doFocus)
+            {
+                webBrowser.Focus();
+            }
         }
     }
 
-[Serializable]
-public class PageRetrieveFailedException : Exception
-{
-    public PageRetrieveFailedException() { }
+    [Serializable]
+    public class PageRetrieveFailedException : Exception
+    {
+        public PageRetrieveFailedException() { }
 
-    public PageRetrieveFailedException(string message)
-        : base(message) { }
+        public PageRetrieveFailedException(string message)
+            : base(message) { }
 
-    public PageRetrieveFailedException(string message, Exception inner)
-        : base(message, inner) { }
-}
+        public PageRetrieveFailedException(string message, Exception inner)
+            : base(message, inner) { }
+    }
 }
 

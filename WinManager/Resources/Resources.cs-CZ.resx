@@ -145,6 +145,26 @@
       <data name="windowsCount" xml:space="preserve">
     <value>okna</value>
   </data>
+  <data name="translatorTitle"
+  xml:space="preserve">
+<value>Anglicko-český překladač</value>
+</data>
+<data name="translatorKeywordLabel"
+xml:space="preserve">
+<value>Slovíčko</value>
+</data>
+<data name="translationRetrievalFailedMessage"
+xml:space="preserve">
+<value>Získání překladu nebylo úspěšné. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
+</data>
+<data name="translationNotFoundMessage"
+xml:space="preserve">
+<value>Překlad nenalezen.</value>
+</data>
+<data name="translateButton"
+xml:space="preserve">
+<value>Přeložit</value>
+</data>
   <data name="helpButton"
   xml:space="preserve">
 <value>Nápověda</value>
@@ -199,7 +219,7 @@ xml:space="preserve">
 </data>
 <data name="changeLogRetrievalFailedMessage"
 xml:space="preserve">
-<value>Načtení stránky Co je nového nebylo úspěšné. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+<value>Načtení stránky Co je nového nebylo úspěšné. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
 </data>
                 <data name="noUpdateAvailableTitle"
           xml:space="preserve">
@@ -215,7 +235,7 @@ xml:space="preserve">
     </data>
             <data name="updateCheckFailedMessage"
           xml:space="preserve">
-        <value>Kontrola aktualizace nebyla úspěšná. Zkontrolujte, jestli jste připojeni k Internetu.</value>
+        <value>Kontrola aktualizace nebyla úspěšná. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
     </data>
     <data name="downloadingUpdateTitle"
     xml:space="preserve">

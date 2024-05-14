@@ -13,6 +13,7 @@ namespace WinManager
         // URLs
         public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
         public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}.md";
+        public const string translatorUrl = "https://slovnik.seznam.cz/preklad/anglicky_cesky/";
 
         // Paths and filenames
         public const string PagesFolder = "Pages";

@@ -25,7 +25,7 @@ namespace WinManager
 
             // Show translator
             new TriggerShortcut("Win_F10", "Windows + F10", ModifierKeyCodes.Windows, 0x79, TriggerShortcut.TriggerAction.ShowTranslator),
-            new TriggerShortcut("Win_Shift_P", "Windows + Shift + P", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x50, TriggerShortcut.TriggerAction.ShowTranslator),
+            new TriggerShortcut("Win_Shift_F", "Windows + Shift + F", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x46, TriggerShortcut.TriggerAction.ShowTranslator),
         };
         public Settings AppSettings
         {
@@ -87,7 +87,7 @@ namespace WinManager
                 }
             }
             Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_P"]);
-            Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_P"]);
+            Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_F"]);
             Save();
         }
 

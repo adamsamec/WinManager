@@ -13,7 +13,7 @@ WindowStyle="None"
 Loaded="MainWindow_Loaded"
 >
   <Grid>
-    <Label Name="itemsListBoxLabel" Target="{Binding ElementName=itemsListBox}" Content="{x:Static lang:Resources.runningAppsLabel}" TextBlock.FontSize="20" HorizontalAlignment="Center" Margin="0,8,0,-8"/>
+    <Label Name="itemsListBoxLabel" Target="{Binding ElementName=itemsListBox}" Content="{x:Static lang:Resources.runningAppsLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left" Margin="0,8,0,-8"/>
     <ListBox Name="itemsListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15"/>
 
     <Button Name="helpButton"
