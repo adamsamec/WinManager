@@ -64,7 +64,10 @@ namespace WinManager
                 var articles = document.DocumentNode.SelectNodes("//article");
                 if (articles != null && articles.Count() >= 1)
                 {
-                    htmlString = articles.FirstOrDefault().OuterHtml;
+                    foreach (var article in articles)
+                    {
+                    htmlString += article.OuterHtml;
+                    }
                 }
                 else
                 {
