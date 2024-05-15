@@ -1,6 +1,4 @@
-﻿using Accessibility;
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -17,10 +15,10 @@ namespace WinManager
 
         public static string? GetInstallFolder()
         {
-            if (_installFolder== null)
+            if (_installFolder == null)
             {
-            var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
+                var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
             }
             return _installFolder;
         }
@@ -30,6 +28,17 @@ namespace WinManager
             var extendedStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
             NativeMethods.SetWindowLong(handle, NativeMethods.GWL_EXSTYLE, extendedStyle |
             NativeMethods.WS_EX_TOOLWINDOW);
+        }
+
+        [STAThread]
+        public static string? GetClipboardText()
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                var clipboardText = Clipboard.GetText(TextDataFormat.Text);
+                return clipboardText;
+            }
+            return null;
         }
 
         public static bool IsFileInUse(string filePath)

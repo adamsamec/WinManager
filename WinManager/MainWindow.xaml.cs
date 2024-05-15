@@ -32,7 +32,7 @@ namespace WinManager
             _manager.HandleMainWindowLoad();
             itemsListBox.KeyDown += new KeyEventHandler((sender, e) =>
             {
-                var result = ItemsListBox_KeyDown(sender, e);
+                var result = itemsListBox_KeyDown(sender, e);
             });
         }
 
@@ -49,7 +49,7 @@ namespace WinManager
             _manager.CleanUp();
         }
 
-        private async Task ItemsListBox_KeyDown(object sender, KeyEventArgs e)
+        private async Task itemsListBox_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {

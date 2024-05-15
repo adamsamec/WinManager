@@ -242,21 +242,21 @@ namespace WinManager
             }
             else
             {
-            _view = ListView.Hidden;
-            RefreshApps();
-            switch (type)
-            {
-                case TriggerShortcut.TriggerAction.ShowApps:
-                    ShowApps();
-                    break;
-                case TriggerShortcut.TriggerAction.ShowWindows:
-                    ShowForeGroundAppWindows();
-                    break;
-            }
+                _view = ListView.Hidden;
+                RefreshApps();
+                switch (type)
+                {
+                    case TriggerShortcut.TriggerAction.ShowApps:
+                        ShowApps();
+                        break;
+                    case TriggerShortcut.TriggerAction.ShowWindows:
+                        ShowForeGroundAppWindows();
+                        break;
+                }
 
-            // Display main window
-            _mainWindow.Show(); // This extra Show() fixes the initial display
-            _mainWindow.Display();
+                // Display main window
+                _mainWindow.Show(); // This extra Show() fixes the initial display
+                _mainWindow.Display();
             }
 
             CheckForUpdateOnFirstShow();
@@ -336,7 +336,8 @@ namespace WinManager
 
         public void ShowTranslator()
         {
-            _translatorWindow = new TranslatorWindow(this, "");
+            var clipboardText = Utils.GetClipboardText();
+            _translatorWindow = new TranslatorWindow(this, clipboardText);
             _translatorWindow.Display();
         }
 

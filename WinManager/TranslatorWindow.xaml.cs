@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 
@@ -29,6 +27,15 @@ namespace WinManager
             // Hide window from task switching
             Utils.SetWindowToolStyle(new WindowInteropHelper(this).Handle);
 
+            if (_keyword != null)
+            {
+                keywordTextBox.Text = _keyword;
+                keywordTextBox.SelectAll();
+            }
+            keywordTextBox.KeyDown += new KeyEventHandler((sender, e) =>
+            {
+                keywordTextBox_KeyDown(sender, e);
+            });
             keywordTextBox.Focus();
         }
 
@@ -43,6 +50,14 @@ namespace WinManager
             else if (isControlDown && isShiftDown && e.Key == Key.F)
             {
                 keywordTextBox.Focus();
+            }
+        }
+
+        private void keywordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TranslateKeyword();
             }
         }
 
