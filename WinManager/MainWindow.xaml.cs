@@ -24,17 +24,10 @@ namespace WinManager
             Closing += MainWindow_Closing;
         }
 
-        private void SetWindowToolStyle(IntPtr handle)
-        {
-            uint extendedStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
-            NativeMethods.SetWindowLong(handle, NativeMethods.GWL_EXSTYLE, extendedStyle |
-            NativeMethods.WS_EX_TOOLWINDOW);
-        }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Hide window from task switching
-            SetWindowToolStyle(new WindowInteropHelper(this).Handle);
+            Utils.SetWindowToolStyle(new WindowInteropHelper(this).Handle);
 
             _manager.HandleMainWindowLoad();
             itemsListBox.KeyDown += new KeyEventHandler((sender, e) =>
@@ -47,7 +40,7 @@ namespace WinManager
         {
             if (e.Key == Key.Escape)
             {
-                _manager.HideAndSwitchToPrevWindow();
+                _manager.HideManagerAndSwitchToPrevWindow();
             }
         }
 

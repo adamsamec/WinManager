@@ -30,7 +30,7 @@ namespace WinManager
             }
             catch (Exception)
             {
-                throw new PageRetrieveFailedException("Unable to retrieve the What's new page from Internet");
+                throw new PageRetrieveFailedException("Unable to retrieve the What's new page from the Internet");
             }
             try
             {
@@ -73,7 +73,7 @@ namespace WinManager
             }
             catch (Exception)
             {
-                throw new PageRetrieveFailedException("Unable to retrieve the translation page from Internet");
+                throw new PageRetrieveFailedException("Unable to retrieve the translation page from the Internet");
             }
             return htmlString;
         }
@@ -120,7 +120,10 @@ page.focus();
 </html>";
             webBrowser.LoadCompleted += (sendr, e) =>
             {
+                if (doFocus)
+                { 
                 webBrowser.InvokeScript("focusBegining");
+                }
             };
             webBrowser.NavigateToString(html);
             if (doFocus)

@@ -25,6 +25,13 @@ namespace WinManager
             return _installFolder;
         }
 
+        public static void SetWindowToolStyle(IntPtr handle)
+        {
+            var extendedStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
+            NativeMethods.SetWindowLong(handle, NativeMethods.GWL_EXSTYLE, extendedStyle |
+            NativeMethods.WS_EX_TOOLWINDOW);
+        }
+
         public static bool IsFileInUse(string filePath)
         {
             try

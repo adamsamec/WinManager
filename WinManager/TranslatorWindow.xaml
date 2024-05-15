@@ -20,11 +20,8 @@ Content="{x:Static lang:Resources.translateButton}"
 Click="translateButton_Click"
 />
     <WebBrowser Name="webBrowser"
+IsEnabled="False"
 Width="800"
 Height="600"/>
-    <Button Name="closeButton"
-Content="{x:Static lang:Resources.closeButton}"
-IsCancel="True"
-/>
   </Grid>
 </Window>

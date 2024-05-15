@@ -16,6 +16,7 @@ namespace WinManager
         private IntPtr _prevWindowHandle = NativeMethods.GetForegroundWindow();
         private Config _config = new Config();
         private MainWindow _mainWindow;
+        private TranslatorWindow? _translatorWindow;
         private SpeechSynthesizer _speech = new SpeechSynthesizer();
         private Updater _appUpdater = new Updater();
         private bool _hasCheckedForUpdateOnFirstShow = false;
@@ -182,19 +183,39 @@ namespace WinManager
 
         public void HandleMainWindowLoad()
         {
-            Hide();
+            HideMainWindow();
         }
 
-        public void HideAndSwitchToPrevWindow()
+        public void HideManagerAndSwitchToPrevWindow()
         {
-            Hide();
-            NativeMethods.SetForegroundWindow(_prevWindowHandle);
-            NativeMethods.SetActiveWindow(_prevWindowHandle);
+            HideMainWindow();
+            SwitchToPrevWindow();
         }
 
-        private void Hide()
+        public void HideTranslatorAndSwitchToPrevWindow()
+        {
+            HideTranslatorWindow();
+            SwitchToPrevWindow();
+        }
+
+        private void HideMainWindow()
         {
             _mainWindow.Hide();
+        }
+
+        private void HideTranslatorWindow()
+        {
+            if (_translatorWindow != null)
+            {
+                _translatorWindow.Hide();
+                _translatorWindow = null;
+            }
+        }
+
+        private void SwitchToPrevWindow()
+        {
+            NativeMethods.SetForegroundWindow(_prevWindowHandle);
+            NativeMethods.SetActiveWindow(_prevWindowHandle);
         }
 
         private void Show(TriggerShortcut.TriggerAction type)
@@ -244,8 +265,8 @@ namespace WinManager
 
         private bool IsShown()
         {
-            // WinManager is not activated if main window is not visible or if no window is in foregroud 
-            if (!_mainWindow.IsVisible || _prevWindowHandle == IntPtr.Zero)
+            // WinManager is not activated if main and translator windows are not visible or if no window is in foregroud 
+            if ((!_mainWindow.IsVisible && _translatorWindow == null) || _prevWindowHandle == IntPtr.Zero)
             {
                 return false;
             }
@@ -315,8 +336,8 @@ namespace WinManager
 
         public void ShowTranslator()
         {
-            var translatorWindow = new TranslatorWindow("");
-            translatorWindow.Display();
+            _translatorWindow = new TranslatorWindow(this, "");
+            _translatorWindow.Display();
         }
 
         public bool ShowSelectedAppWindows(int appIndex)
@@ -515,7 +536,7 @@ namespace WinManager
             }
 
             // Hide WinManager window and switch to app or window using their handle
-            Hide();
+            HideMainWindow();
             NativeMethods.ShowWindow(handle, 5);
             NativeMethods.SetForegroundWindow(handle);
             NativeMethods.SetActiveWindow(handle);
