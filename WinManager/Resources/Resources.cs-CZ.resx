@@ -147,7 +147,7 @@
   </data>
   <data name="translatorTitle"
   xml:space="preserve">
-<value>Anglicko-český překladač</value>
+<value>Anglicko-český slovník</value>
 </data>
 <data name="translatorKeywordLabel"
 xml:space="preserve">
@@ -312,7 +312,7 @@ xml:space="preserve">
     </data>
     <data name="enabledTranslatorShortcutsHeader"
     xml:space="preserve">
-  <value>Povolené klávesové zkratky pro anglicko-český překladač</value>
+  <value>Povolené klávesové zkratky pro anglicko-český slovník</value>
 </data>
     <data name="quittingApp"
     xml:space="preserve">

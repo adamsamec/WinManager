@@ -169,7 +169,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enabled keyboard shortcuts for English-Czech translator.
+        ///   Looks up a localized string similar to Enabled keyboard shortcuts for English-Czech dictionary.
         /// </summary>
         public static string enabledTranslatorShortcutsHeader {
             get {
@@ -421,7 +421,7 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English-Czech translator.
+        ///   Looks up a localized string similar to English-Czech dictionary.
         /// </summary>
         public static string translatorTitle {
             get {

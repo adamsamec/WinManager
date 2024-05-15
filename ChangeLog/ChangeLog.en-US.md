@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.7
+* Added English-Czech dictionary feature accessible via Windows + Shift + F or Windows + F10 keyboard shortcut.
+
 ## WinManager 1.0.6
 * Modern app windows are now properly categorized into respective app names instead of the common item named "Modern applications".
 

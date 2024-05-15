@@ -1,6 +1,8 @@
 ## Úvod
 WinManager je nástroj, který přináší jednodušší správu aplikací a oken do Microsoft Windows. Umožňuje efektivnější přepínání a zavírání aplikací a oken optimalizované pro uživatele ovládající systém výhradně pomocí klávesnice nebo pomocí odečítače obrazovky. Práci usnadní zejména v případě, kdy máte spuštěno mnoho aplikací a jejich oken současně.
 
+WinManager dále nabízí funkci snadno přístupného ale zároveň pokročilého a kvalitního obousměrného anglicko-českého slovníku, více informací viz níže v sekci "Funkce".
+
 ## Ukázky použití
 Přínos nástroje WinManager lze demonstrovat nejlépe pomocí konkrétních ukázek jeho použití. Dejme tomu, že máte otevřené dva dokumenty aplikace Microsoft Word, dále pět oken webového prohlížeče Microsoft Edge, tři okna Průzkumníka souborů a ještě okno s doručenou poštou v aplikaci Microsoft Outlook.
 
@@ -28,10 +30,11 @@ Přínos nástroje WinManager lze demonstrovat nejlépe pomocí konkrétních uk
 3. Stiskněte Enter na okně "Stahování" pro přepnutí do něj, nebo stiskněte Delete pro jeho zavření.
 
 ## Funkce
-Po spuštění WinManager oznámí, že byl spuštěn, a poté běží na pozadí, dokud není vyvolána jeho funkcionalita pomocí odpovídajících klávesových zkratek, jež jsou globální, čili tyto zkratky fungují bez ohledu na to, jaká aplikace nebo okno je zrovna v popředí. Uživatel může vyvolat následující seznamy:
+Po spuštění WinManager oznámí, že byl spuštěn, a poté běží na pozadí, dokud není vyvolána jeho funkcionalita pomocí odpovídajících klávesových zkratek, jež jsou globální, čili tyto zkratky fungují bez ohledu na to, jaká aplikace nebo okno je zrovna v popředí. Uživatel může vyvolat následující funkce:
 
 * Seznam spuštěných aplikací a jejich otevřených oken.
 * Seznam otevřených oken jen pro aplikaci, která je zrovna v popředí.
+* Obousměrný anglicko-český slovník.
 
 ### Seznam spuštěných aplikací a jejich otevřených oken
 Stisknutím zkratky Windows + F12 nebo alternativně Windows + Shift + A můžete kdykoliv vyvolat seznam právě spuštěných aplikací, který je seřazen dle naposledy použité aplikace. Se seznamem můžete pracovat pomocí následujících kláves:
@@ -53,6 +56,13 @@ Stisknutím zkratky Windows + F11 nebo alternativně Windows + Shift + Q můžet
 * Escape: Skryje WinManager.
 * Alt + F4: Ukončí WinManager, takže už nebude nadále běžet na pozadí. WinManager oznámí, že byl ukončen.
 
+### Obousměrný anglicko-český slovník
+Stisknutím zkratky Windows + F10 nebo alternativně Windows + Shift + F můžete kdykoliv vyvolat pokročilý obousměrný anglicko-český slovník založený na kvalitním slovníku od Seznam.cz. Pro využití tohoto slovníku je však potřebné připojení k Internetu.
+
+* Po vyvolání slovníku je do vyhledávacího pole pro zadání hledaného slovíčka automaticky předvyplněn text ze schránky a tento text je označen, takže ho následným psaním případně můžete snadno přepsat na jiné slovíčko.
+* Stisknutím Enteru vyhledáte zadané slovíčko a fokus se sám přesune do oblasti s výsledkem hledání, kde se můžete pohybovat stejně jako na webové stránce.
+* Klávesovou zkratkou Control + Shift + F se můžete kdykoliv přesunout zpět do pole pro zadání slovíčka.
+
 ### Nastavení nástroje WinManager
 Nastavení je dostupné přes tlačítko „Nastavení a další“, na které se lze přesunout pomocí klávesy tabulátor nebo Shift + tabulátor v základním okně nástroje WinManager.
 
@@ -64,7 +74,7 @@ Pro urychlení nalezení požadované aplikace nebo okna podporují seznam aplik
 Filtr je možné resetovat a opět tak zobrazit původní aplikace nebo okna stisknutím klávesy Backspace.
 
 ### Přenastavení globálních klávesových zkratek
-Dialog s nastavením pro WinManager umožňuje konfiguraci globálních klávesových zkratek sloužících pro vyvolávání nástroje WinManager. V jednu chvíli je možné mít povoleno více klávesových zkratek najednou tak, aby pravděpodobnost konfliktu zkratek s jinými programy byla minimalizována.
+Dialog s nastavením pro WinManager umožňuje konfiguraci globálních klávesových zkratek sloužících pro vyvolávání seznamu aplikací nebo oken či slovníku. V jednu chvíli je možné mít povoleno více klávesových zkratek najednou tak, aby pravděpodobnost konfliktu zkratek s jinými programy byla minimalizována.
 
 K vyvolání seznamu spuštěných aplikací mohou sloužit následující zkratky:
 
@@ -76,11 +86,15 @@ K vyvolání seznamu otevřených oken jen pro aplikaci v popředí mohou slouž
 * Windows + F11 (výchozí).
 * Windows + Shift + Q (výchozí).
 
+K vyvolání slovníku mohou sloužit následující zkratky:
+* Windows + F10 (výchozí).
+* Windows + Shift + F (výchozí).
+
 ## Známé problémy
 * Někdy při pokusu o přepnutí se do okna se fokus do tohoto okna správně nepřesune. V takových situacích může pomoci stisknout Alt + tabulátor a poté Alt + Shift + tabulátor.
 
 ## Kontakt a zpětná vazba
-Máte-li k nástroji WinSwitcher nějaké nápady na zlepšení, potíže s jeho fungování nebo jiné připomínky, tak mi můžete napsat na email [adam.samec@gmail.com](mailto:adam.samec@gmail.com)
+Máte-li k nástroji WinManager nějaké nápady na zlepšení, potíže s jeho fungování nebo jiné připomínky, tak mi můžete napsat na email [adam.samec@gmail.com](mailto:adam.samec@gmail.com)
 
 ## Licence
 WinManager je vyvíjen jako bezplatný program s otevřeným kódem pod licencí MIT, jejíž znění v angličtině je uvedeno níže.

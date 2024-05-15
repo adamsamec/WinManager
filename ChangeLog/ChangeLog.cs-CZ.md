@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.7
+* Přidána funkcionalita anglicko-českého slovníku přístupného přes zkratku Windows + Shift + F nebo Windows + F10.
+
 ## WinManager 1.0.6
 * Okna moderních aplikací jsou nyní správně zařazena do příslušných názvů aplikací namísto společné položky nazvané "Moderní aplikace".
 

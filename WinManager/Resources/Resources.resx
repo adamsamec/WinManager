@@ -183,7 +183,7 @@
     </data>
     <data name="translatorTitle"
     xml:space="preserve">
-  <value>English-Czech translator</value>
+  <value>English-Czech dictionary</value>
 </data>
 <data name="translatorKeywordLabel"
 xml:space="preserve">
@@ -348,7 +348,7 @@ xml:space="preserve">
     </data>
     <data name="enabledTranslatorShortcutsHeader"
     xml:space="preserve">
-  <value>Enabled keyboard shortcuts for English-Czech translator</value>
+  <value>Enabled keyboard shortcuts for English-Czech dictionary</value>
 </data>
     <data name="quittingApp"
     xml:space="preserve">
