@@ -13,7 +13,7 @@ WindowStyle="None"
 Loaded="TranslatorWindow_Loaded"
 >
   <Grid>
-    <Label Name="keywordTextBoxLabel" Target="{Binding ElementName=keywordTextBox}" Content="{x:Static lang:Resources.translatorKeywordLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left" Margin="0,8,0,-8"/>
+    <Label Name="keywordTextBoxLabel" Target="{Binding ElementName=keywordTextBox}" Content="{x:Static lang:Resources.translatorKeywordLabel}" TextBlock.FontSize="20" HorizontalAlignment="Left" Margin="0,8,0,8"/>
     <TextBox Name="keywordTextBox" Width="200"/>
     <Button Name="translateButton"
 Content="{x:Static lang:Resources.translateButton}"
