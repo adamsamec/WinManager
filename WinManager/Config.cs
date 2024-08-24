@@ -86,7 +86,6 @@ namespace WinManager
                     settings.enabledShortcuts.showTranslator = defaultSettings.enabledShortcuts.showTranslator;
                 }
             }
-            Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_P"]);
             Utils.SetYesOrNo(settings.enabledShortcuts.showTranslator, defaultSettings.enabledShortcuts.showTranslator, ["Win_F10", "Win_Shift_F"]);
             Save();
         }
