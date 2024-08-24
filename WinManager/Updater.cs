@@ -37,7 +37,7 @@ namespace WinManager
 
         public async Task<UpdateData?> CheckForUpdate()
         {
-            var updateString = await new HttpClient().GetStringAsync(Consts.ApiUrl);
+            var updateString = await new HttpClient().GetStringAsync(Consts.UpdateApiUrl);
             var update = JsonSerializer.Deserialize<UpdateData>(updateString);
             if (update != null && update.version == Consts.AppVersion)
             {

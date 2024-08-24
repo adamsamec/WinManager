@@ -11,7 +11,7 @@ namespace WinManager
         public static readonly bool ForceCzechLanguage = false;
 
         // URLs
-        public const string ApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
+        public const string UpdateApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
         public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}.md";
         public const string translatorUrl = "https://slovnik.seznam.cz/preklad/anglicky_cesky/";
 
