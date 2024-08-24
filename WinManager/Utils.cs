@@ -11,18 +11,6 @@ namespace WinManager
     /// </summary>
     public static class Utils
     {
-        private static string? _installFolder;
-
-        public static string? GetInstallFolder()
-        {
-            if (_installFolder == null)
-            {
-                var assemblyPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                _installFolder = System.IO.Path.GetDirectoryName(assemblyPath);
-            }
-            return _installFolder;
-        }
-
         public static void SetWindowToolStyle(IntPtr handle)
         {
             var extendedStyle = NativeMethods.GetWindowLong(handle, NativeMethods.GWL_EXSTYLE);
