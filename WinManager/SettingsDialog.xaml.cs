@@ -17,7 +17,6 @@ namespace WinManager
             _manager = manager;
 
             CreateShortcutsCheckBoxes();
-
         }
 
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
