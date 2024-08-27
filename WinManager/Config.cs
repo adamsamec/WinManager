@@ -10,7 +10,6 @@ namespace WinManager
     /// </summary>
     public class Config
     {
-        private string _path;
         private ConfigJson _config;
 
         public List<TriggerShortcut> TriggerShortcuts = new List<TriggerShortcut>
@@ -37,18 +36,16 @@ namespace WinManager
 
         public Config()
         {
-            Directory.CreateDirectory(Consts.localUserFolder);
-            var defaultPath = Path.Combine(Consts.InstallFolder, Consts.ConfigDefaultFilename);
-            _path = Path.Combine(Consts.localUserFolder, Consts.ConfigFilename);
+            Directory.CreateDirectory(Consts.LocalUserFolder);
 
             // Create the config if it not yet exists
-            if (!File.Exists(_path))
+            if (!File.Exists(Consts.ConfigFilePath))
             {
-                File.Copy(defaultPath, _path);
+                File.Copy(Consts.DefaultConfigFilePath, Consts.ConfigFilePath);
             }
 
             // Load the config
-            var configString = File.ReadAllText(_path, Encoding.UTF8);
+            var configString = File.ReadAllText(Consts.ConfigFilePath, Encoding.UTF8);
             var config = JsonSerializer.Deserialize<ConfigJson>(configString);
             if (config == null)
             {
@@ -57,7 +54,7 @@ namespace WinManager
             _config = config as ConfigJson;
             var settings = _config.settings;
 
-            var defaultConfigString = File.ReadAllText(defaultPath, Encoding.UTF8);
+            var defaultConfigString = File.ReadAllText(Consts.DefaultConfigFilePath, Encoding.UTF8);
             var defaultConfig = JsonSerializer.Deserialize<ConfigJson>(defaultConfigString);
             if (defaultConfig == null)
             {
@@ -81,7 +78,7 @@ namespace WinManager
                 {
                     settings.enabledShortcuts.showWindows = defaultSettings.enabledShortcuts.showWindows;
                 }
-                if (settings.enabledShortcuts.showTranslator== null)
+                if (settings.enabledShortcuts.showTranslator == null)
                 {
                     settings.enabledShortcuts.showTranslator = defaultSettings.enabledShortcuts.showTranslator;
                 }
@@ -94,7 +91,7 @@ namespace WinManager
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             var configString = JsonSerializer.Serialize(_config, options);
-            File.WriteAllText(_path, configString, Encoding.UTF8);
+            File.WriteAllText(Consts.ConfigFilePath, configString, Encoding.UTF8);
         }
 
         public static bool StringToBool(string? value)

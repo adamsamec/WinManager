@@ -18,11 +18,11 @@ namespace WinManager
         // Paths and filenames
         public const string PagesFolder = "Pages";
         public static string HelpFileRelativePath = Path.Combine(PagesFolder, "Help.{0}.md");
-        public static string localUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
-        public static string InstallerDownloadFolder = Path.Combine(localUserFolder, "installer");
+        public static string LocalUserFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WinManager");
+        public static string InstallerDownloadFolder = Path.Combine(LocalUserFolder, "installer");
         public const string ExecutableFilename = "WinManager.exe";
-        public const string ConfigDefaultFilename = "App.config.default.json";
-        public const string ConfigFilename = "App.config.json";
+        public static string DefaultConfigFilePath = Path.Combine(InstallFolder, "App.config.default.json");
+        public static string ConfigFilePath = Path.Combine(LocalUserFolder, "App.config.json");
         public static string InstallFolder
         {
             get
