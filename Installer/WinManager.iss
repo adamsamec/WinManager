@@ -2,16 +2,16 @@
 #define MyAppName "WinManager"
 #define MyAppVersion "1.0.7"
 #define MyAppPublisher "Adam Samec"
-#define MyAppExecutable "WinManager.exe"
+#define MyAppExecutable MyAppName + ".exe"
 
 [CustomMessages]
 en.MyDescription=Utility for easier and more accessible application and windows switching and closing in Microsoft Windows
-en.LaunchAfterInstall=Start WinManager after finishing installation
+en.LaunchAfterInstall=Start {#MyAppName} after finishing installation
 cs.MyDescription=Nástroj pro snadné a přístupnější přepínání a zavírání aplikací a oken v Microsoft Windows
-cs.LaunchAfterInstall=Spustit WinManager po dokončení instalace
+cs.LaunchAfterInstall=Spustit {#MyAppName} po dokončení instalace
 
 [Setup]
-OutputBaseFilename=WinManager-{#MyAppVersion}-win32-setup
+OutputBaseFilename={#MyAppName}-{#MyAppVersion}-win32-setup
 AppVersion={#MyAppVersion}
 AppName={#MyAppName}
 AppId={#MyAppName}
@@ -36,7 +36,7 @@ en.BeveledLabel=English
 cs.BeveledLabel=Čeština
 
 [Files]
-Source: "..\WinManager\bin\Release\net8.0-windows\win-x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "..\{#MyAppName}\bin\Release\net8.0-windows\win-x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExecutable}"
