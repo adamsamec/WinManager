@@ -3,16 +3,16 @@
 namespace WinManager
 {
     /// <summary>
-    /// Interaction logic for HelpWindow.xaml
+    /// Interaction logic for HelpDialog.xaml
     /// </summary>
-    public partial class HelpWindow : Window
+    public partial class HelpDialog : Window
     {
-        public HelpWindow()
+        public HelpDialog()
         {
             InitializeComponent();
         }
 
-        private void HelpWindow_Loaded(object sender, RoutedEventArgs e)
+        private void HelpDialog_Loaded(object sender, RoutedEventArgs e)
         {
             var pageContent = "<h1>WinManager " + Consts.AppVersion + @"</h1>
 " + Page.GetHelpPageContent();

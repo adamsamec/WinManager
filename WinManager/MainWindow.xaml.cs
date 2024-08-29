@@ -89,9 +89,9 @@ namespace WinManager
 
         private void helpButton_Click(object sender, RoutedEventArgs e)
         {
-            var helpWindow = new HelpWindow();
-            helpWindow.Owner = this;
-            helpWindow.ShowDialog();
+            var helpDialog = new HelpDialog();
+            helpDialog.Owner = this;
+            helpDialog.ShowDialog();
         }
 
         private void settingsButton_Click(object sender, RoutedEventArgs e)
