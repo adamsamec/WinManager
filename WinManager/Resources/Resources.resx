@@ -317,7 +317,6 @@ xml:space="preserve">
           xml:space="preserve">
         <value>The update installer is running. Please finish or cancel the installation before downloading the update again.</value>
     </data>
-
                                 <data name="launchUpdateInstallerTitle"
           xml:space="preserve">
         <value>Launch update installer</value>
