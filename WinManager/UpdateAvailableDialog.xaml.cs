@@ -35,7 +35,7 @@ namespace WinManager
             {
                 pageContent = WinManager.Resources.changeLogRetrievalFailedMessage;
             }
-            var changeLogWindow = new ChangeLogWindow(pageContent);
+            var changeLogWindow = new ChangeLogDialog(pageContent);
             changeLogWindow.Owner = this;
             changeLogWindow.ShowDialog();
         }

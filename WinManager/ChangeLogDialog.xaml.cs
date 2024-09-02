@@ -3,20 +3,20 @@
 namespace WinManager
 {
     /// <summary>
-    /// Interaction logic for ChangeLogWindow.xaml
+    /// Interaction logic for ChangeLogDialog.xaml
     /// </summary>
-    public partial class ChangeLogWindow : Window
+    public partial class ChangeLogDialog : Window
     {
         private string _pageContent;
 
-        public ChangeLogWindow(string pageContent)
+        public ChangeLogDialog(string pageContent)
         {
             InitializeComponent();
 
             _pageContent = pageContent;
         }
 
-        private void ChangeLogWindow_Loaded(object sender, RoutedEventArgs e)
+        private void ChangeLogDialog_Loaded(object sender, RoutedEventArgs e)
         {
             Page.SetupWebBrowser(webBrowser, _pageContent);
         }
