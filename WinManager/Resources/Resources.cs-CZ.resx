@@ -171,11 +171,11 @@ xml:space="preserve">
 </data>
       <data name="helpDialogTitle"
     xml:space="preserve">
-  <value>Nápověda pro WinManager</value>
+  <value>Nápověda</value>
 </data>
       <data name="settingsDialogTitle"
           xml:space="preserve">
-        <value>Nastavení pro WinManager</value>
+        <value>Nastavení a další</value>
     </data>
         <data name="launchOnStartupCheckBox"
           xml:space="preserve">

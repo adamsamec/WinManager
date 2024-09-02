@@ -21,6 +21,8 @@ namespace WinManager
 
         private void SettingsDialog_Loaded(object sender, RoutedEventArgs e)
         {
+            Title = WinManager.Resources.settingsDialogTitle + Consts.WindowTitleSeparator + Consts.AppName;
+
             // Set checkboxes state from settings
             launchOnStartupCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.launchOnStartup);
             checkUpdateOnFirstShowCheckBox.IsChecked = Config.StringToBool(_manager.AppSettings.checkUpdateOnFirstShow);

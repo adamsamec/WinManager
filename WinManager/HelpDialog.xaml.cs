@@ -14,7 +14,10 @@ namespace WinManager
 
         private void HelpDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            var pageContent = "<h1>WinManager " + Consts.AppVersion + @"</h1>
+            Title = WinManager.Resources.helpDialogTitle + Consts.WindowTitleSeparator + Consts.AppName;
+
+            var pageContent = "<h1>Win" +
+                "Manager " + Consts.AppVersion + @"</h1>
 " + Page.GetHelpPageContent();
             Page.SetupWebBrowser(webBrowser, pageContent);
         }

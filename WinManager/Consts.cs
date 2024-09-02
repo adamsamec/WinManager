@@ -8,9 +8,12 @@ namespace WinManager
     public static class Consts
     {
         public const string AppVersion = "1.0.7";
+        public const string AppName = "WinManager";
+
+        public const string WindowTitleSeparator = " | ";
         public static readonly bool ForceCzechLanguage = false;
 
-        // URLs
+        // URLsQ
         public const string UpdateApiUrl = "http://api.adamsamec.cz/WinManager/Update.json";
         public const string ChangeLogUrl = "https://raw.githubusercontent.com/adamsamec/WinManager/main/ChangeLog/ChangeLog.{0}.md";
         public const string translatorUrl = "https://slovnik.seznam.cz/preklad/anglicky_cesky/";

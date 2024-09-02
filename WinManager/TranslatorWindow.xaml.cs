@@ -24,6 +24,8 @@ namespace WinManager
 
         private void TranslatorWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            Title = WinManager.Resources.translatorWindowTitle + Consts.WindowTitleSeparator + Consts.AppName;
+
             // Hide window from task switching
             Utils.SetWindowToolStyle(new WindowInteropHelper(this).Handle);
 
