@@ -94,10 +94,13 @@ WinManager is also available as a portable executable not requiring installation
 [Download WinManager portable for Windows][portable-download].
 
 ### Source files
-WinManager is a free and open-source software developed in C# as a WPF application using the .NET 8.0 framework. You can find all the necessary source files in the "WinManager" folder of this repo.
+WinManager is a free and open-source software developed in C# as a WPF application using the .NET 8.0 framework. You can find all the necessary source files in the [WinManager][source-folder] folder of this repo.
 
 ## Known limitations
 * Occasionally, after an attempt to switch to a window, the focus is not properly placed to that window. What may help in this condition is pressing Alt + Tab and then Alt + Shift + Tab.
+
+## Contact and feedback
+If you have suggestions for WinManager improvement, problems with its functionality or other comments, you can drop me an email to [adam.samec@gmail.com](mailto:adam.samec@gmail.com)
 
 ## License
 WinManager is available under the MIT license.
@@ -126,3 +129,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [changelog]: https://github.com/adamsamec/WinManager/blob/main/ChangeLog/ChangeLog.en-US.md
 [installer-download]: https://files.adamsamec.cz/apps/WinManager-win32-setup.exe
 [portable-download]: https://files.adamsamec.cz/apps/WinManager-win32.zip
+[source-folder]: https://github.com/adamsamec/WinManager/tree/main/WinManager
