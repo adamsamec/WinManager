@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WinManager"
         xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
         mc:Ignorable="d"
-        Title="{x:Static lang:Resources.updateDownloadInProgressTitle}"
+        Title="{x:Static lang:Resources.updateDownloadInProgressDialogTitle}"
         SizeToContent="WidthAndHeight"
 WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"

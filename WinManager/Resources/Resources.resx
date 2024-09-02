@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- Microsoft ResX Schema 
+  <!-- 
+    Microsoft ResX Schema 
     
     Version 2.0
     
@@ -56,317 +57,232 @@
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding. -->
-    <xsd:schema id="root"
-                xmlns=""
-                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-        <xsd:element name="root"
-                     msdata:IsDataSet="true">
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value"
-                                             type="xsd:string"
-                                             minOccurs="0" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name"
-                                           use="required"
-                                           type="xsd:string" />
-                            <xsd:attribute name="type"
-                                           type="xsd:string" />
-                            <xsd:attribute name="mimetype"
-                                           type="xsd:string" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias"
-                                           type="xsd:string" />
-                            <xsd:attribute name="name"
-                                           type="xsd:string" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value"
-                                             type="xsd:string"
-                                             minOccurs="0"
-                                             msdata:Ordinal="1" />
-                                <xsd:element name="comment"
-                                             type="xsd:string"
-                                             minOccurs="0"
-                                             msdata:Ordinal="2" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name"
-                                           type="xsd:string"
-                                           use="required"
-                                           msdata:Ordinal="1" />
-                            <xsd:attribute name="type"
-                                           type="xsd:string"
-                                           msdata:Ordinal="3" />
-                            <xsd:attribute name="mimetype"
-                                           type="xsd:string"
-                                           msdata:Ordinal="4" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value"
-                                             type="xsd:string"
-                                             minOccurs="0"
-                                             msdata:Ordinal="1" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name"
-                                           type="xsd:string"
-                                           use="required" />
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="notepadOverride"
-    xml:space="preserve">
-  <value>Notepad</value>
-</data>
-    <data name="exitAnnouncement"
-          xml:space="preserve">
-        <value>Exiting WinManager</value>
-    </data>
-    <data name="openWindowsLabel"
-          xml:space="preserve">
-        <value>Open windows</value>
-    </data>
-    <data name="runningAppsLabel"
-          xml:space="preserve">
-        <value>Running apps</value>
-    </data>
-    <data name="startAnnouncement"
-          xml:space="preserve">
-        <value>WinManager started</value>
-    </data>
-    <data name="settingsButton"
-          xml:space="preserve">
-        <value>Settings and more</value>
-    </data>
-    <data name="noAppsFound"
-          xml:space="preserve">
-        <value>No apps found</value>
-    </data>
-    <data name="noWindowsFound"
-          xml:space="preserve">
-        <value>No windows found</value>
-    </data>
-    <data name="windowsCount"
-          xml:space="preserve">
-        <value>windows</value>
-    </data>
-    <data name="translatorTitle"
-    xml:space="preserve">
-  <value>English-Czech dictionary</value>
-</data>
-<data name="translatorKeywordLabel"
-xml:space="preserve">
-<value>Keyword</value>
-</data>
-<data name="translationRetrievalFailedMessage"
-xml:space="preserve">
-<value>Translation retrieval was not successful. Please verify that you are connected to the Internet.</value>
-</data>
-<data name="translationNotFoundMessage"
-xml:space="preserve">
-<value>Translation was not found.</value>
-</data>
-<data name="translateButton"
-xml:space="preserve">
-<value>Translate</value>
-</data>
-    <data name="helpButton"
-    xml:space="preserve">
-  <value>Help</value>
-</data>
-    <data name="helpTitle"
-    xml:space="preserve">
-  <value>Help for WinManager</value>
-</data>
-    <data name="settingsTitle"
-          xml:space="preserve">
-        <value>Settings for WinManager</value>
-    </data>
-        <data name="launchOnStartupCheckBox"
-          xml:space="preserve">
-        <value>Launch WinManager on Windows startup</value>
-    </data>
-    <data name="checkUpdateOnFirstShowCheckBox"
-    xml:space="preserve">
-  <value>Automatically check for update when WinManager is shown for the first time after its launch</value>
-</data>
-        <data name="closeButton"
-          xml:space="preserve">
-        <value>Close</value>
-    </data>
-            <data name="checkForUpdateButton"
-          xml:space="preserve">
-        <value>Check for update</value>
-    </data>
-            <data name="updateAvailableTitle"
-          xml:space="preserve">
-        <value>WinManager update available</value>
-    </data>
-            <data name="updateAvailableMessage"
-          xml:space="preserve">
-        <value>New WinManager version {0} is available. You currently have version {1}. Do you want to download the update and run its installation now?</value>
-    </data>
-                <data name="yesButton"
-          xml:space="preserve">
-        <value>Yes</value>
-    </data>
-                <data name="notNowButton"
-          xml:space="preserve">
-        <value>Not now</value>
-    </data>
-    <data name="whatsNewButton"
-    xml:space="preserve">
-  <value>What's new</value>
-</data>
-<data name="whatsNewTitle"
-xml:space="preserve">
-<value>What's new in WinManager</value>
-</data>
-<data name="changeLogRetrievalFailedMessage"
-xml:space="preserve">
-<value>What's new page load was not successful. Please verify that you are connected to the Internet.</value>
-</data>
-                <data name="noUpdateAvailableTitle"
-          xml:space="preserve">
-        <value>No update available</value>
-    </data>
-            <data name="noUpdateAvailableMessage"
-          xml:space="preserve">
-        <value>Your version of WinManager {0} is up to date.</value>
-    </data>
-                    <data name="updateCheckFailedTitle"
-          xml:space="preserve">
-        <value>Check for update failed</value>
-    </data>
-            <data name="updateCheckFailedMessage"
-          xml:space="preserve">
-        <value>Check for update was not successful. Please verify that you are connected to the Internet.</value>
-    </data>
-    <data name="downloadingUpdateTitle"
-    xml:space="preserve">
-  <value>Downloading update</value>
-</data>
-      <data name="downloadingUpdateMessage"
-    xml:space="preserve">
-  <value>Please wait while WinManager update {0} is beeing downloaded.</value>
-</data>
-                <data name="updateDownloadProgressLabel"
-          xml:space="preserve">
-        <value>Downloading update</value>
-    </data>
-                        <data name="updateDownloadFailedTitle"
-          xml:space="preserve">
-        <value>Update download failed</value>
-    </data>
-            <data name="updateDownloadFailedMessage"
-          xml:space="preserve">
-        <value>Update download was not successful. Please verify that you are connected to the Internet.</value>
-    </data>
-                        <data name="updateDownloadInProgressTitle"
-          xml:space="preserve">
-        <value>Update download in progress</value>
-    </data>
-            <data name="updateDownloadInProgressMessage"
-          xml:space="preserve">
-        <value>The update is being downloaded. Do you want to cancel the download?</value>
-    </data>
-                    <data name="cancelUpdateDownloadButton"
-          xml:space="preserve">
-        <value>Cancel download</value>
-    </data>
-                        <data name="continueUpdateDownloadButton"
-          xml:space="preserve">
-        <value>Continue download</value>
-    </data>
-                            <data name="updateInstallRunningTitle"
-          xml:space="preserve">
-        <value>Update installer is running</value>
-    </data>
-            <data name="updateInstallRunningMessage"
-          xml:space="preserve">
-        <value>The update installer is running. Please finish or cancel the installation before downloading the update again.</value>
-    </data>
-                                <data name="launchUpdateInstallerTitle"
-          xml:space="preserve">
-        <value>Launch update installer</value>
-    </data>
-            <data name="launchUpdateInstallerMessage"
-          xml:space="preserve">
-        <value>Update installer has been downloaded. Do you want to launch it?</value>
-    </data>
-            <data name="launchUpdateInstallerButton"
-          xml:space="preserve">
-        <value>Launch installer</value>
-    </data>
-            <data name="cancelButton"
-          xml:space="preserve">
-        <value>Cancel</value>
-    </data>
-                <data name="fileExplorer"
-          xml:space="preserve">
-        <value>File Explorer</value>
-    </data>
-                    <data name="enabledAppsShortcutsHeader"
-          xml:space="preserve">
-        <value>Enabled keyboard shortcuts for list of running apps</value>
-    </data>
-                        <data name="enabledWindowsShortcutsHeader"
-          xml:space="preserve">
-        <value>Enabled keyboard shortcuts for list of foreground app open windows</value>
-    </data>
-    <data name="enabledTranslatorShortcutsHeader"
-    xml:space="preserve">
-  <value>Enabled keyboard shortcuts for English-Czech dictionary</value>
-</data>
-    <data name="quittingApp"
-    xml:space="preserve">
-  <value>Quitting the app</value>
-</data>
-<data name="forceQuittingApp"
-xml:space="preserve">
-<value>Force quitting the app</value>
-</data>
-<data name="quittingAppFailed"
-xml:space="preserve">
-<value>Quitting failed</value>
-</data>
-<data name="closingWindow"
-xml:space="preserve">
-<value>Closing the window</value>
-</data>
-<data name="closingWindowFailed"
-xml:space="preserve">
-<value>Closing failed</value>
-</data>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="notepadOverride" xml:space="preserve">
+    <value>Notepad</value>
+  </data>
+  <data name="exitAnnouncement" xml:space="preserve">
+    <value>Exiting WinManager</value>
+  </data>
+  <data name="openWindowsLabel" xml:space="preserve">
+    <value>Open windows</value>
+  </data>
+  <data name="runningAppsLabel" xml:space="preserve">
+    <value>Running apps</value>
+  </data>
+  <data name="startAnnouncement" xml:space="preserve">
+    <value>WinManager started</value>
+  </data>
+  <data name="settingsButton" xml:space="preserve">
+    <value>Settings and more</value>
+  </data>
+  <data name="noAppsFound" xml:space="preserve">
+    <value>No apps found</value>
+  </data>
+  <data name="noWindowsFound" xml:space="preserve">
+    <value>No windows found</value>
+  </data>
+  <data name="windowsCount" xml:space="preserve">
+    <value>windows</value>
+  </data>
+  <data name="translatorWindowTitle" xml:space="preserve">
+    <value>English-Czech dictionary</value>
+  </data>
+  <data name="translatorKeywordLabel" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="translationRetrievalFailedMessage" xml:space="preserve">
+    <value>Translation retrieval was not successful. Please verify that you are connected to the Internet.</value>
+  </data>
+  <data name="translationNotFoundMessage" xml:space="preserve">
+    <value>Translation was not found.</value>
+  </data>
+  <data name="translateButton" xml:space="preserve">
+    <value>Translate</value>
+  </data>
+  <data name="helpButton" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="helpDialogTitle" xml:space="preserve">
+    <value>Help for WinManager</value>
+  </data>
+  <data name="settingsDialogTitle" xml:space="preserve">
+    <value>Settings for WinManager</value>
+  </data>
+  <data name="launchOnStartupCheckBox" xml:space="preserve">
+    <value>Launch WinManager on Windows startup</value>
+  </data>
+  <data name="checkUpdateOnFirstShowCheckBox" xml:space="preserve">
+    <value>Automatically check for update when WinManager is shown for the first time after its launch</value>
+  </data>
+  <data name="closeButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="checkForUpdateButton" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="updateAvailableDialogTitle" xml:space="preserve">
+    <value>WinManager update available</value>
+  </data>
+  <data name="updateAvailableMessage" xml:space="preserve">
+    <value>New WinManager version {0} is available. You currently have version {1}. Do you want to download the update and run its installation now?</value>
+  </data>
+  <data name="yesButton" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="notNowButton" xml:space="preserve">
+    <value>Not now</value>
+  </data>
+  <data name="whatsNewButton" xml:space="preserve">
+    <value>What's new</value>
+  </data>
+  <data name="whatsNewDialogTitle" xml:space="preserve">
+    <value>What's new in WinManager</value>
+  </data>
+  <data name="changeLogRetrievalFailedMessage" xml:space="preserve">
+    <value>What's new page load was not successful. Please verify that you are connected to the Internet.</value>
+  </data>
+  <data name="noUpdateAvailableDialogTitle" xml:space="preserve">
+    <value>No update available</value>
+  </data>
+  <data name="noUpdateAvailableMessage" xml:space="preserve">
+    <value>Your version of WinManager {0} is up to date.</value>
+  </data>
+  <data name="updateCheckFailedDialogTitle" xml:space="preserve">
+    <value>Check for update failed</value>
+  </data>
+  <data name="updateCheckFailedMessage" xml:space="preserve">
+    <value>Check for update was not successful. Please verify that you are connected to the Internet.</value>
+  </data>
+  <data name="downloadingUpdateDialogTitle" xml:space="preserve">
+    <value>Downloading update</value>
+  </data>
+  <data name="downloadingUpdateMessage" xml:space="preserve">
+    <value>Please wait while WinManager update {0} is beeing downloaded.</value>
+  </data>
+  <data name="updateDownloadProgressLabel" xml:space="preserve">
+    <value>Downloading update</value>
+  </data>
+  <data name="updateDownloadFailedDialogTitle" xml:space="preserve">
+    <value>Update download failed</value>
+  </data>
+  <data name="updateDownloadFailedMessage" xml:space="preserve">
+    <value>Update download was not successful. Please verify that you are connected to the Internet.</value>
+  </data>
+  <data name="updateDownloadInProgressDialogTitle" xml:space="preserve">
+    <value>Update download in progress</value>
+  </data>
+  <data name="updateDownloadInProgressMessage" xml:space="preserve">
+    <value>The update is being downloaded. Do you want to cancel the download?</value>
+  </data>
+  <data name="cancelUpdateDownloadButton" xml:space="preserve">
+    <value>Cancel download</value>
+  </data>
+  <data name="continueUpdateDownloadButton" xml:space="preserve">
+    <value>Continue download</value>
+  </data>
+  <data name="updateInstallRunningDialogTitle" xml:space="preserve">
+    <value>Update installer is running</value>
+  </data>
+  <data name="updateInstallRunningMessage" xml:space="preserve">
+    <value>The update installer is running. Please finish or cancel the installation before downloading the update again.</value>
+  </data>
+  <data name="launchUpdateInstallerDialogTitle" xml:space="preserve">
+    <value>Launch update installer</value>
+  </data>
+  <data name="launchUpdateInstallerMessage" xml:space="preserve">
+    <value>Update installer has been downloaded. Do you want to launch it?</value>
+  </data>
+  <data name="launchUpdateInstallerButton" xml:space="preserve">
+    <value>Launch installer</value>
+  </data>
+  <data name="cancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="fileExplorer" xml:space="preserve">
+    <value>File Explorer</value>
+  </data>
+  <data name="enabledAppsShortcutsHeader" xml:space="preserve">
+    <value>Enabled keyboard shortcuts for list of running apps</value>
+  </data>
+  <data name="enabledWindowsShortcutsHeader" xml:space="preserve">
+    <value>Enabled keyboard shortcuts for list of foreground app open windows</value>
+  </data>
+  <data name="enabledTranslatorShortcutsHeader" xml:space="preserve">
+    <value>Enabled keyboard shortcuts for English-Czech dictionary</value>
+  </data>
+  <data name="quittingApp" xml:space="preserve">
+    <value>Quitting the app</value>
+  </data>
+  <data name="forceQuittingApp" xml:space="preserve">
+    <value>Force quitting the app</value>
+  </data>
+  <data name="quittingAppFailed" xml:space="preserve">
+    <value>Quitting failed</value>
+  </data>
+  <data name="closingWindow" xml:space="preserve">
+    <value>Closing the window</value>
+  </data>
+  <data name="closingWindowFailed" xml:space="preserve">
+    <value>Closing failed</value>
+  </data>
 </root>

@@ -145,7 +145,7 @@
       <data name="windowsCount" xml:space="preserve">
     <value>okna</value>
   </data>
-  <data name="translatorTitle"
+  <data name="translatorWindowTitle"
   xml:space="preserve">
 <value>Anglicko-český slovník</value>
 </data>
@@ -169,11 +169,11 @@ xml:space="preserve">
   xml:space="preserve">
 <value>Nápověda</value>
 </data>
-      <data name="helpTitle"
+      <data name="helpDialogTitle"
     xml:space="preserve">
   <value>Nápověda pro WinManager</value>
 </data>
-      <data name="settingsTitle"
+      <data name="settingsDialogTitle"
           xml:space="preserve">
         <value>Nastavení pro WinManager</value>
     </data>
@@ -193,7 +193,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Zkontrolovat aktualizaci</value>
     </data>
-            <data name="updateAvailableTitle"
+            <data name="updateAvailableDialogTitle"
           xml:space="preserve">
         <value>Dostupná aktualizace pro WinManager</value>
     </data>
@@ -213,7 +213,7 @@ xml:space="preserve">
     xml:space="preserve">
   <value>Co je nového</value>
 </data>
-<data name="whatsNewTitle"
+<data name="whatsNewDialogTitle"
 xml:space="preserve">
 <value>Co je nového ve WinManageru</value>
 </data>
@@ -221,7 +221,7 @@ xml:space="preserve">
 xml:space="preserve">
 <value>Načtení stránky Co je nového nebylo úspěšné. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
 </data>
-                <data name="noUpdateAvailableTitle"
+                <data name="noUpdateAvailableDialogTitle"
           xml:space="preserve">
         <value>Žádná dostupná instalace</value>
     </data>
@@ -229,7 +229,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Vaše verze WinManager {0} je aktuální.</value>
     </data>
-                        <data name="updateCheckFailedTitle"
+                        <data name="updateCheckFailedDialogTitle"
           xml:space="preserve">
         <value>Kontrola aktualizace selhala</value>
     </data>
@@ -237,7 +237,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Kontrola aktualizace nebyla úspěšná. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
     </data>
-    <data name="downloadingUpdateTitle"
+    <data name="downloadingUpdateDialogTitle"
     xml:space="preserve">
   <value>Stahování aktualizace</value>
 </data>
@@ -249,7 +249,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Stahování aktualizace</value>
     </data>
-                            <data name="updateDownloadFailedTitle"
+                            <data name="updateDownloadFailedDialogTitle"
           xml:space="preserve">
         <value>Stahování aktualizace selhalo</value>
     </data>
@@ -257,7 +257,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Stahování Aktualizace nebylo úspěšné. Prosím zkontrolujte, jestli jste připojeni k Internetu.</value>
     </data>
-                        <data name="updateDownloadInProgressTitle"
+                        <data name="updateDownloadInProgressDialogTitle"
           xml:space="preserve">
         <value>Probíhá stahování aktualizace</value>
     </data>
@@ -273,7 +273,7 @@ xml:space="preserve">
           xml:space="preserve">
         <value>Pokračovat ve stahování</value>
     </data>
-                                <data name="updateInstallRunningTitle"
+                                <data name="updateInstallRunningDialogTitle"
           xml:space="preserve">
         <value>Probíhá instalace</value>
     </data>
@@ -282,7 +282,7 @@ xml:space="preserve">
         <value>Instalace právě probíhá. Prosím dokončete nebo zruštte instalaci před opětovným stažením aktualizace</value>
     </data>
 
-                                    <data name="launchUpdateInstallerTitle"
+                                    <data name="launchUpdateInstallerDialogTitle"
           xml:space="preserve">
         <value>Spuštění instalátoru aktualizace</value>
     </data>

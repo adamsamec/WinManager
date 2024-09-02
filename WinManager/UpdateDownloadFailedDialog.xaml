@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WinManager"
         xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
         mc:Ignorable="d"
-        Title="{x:Static lang:Resources.updateDownloadFailedTitle}"
+        Title="{x:Static lang:Resources.updateDownloadFailedDialogTitle}"
         SizeToContent="WidthAndHeight"
 WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"

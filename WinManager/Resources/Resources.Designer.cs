@@ -142,20 +142,20 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading update.
+        /// </summary>
+        public static string downloadingUpdateDialogTitle {
+            get {
+                return ResourceManager.GetString("downloadingUpdateDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please wait while WinManager update {0} is beeing downloaded..
         /// </summary>
         public static string downloadingUpdateMessage {
             get {
                 return ResourceManager.GetString("downloadingUpdateMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Downloading update.
-        /// </summary>
-        public static string downloadingUpdateTitle {
-            get {
-                return ResourceManager.GetString("downloadingUpdateTitle", resourceCulture);
             }
         }
         
@@ -225,9 +225,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Help for WinManager.
         /// </summary>
-        public static string helpTitle {
+        public static string helpDialogTitle {
             get {
-                return ResourceManager.GetString("helpTitle", resourceCulture);
+                return ResourceManager.GetString("helpDialogTitle", resourceCulture);
             }
         }
         
@@ -250,20 +250,20 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch update installer.
+        /// </summary>
+        public static string launchUpdateInstallerDialogTitle {
+            get {
+                return ResourceManager.GetString("launchUpdateInstallerDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update installer has been downloaded. Do you want to launch it?.
         /// </summary>
         public static string launchUpdateInstallerMessage {
             get {
                 return ResourceManager.GetString("launchUpdateInstallerMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Launch update installer.
-        /// </summary>
-        public static string launchUpdateInstallerTitle {
-            get {
-                return ResourceManager.GetString("launchUpdateInstallerTitle", resourceCulture);
             }
         }
         
@@ -295,20 +295,20 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No update available.
+        /// </summary>
+        public static string noUpdateAvailableDialogTitle {
+            get {
+                return ResourceManager.GetString("noUpdateAvailableDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your version of WinManager {0} is up to date..
         /// </summary>
         public static string noUpdateAvailableMessage {
             get {
                 return ResourceManager.GetString("noUpdateAvailableMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No update available.
-        /// </summary>
-        public static string noUpdateAvailableTitle {
-            get {
-                return ResourceManager.GetString("noUpdateAvailableTitle", resourceCulture);
             }
         }
         
@@ -369,9 +369,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to Settings for WinManager.
         /// </summary>
-        public static string settingsTitle {
+        public static string settingsDialogTitle {
             get {
-                return ResourceManager.GetString("settingsTitle", resourceCulture);
+                return ResourceManager.GetString("settingsDialogTitle", resourceCulture);
             }
         }
         
@@ -423,9 +423,18 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to English-Czech dictionary.
         /// </summary>
-        public static string translatorTitle {
+        public static string translatorWindowTitle {
             get {
-                return ResourceManager.GetString("translatorTitle", resourceCulture);
+                return ResourceManager.GetString("translatorWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WinManager update available.
+        /// </summary>
+        public static string updateAvailableDialogTitle {
+            get {
+                return ResourceManager.GetString("updateAvailableDialogTitle", resourceCulture);
             }
         }
         
@@ -439,11 +448,11 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WinManager update available.
+        ///   Looks up a localized string similar to Check for update failed.
         /// </summary>
-        public static string updateAvailableTitle {
+        public static string updateCheckFailedDialogTitle {
             get {
-                return ResourceManager.GetString("updateAvailableTitle", resourceCulture);
+                return ResourceManager.GetString("updateCheckFailedDialogTitle", resourceCulture);
             }
         }
         
@@ -457,11 +466,11 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for update failed.
+        ///   Looks up a localized string similar to Update download failed.
         /// </summary>
-        public static string updateCheckFailedTitle {
+        public static string updateDownloadFailedDialogTitle {
             get {
-                return ResourceManager.GetString("updateCheckFailedTitle", resourceCulture);
+                return ResourceManager.GetString("updateDownloadFailedDialogTitle", resourceCulture);
             }
         }
         
@@ -475,11 +484,11 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update download failed.
+        ///   Looks up a localized string similar to Update download in progress.
         /// </summary>
-        public static string updateDownloadFailedTitle {
+        public static string updateDownloadInProgressDialogTitle {
             get {
-                return ResourceManager.GetString("updateDownloadFailedTitle", resourceCulture);
+                return ResourceManager.GetString("updateDownloadInProgressDialogTitle", resourceCulture);
             }
         }
         
@@ -493,15 +502,6 @@ namespace WinManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update download in progress.
-        /// </summary>
-        public static string updateDownloadInProgressTitle {
-            get {
-                return ResourceManager.GetString("updateDownloadInProgressTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Downloading update.
         /// </summary>
         public static string updateDownloadProgressLabel {
@@ -511,20 +511,20 @@ namespace WinManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update installer is running.
+        /// </summary>
+        public static string updateInstallRunningDialogTitle {
+            get {
+                return ResourceManager.GetString("updateInstallRunningDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The update installer is running. Please finish or cancel the installation before downloading the update again..
         /// </summary>
         public static string updateInstallRunningMessage {
             get {
                 return ResourceManager.GetString("updateInstallRunningMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update installer is running.
-        /// </summary>
-        public static string updateInstallRunningTitle {
-            get {
-                return ResourceManager.GetString("updateInstallRunningTitle", resourceCulture);
             }
         }
         
@@ -540,9 +540,9 @@ namespace WinManager {
         /// <summary>
         ///   Looks up a localized string similar to What&apos;s new in WinManager.
         /// </summary>
-        public static string whatsNewTitle {
+        public static string whatsNewDialogTitle {
             get {
-                return ResourceManager.GetString("whatsNewTitle", resourceCulture);
+                return ResourceManager.GetString("whatsNewDialogTitle", resourceCulture);
             }
         }
         

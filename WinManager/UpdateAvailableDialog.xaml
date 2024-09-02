@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WinManager"
         xmlns:lang="clr-namespace:WinManager;assembly=WinManager"
         mc:Ignorable="d"
-        Title="{x:Static lang:Resources.updateAvailableTitle}"
+        Title="{x:Static lang:Resources.updateAvailableDialogTitle}"
         SizeToContent="WidthAndHeight"
 WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
