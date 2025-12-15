@@ -1,4 +1,7 @@
 # Co je nového ve WinManageru
+## WinManager 1.0.8
+* Změna globálních klávesových zkratek, aby fungovali v posledních Windows 11.
+
 ## WinManager 1.0.7
 * Přidána funkcionalita anglicko-českého slovníku přístupného přes zkratku Windows + Shift + F nebo Windows + F10.
 

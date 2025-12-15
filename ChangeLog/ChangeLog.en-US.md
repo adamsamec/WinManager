@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.8
+* Remapped global keyboard shortcuts so that they work in latest Windows 11.
+
 ## WinManager 1.0.7
 * Added English-Czech dictionary feature accessible via Windows + Shift + F or Windows + F10 keyboard shortcut.
 

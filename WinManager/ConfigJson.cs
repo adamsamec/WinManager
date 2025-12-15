@@ -22,19 +22,19 @@
     public class Showapps
     {
         public string Win_F12 { get; set; }
-        public string Win_Shift_A { get; set; }
+        public string Win_Shift_E { get; set; }
     }
 
     public class Showwindows
     {
-        public string Win_F11 { get; set; }
+        public string Win_Shift_F12 { get; set; }
         public string Win_Shift_Q { get; set; }
     }
 
     public class Showtranslator
     {
         public string Win_F10 { get; set; }
-        public string Win_Shift_F { get; set; }
+        public string Win_Shift_X { get; set; }
     }
 
 }
