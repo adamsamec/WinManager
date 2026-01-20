@@ -9,7 +9,7 @@ Přínos nástroje WinManager lze demonstrovat nejlépe pomocí konkrétních uk
 ### Ukázka 1: Přepínání nebo zavírání oken
 řekněme, že se chcete přepnout do nebo zavřít určité okno aplikace Microsoft Edge, ve kterém jste něco hledali pomocí vyhledávače Google:
 
-1. Stisknutím Windows + F12 nebo Windows + Shift + E vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
+1. Stisknutím Windows + F12 nebo Windows + Alt + P vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
 2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu aplikací.
 3. Stiskněte šipku doprava pro zobrazení všech oken aplikace Microsoft Edge.
 4. Šipkou dolů se přesuňte na požadované okno s vyhledávačem Google, nebo vyfiltrujte seznam oken pouhým napsáním "Google".
@@ -18,14 +18,14 @@ Přínos nástroje WinManager lze demonstrovat nejlépe pomocí konkrétních uk
 ### Ukázka 2: Ukončování aplikací
 Řekněme, že chcete zavřít aplikaci Microsoft Edge tak, aby se při jejím příštím spuštění zeptala na obnovení všech svých naposledy zavřených oken.
 
-1. Stisknutím Windows + F12 nebo Windows + Shift + E vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
+1. Stisknutím Windows + F12 nebo Windows + Alt + P vyvolejte nástroj WinManager. Zobrazí se seznam čtyř výše uvedených běžících aplikací.
 2. Šipkou dolů se přesuňte na aplikaci "Microsoft Edge ", nebo jednoduše jenom napište "edge" pro vyfiltrování seznamu aplikací.
 3. Stiskněte Shift + Delete pro vynucené ukončení Microsoft Edge, čímž zajistíte, že se při příštím spuštění zeptá na obnovení všech svých naposledy zavřených oken.
 
 ### Ukázka 3: Přepínání nebo ukončování oken pouze pro aplikaci v popředí
 Řekněme, že máte otevřeného Průzkumníka a chcete se přepnout do nebo zavřít jeho jiné okno "Stahování", které jste používali před dlouhou dobou.
 
-1. Stisknutím Windows + Shift + F12 nebo Windows + Shift + Q vyvolejte nástroj WinManager. Zobrazí se seznam otevřených oken jen pro aplikaci, která je právě v popředí, tedy pro Průzkumník.
+1. Stisknutím Windows + Shift + F12 nebo Windows + Alt + O vyvolejte nástroj WinManager. Zobrazí se seznam otevřených oken jen pro aplikaci, která je právě v popředí, tedy pro Průzkumník.
 2. Šipkou dolů se přesuňte na okno "Stahování"", nebo vyfiltrujte seznam oken pouhým napsáním "stah".
 3. Stiskněte Enter na okně "Stahování" pro přepnutí do něj, nebo stiskněte Delete pro jeho zavření.
 
@@ -37,7 +37,7 @@ Po spuštění WinManager oznámí, že byl spuštěn, a poté běží na pozad�
 * Obousměrný anglicko-český slovník.
 
 ### Seznam spuštěných aplikací a jejich otevřených oken
-Stisknutím zkratky Windows + F12 nebo alternativně Windows + Shift + E můžete kdykoliv vyvolat seznam právě spuštěných aplikací, který je seřazen dle naposledy použité aplikace. Se seznamem můžete pracovat pomocí následujících kláves:
+Stisknutím zkratky Windows + F12 nebo alternativně Windows + Alt + P můžete kdykoliv vyvolat seznam právě spuštěných aplikací, který je seřazen dle naposledy použité aplikace. Se seznamem můžete pracovat pomocí následujících kláves:
 
 * Šipka dolů nebo nahoru: Přesune vás na následující nebo předchozí položku v seznamu.
 * Šipka doprava: Jestliže je vybrána aplikace, tak vás přesune do seznamu otevřených oken jen této vybrané aplikace.
@@ -48,7 +48,7 @@ Stisknutím zkratky Windows + F12 nebo alternativně Windows + Shift + E můžet
 * Alt + F4: Ukončí WinManager, takže už nebude nadále běžet na pozadí. WinManager oznámí, že byl ukončen.
 
 ### Seznam otevřených oken jen pro aplikaci v popředí
-Stisknutím zkratky Windows + Shift + F12 nebo alternativně Windows + Shift + Q můžete kdykoliv vyvolat seznam otevřených oken jen pro aplikaci, která je zrovna v popředí, jež je seřazen dle naposledy použitého okna. Se seznamem můžete pracovat pomocí následujících kláves:
+Stisknutím zkratky Windows + Shift + F12 nebo alternativně Windows + Alt + O můžete kdykoliv vyvolat seznam otevřených oken jen pro aplikaci, která je zrovna v popředí, jež je seřazen dle naposledy použitého okna. Se seznamem můžete pracovat pomocí následujících kláves:
 
 * Šipka dolů nebo nahoru: Přesune vás na následující nebo předchozí okno v seznamu.
 * Enter: Jestliže je vybráno okno, tak vás přepne do tohoto okna. Poté skryje WinManager.
@@ -57,7 +57,7 @@ Stisknutím zkratky Windows + Shift + F12 nebo alternativně Windows + Shift + Q
 * Alt + F4: Ukončí WinManager, takže už nebude nadále běžet na pozadí. WinManager oznámí, že byl ukončen.
 
 ### Obousměrný anglicko-český slovník
-Stisknutím zkratky Windows + F10 nebo alternativně Windows + Shift + X můžete kdykoliv vyvolat pokročilý obousměrný anglicko-český slovník založený na kvalitním slovníku od Seznam.cz. Pro využití tohoto slovníku je však potřebné připojení k Internetu.
+Stisknutím zkratky Windows + F10 nebo alternativně Windows + Alt + J můžete kdykoliv vyvolat pokročilý obousměrný anglicko-český slovník založený na kvalitním slovníku od Seznam.cz. Pro využití tohoto slovníku je však potřebné připojení k Internetu.
 
 * Po vyvolání slovníku je do vyhledávacího pole pro zadání hledaného slovíčka automaticky předvyplněn text ze schránky a tento text je označen, takže ho následným psaním případně můžete snadno přepsat na jiné slovíčko.
 * Stisknutím Enteru vyhledáte zadané slovíčko a fokus se sám přesune do oblasti s výsledkem hledání, kde se můžete pohybovat stejně jako na webové stránce.
@@ -79,16 +79,16 @@ Dialog s nastavením pro WinManager umožňuje konfiguraci globálních kláveso
 K vyvolání seznamu spuštěných aplikací mohou sloužit následující zkratky:
 
 * Windows + F12 (výchozí).
-* Windows + Shift + E (výchozí).
+* Windows + Alt + P (výchozí).
 
 K vyvolání seznamu otevřených oken jen pro aplikaci v popředí mohou sloužit následující zkratky:
 
 * Windows + Shift + F12 (výchozí).
-* Windows + Shift + Q (výchozí).
+* Windows + Alt + O (výchozí).
 
 K vyvolání slovníku mohou sloužit následující zkratky:
 * Windows + F10 (výchozí).
-* Windows + Shift + F (výchozí).
+* Windows + Alt + J (výchozí).
 
 ## Známé problémy
 * Někdy při pokusu o přepnutí se do okna se fokus do tohoto okna správně nepřesune. V takových situacích může pomoci stisknout Alt + tabulátor a poté Alt + Shift + tabulátor.
