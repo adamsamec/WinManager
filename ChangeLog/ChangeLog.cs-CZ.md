@@ -1,5 +1,8 @@
 # Co je nového ve WinManageru
 ## WinManager 1.0.8
+* Opět změna globálních klávesových zkratek, aby se ještě více minimalizovala šance konfliktů s existujícími zkratkami Windows. Nové zkratky musí být povoleny v nastavení WinManageru.
+
+## WinManager 1.0.8
 * Změna globálních klávesových zkratek, aby fungovali v posledních Windows 11.
 
 ## WinManager 1.0.7

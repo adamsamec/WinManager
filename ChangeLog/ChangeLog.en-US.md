@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.9
+* Remapped global keyboard shortcuts again so conflicts with existing Windows shortcuts is further minimized. The new global shortcuts needs to be enabled in WinManager settings.
+
 ## WinManager 1.0.8
 * Remapped global keyboard shortcuts so that they work in latest Windows 11.
 

@@ -8,7 +8,7 @@ The benefit of WinManager can be best demonstrated on specific example of its us
 ### Example 1: Windows switching or closing
 Let's say you want to switch to or close certain window in Microsoft Edge where you searched something using Google:
 
-1. Press Windows + F12, or Windows + Shift + E, to invoke WinManager. A list of four running applications mentioned above will be displayed.
+1. Press Windows + F12, or Windows + Alt + P, to invoke WinManager. A list of four running applications mentioned above will be displayed.
 2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list of applications.
 3. Press the Right arrow key to show all windows for Microsoft Edge.
 4. Arrow down to the desired Google search window, or narrow down the windows list just by typing "google".
@@ -17,14 +17,14 @@ Let's say you want to switch to or close certain window in Microsoft Edge where 
 ### Example 2: Applications quitting
 Let's say you want to quit Microsoft Edge with all its windows so that it asks for restoring all the windows next time you start it:
 
-1. Press Windows + F12, or Windows + Shift + E, to invoke WinManager. A list of four running applications mentioned above will be displayed.
+1. Press Windows + F12, or Windows + Alt + P, to invoke WinManager. A list of four running applications mentioned above will be displayed.
 2. Arrow down to the "Microsoft Edge" application, or simply just type "edge" to filter the list of applications.
 3. Press Shift + Delete to force quit Microsoft Edge, which makes it ask you for restoring its windows next time you start it.
 
 ### Example 3: Windows switching or closing only for the application in foreground
 Let's say you are in File Explorer, and want to switch or close its another "Downloads" window that you used a long time ago:
 
-1. Press Windows + Shift + F12, or Windows + Shift + Q, to invoke WinManager. A list of open windows only for the application in foreground will be displayed, that is, for File Explorer.
+1. Press Windows + Shift + F12, or Windows + Alt + O, to invoke WinManager. A list of open windows only for the application in foreground will be displayed, that is, for File Explorer.
 2. Arrow down to the "Downloads" window, or simply just type "down" to filter the list of windows.
 3. Press Enter when on the "Downloads" window to switch to it, or press Delete to close it.
 
@@ -38,7 +38,7 @@ After starting, WinManager notifies the user it has been started and then runs i
 * List of open windows only for the application in the foreground.
 
 ### List of running applications and their open windows
-After pressing Windows + F12, or Windows + Shift + E, the user can invoke a list of currently running applications, ordered by the most recently used application first. The list can be operated using the following keys:
+After pressing Windows + F12, or Windows + Alt + P, the user can invoke a list of currently running applications, ordered by the most recently used application first. The list can be operated using the following keys:
 
 * Down or Up arrow: Navigates to the next or previous item in the list.
 * Right arrow: When an application is selected, navigates to the list of open windows only for that selected application.
@@ -49,7 +49,7 @@ After pressing Windows + F12, or Windows + Shift + E, the user can invoke a list
 * Alt + F4: Exits WinManager, so it no longer runs in background. WinManager notifies the user it is exiting.
 
 ### List of open windows only for the application in the foreground
-After pressing Windows + Shift + F12, or Windows + Shift + Q, the user can invoke a list of open windows  only for the application in the foreground, ordered by the most recently used window first. The list can be operated using the following keys:
+After pressing Windows + Shift + F12, or Windows + Alt + O, the user can invoke a list of open windows  only for the application in the foreground, ordered by the most recently used window first. The list can be operated using the following keys:
 
 * Down or Up arrow: Navigates to the next or previous window in the list.
 * Enter: When a window is selected, switches to that window. Then hides WinSwitcher.
@@ -73,12 +73,12 @@ The WinManager settings dialog allows you to configure the global keyboard short
 For invoking the list of running applications, you can choose from the following shortcuts:
 
 * Windows + F12 (checked by default).
-* Windows + Shift + E (checked by default).
+* Windows + Alt + P (checked by default).
 
 For invoking the list of open windows for the application in the foreground, you can choose from the following shortcuts:
 
 * Windows + Shift + F12 (checked by default).
-* Windows + Shift + Q (checked by default).
+* Windows + Alt + O (checked by default).
 
 ## Download
 Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info" link which should be available on the page displayed to you, and then press the "Run anyway" button.

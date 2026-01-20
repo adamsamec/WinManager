@@ -5,15 +5,15 @@
     "enabledShortcuts": {
       "showApps": {
         "Win_F12": "yes",
-        "Win_Shift_E": "yes"
+        "Win_Alt_P": "yes"
       },
       "showWindows": {
         "Win_Shift_F12": "yes",
-        "Win_Shift_Q": "yes"
+        "Win_Alt_O": "yes"
       },
       "showTranslator": {
         "Win_F10": "yes",
-        "Win_Shift_X": "yes"
+        "Win_Alt_J": "yes"
       }
     }
   }

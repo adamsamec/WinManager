@@ -7,7 +7,7 @@ namespace WinManager
     /// </summary>
     public static class Consts
     {
-        public const string AppVersion = "1.0.8";
+        public const string AppVersion = "1.0.9";
         public const string AppName = "WinManager";
 
         public const string WindowTitleSeparator = " | ";

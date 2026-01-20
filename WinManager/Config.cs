@@ -16,15 +16,15 @@ namespace WinManager
         {
             // Show apps
             new TriggerShortcut("Win_F12", "Windows + F12", ModifierKeyCodes.Windows, 0x7B, TriggerShortcut.TriggerAction.ShowApps),
-            new TriggerShortcut("Win_Shift_E", "Windows + Shift + E", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x45, TriggerShortcut.TriggerAction.ShowApps),
+            new TriggerShortcut("Win_Alt_P", "Windows + Alt + P", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x50, TriggerShortcut.TriggerAction.ShowApps),
 
             // Show windows
             new TriggerShortcut("Win_Shift_F12", "Windows + Shift + F12", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x7B, TriggerShortcut.TriggerAction.ShowWindows),
-            new TriggerShortcut("Win_Shift_Q", "Windows + Shift + Q", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x51, TriggerShortcut.TriggerAction.ShowWindows),
+            new TriggerShortcut("Win_Alt_O", "Windows + Shift + O", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4F, TriggerShortcut.TriggerAction.ShowWindows),
 
             // Show translator
             new TriggerShortcut("Win_F10", "Windows + F10", ModifierKeyCodes.Windows, 0x79, TriggerShortcut.TriggerAction.ShowTranslator),
-            new TriggerShortcut("Win_Shift_X", "Windows + Shift + X", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x58, TriggerShortcut.TriggerAction.ShowTranslator),
+            new TriggerShortcut("ooWin_Alt_J", "Windows + Alt + J", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4A, TriggerShortcut.TriggerAction.ShowTranslator),
         };
         public Settings AppSettings
         {
