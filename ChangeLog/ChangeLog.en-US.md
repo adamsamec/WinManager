@@ -1,4 +1,7 @@
 # What's new in WinManager
+## WinManager 1.0.10
+* Fixed incorrect label for the Windows + Alt + O keyboard shortcut in WinManager settings. It was previously incorrectly labelled as Windows + Shift + O.
+
 ## WinManager 1.0.9
 * Remapped global keyboard shortcuts again so conflicts with existing Windows shortcuts is further minimized. The new global shortcuts needs to be enabled in WinManager settings.
 

@@ -20,11 +20,11 @@ namespace WinManager
 
             // Show windows
             new TriggerShortcut("Win_Shift_F12", "Windows + Shift + F12", ModifierKeyCodes.Windows | ModifierKeyCodes.Shift, 0x7B, TriggerShortcut.TriggerAction.ShowWindows),
-            new TriggerShortcut("Win_Alt_O", "Windows + Shift + O", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4F, TriggerShortcut.TriggerAction.ShowWindows),
+            new TriggerShortcut("Win_Alt_O", "Windows + Alt + O", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4F, TriggerShortcut.TriggerAction.ShowWindows),
 
             // Show translator
             new TriggerShortcut("Win_F10", "Windows + F10", ModifierKeyCodes.Windows, 0x79, TriggerShortcut.TriggerAction.ShowTranslator),
-            new TriggerShortcut("ooWin_Alt_J", "Windows + Alt + J", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4A, TriggerShortcut.TriggerAction.ShowTranslator),
+            new TriggerShortcut("Win_Alt_J", "Windows + Alt + J", ModifierKeyCodes.Windows | ModifierKeyCodes.Alt, 0x4A, TriggerShortcut.TriggerAction.ShowTranslator),
         };
         public Settings AppSettings
         {

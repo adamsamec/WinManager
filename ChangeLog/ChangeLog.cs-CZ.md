@@ -1,5 +1,8 @@
 # Co je nového ve WinManageru
-## WinManager 1.0.8
+## WinManager 1.0.10
+* Opraven popisek pro klávesovou zkratku Windows + Alt + O v nastavení WinManageru. Dříve byla chybně uvedena zkratka Windows + Shift + O.
+
+## WinManager 1.0.9
 * Opět změna globálních klávesových zkratek, aby se ještě více minimalizovala šance konfliktů s existujícími zkratkami Windows. Nové zkratky musí být povoleny v nastavení WinManageru.
 
 ## WinManager 1.0.8
