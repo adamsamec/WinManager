@@ -336,8 +336,8 @@ namespace WinManager
 
         public void ShowTranslator()
         {
-            var clipboardText = Utils.GetClipboardText();
-            _translatorWindow = new TranslatorWindow(this, clipboardText);
+            var keyword = Utils.GetSelectedTextOrWordAtCursor();
+            _translatorWindow = new TranslatorWindow(this, keyword);
             _translatorWindow.Display();
         }
 
