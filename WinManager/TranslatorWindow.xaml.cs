@@ -87,8 +87,11 @@ namespace WinManager
 
         private async Task TranslateKeyword()
         {
-            if (!String.IsNullOrEmpty(keywordTextBox.Text))
+            if (String.IsNullOrEmpty(keywordTextBox.Text))
             {
+                Title = WinManager.Resources.translatorWindowTitle + Consts.WindowTitleSeparator + Consts.AppName;
+            } else {
+                Title = keywordTextBox.Text + Consts.WindowTitleSeparator + WinManager.Resources.translatorWindowTitle + Consts.WindowTitleSeparator + Consts.AppName;
                 webBrowser.IsEnabled = true;
                 string pageContent;
                 try
