@@ -1,4 +1,9 @@
 # Co je nového ve WinManageru
+## WinManager 1.1.0
+* V anglicko-českém slovníku nyní fungují odkazy na slovíčka v překladu.
+* titulek anglicko-českého slovníku nyní zahrnuje hledané slovíčko.
+* Po vyvolání anglicko-českého slovníku je do vyhledávacího pole pro zadání hledaného slovíčka automaticky předvyplněn místo textu v systémové schránce text, který byl označen před vyvoláním slovníku, anebo slovo, na němž byl textový kurzor v editačním poli předchozího okna v popředí.
+
 ## WinManager 1.0.10
 * Opraven popisek pro klávesovou zkratku Windows + Alt + O v nastavení WinManageru. Dříve byla chybně uvedena zkratka Windows + Shift + O.
 

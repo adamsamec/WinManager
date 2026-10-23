@@ -1,4 +1,9 @@
 # What's new in WinManager
+## WinManager 1.1.0
+* The keyword links are now working in the Czech-English dictionary translation results.
+* The Czech-English dictionary window now includes the searched keyword.
+* After invoking the Czech-English dictionary, the keyword search field is populated with the text selected before invoking the dictionary or with the word at the text cursor in the edit field of the previous foreground window, instead of clipboard text.
+
 ## WinManager 1.0.10
 * Fixed incorrect label for the Windows + Alt + O keyboard shortcut in WinManager settings. It was previously incorrectly labelled as Windows + Shift + O.
 

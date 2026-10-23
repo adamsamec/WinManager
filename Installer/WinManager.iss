@@ -1,6 +1,6 @@
 ; WinManager installer configuration
 #define MyAppName "WinManager"
-#define MyAppVersion "1.0.10"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "Adam Samec"
 #define MyAppExecutable MyAppName + ".exe"
 
