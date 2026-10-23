@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.Media;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Navigation;
 
 namespace WinManager
 {
@@ -20,6 +23,9 @@ namespace WinManager
             _keyword = keyword;
 
             KeyDown += TranslatorWindow_KeyDown;
+
+            webBrowser.Navigated +=
+                        new NavigatedEventHandler(webBrowser_Navigated);
         }
 
         private void TranslatorWindow_Loaded(object sender, RoutedEventArgs e)
@@ -66,6 +72,17 @@ namespace WinManager
         private void translateButton_Click(object sender, RoutedEventArgs e)
         {
             TranslateKeyword();
+        }
+
+        private void webBrowser_Navigated(object sender,
+    NavigationEventArgs e)
+        {
+                if (!Page.IsTranslationRequested)
+            {
+                var keyword = e.Uri.LocalPath.Split("/").Last(); ;
+                keywordTextBox.Text = keyword;
+                TranslateKeyword();
+            }
         }
 
         private async Task TranslateKeyword()

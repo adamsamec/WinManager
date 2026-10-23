@@ -15,6 +15,7 @@ namespace WinManager
     /// </summary>
     public static class Page
     {
+        public static bool IsTranslationRequested = false;
         public static string GetHelpPageContent()
         {
             return GetHTML(Consts.HelpFileRelativePath);
@@ -52,13 +53,6 @@ namespace WinManager
             try {
                 var web = new HtmlWeb();
                 var document = web.Load(url);
-
-                // Replace all the link href attributes to "#"
-                foreach (var link in document.DocumentNode.SelectNodes("//a[@href]"))
-                {
-                    var attribute = link.Attributes["href"];
-                    attribute.Value = "#";
-                }
 
                 // Select the first <article>
                 var articles = document.DocumentNode.SelectNodes("//article");
@@ -123,11 +117,13 @@ page.focus();
 </html>";
             webBrowser.LoadCompleted += (sendr, e) =>
             {
+                Page.IsTranslationRequested = false;
                 if (doFocus)
                 { 
                 webBrowser.InvokeScript("focusBegining");
                 }
             };
+            Page.IsTranslationRequested = true;
             webBrowser.NavigateToString(html);
             if (doFocus)
             {
