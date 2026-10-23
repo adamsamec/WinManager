@@ -59,7 +59,7 @@ Stisknutím zkratky Windows + Shift + F12 nebo alternativně Windows + Alt + O m
 ### Obousměrný anglicko-český slovník
 Stisknutím zkratky Windows + F10 nebo alternativně Windows + Alt + J můžete kdykoliv vyvolat pokročilý obousměrný anglicko-český slovník založený na kvalitním slovníku od Seznam.cz. Pro využití tohoto slovníku je však potřebné připojení k Internetu.
 
-* Po vyvolání slovníku je do vyhledávacího pole pro zadání hledaného slovíčka automaticky předvyplněn text ze schránky a tento text je označen, takže ho následným psaním případně můžete snadno přepsat na jiné slovíčko.
+* Po vyvolání slovníku je do vyhledávacího pole pro zadání hledaného slovíčka automaticky předvyplněn text, který byl označen před vyvoláním slovníku, anebo slovo, na němž byl textový kurzor v editačním poli aplikace v popředí. Tento text je označen, takže ho následným psaním případně můžete snadno přepsat na jiné slovíčko.
 * Stisknutím Enteru vyhledáte zadané slovíčko a fokus se sám přesune do oblasti s výsledkem hledání, kde se můžete pohybovat stejně jako na webové stránce.
 * Klávesovou zkratkou Control + Shift + F se můžete kdykoliv přesunout zpět do pole pro zadání slovíčka.
 
