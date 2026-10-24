@@ -11,7 +11,7 @@ cs.MyDescription=Nástroj pro snadné a přístupnější přepínání a zavír
 cs.LaunchAfterInstall=Spustit {#MyAppName} po dokončení instalace
 
 [Setup]
-OutputBaseFilename={#MyAppName}-{#MyAppVersion}-win32-setup
+OutputBaseFilename={#MyAppName}-{#MyAppVersion}-setup
 AppVersion={#MyAppVersion}
 AppName={#MyAppName}
 AppId={#MyAppName}
