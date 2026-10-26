@@ -81,7 +81,7 @@ For invoking the list of open windows for the application in the foreground, you
 * Windows + Alt + O (checked by default).
 
 ## Download
-Note that Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info" link which should be available on the page displayed to you, and then press the "Run anyway" button.
+Note that when downloading WinManager installer, in the download manager of your web browser, you might need to manually allow downloading of the installer as a suspicious file. Apart from that, Windows Defender security software may prevent both the WinManager installer and portable version from starting. If blocked by Windows Defender, visit the "More info" link which should be available on the page displayed to you, and then press the "Run anyway" button.
 
 ### Installer
 Below, you can download the installer for WinManager. The installer creates a Desktop shortcut. 
